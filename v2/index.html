@@ -58,9 +58,12 @@
                     <li class="nav-item"><a class="nav-link" href="#gallery">গ্যালারি</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">যোগাযোগ</a></li>
                 </ul>
-                <a href="#stories" class="btn btn-primary-custom ms-lg-3 mt-2 mt-lg-0">
-                    <i class="bi bi-trophy me-1"></i> সাফল্যের গল্প
-                </a>
+                <div class="d-flex align-items-center gap-2 ms-lg-3 mt-2 mt-lg-0" id="authNavButtons">
+                    <!-- Auth buttons will be injected by JS -->
+                    <div class="spinner-border spinner-border-sm text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -1434,8 +1437,72 @@
                 from { opacity: 0; transform: translateY(20px); }
                 to { opacity: 1; transform: translateY(0); }
             }
+            .auth-btn-outline {
+                border: 2px solid var(--primary);
+                color: var(--primary);
+                border-radius: 10px;
+                padding: 6px 16px;
+                font-weight: 600;
+                transition: all 0.3s;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+            }
+            .auth-btn-outline:hover {
+                background: var(--primary);
+                color: white;
+            }
         `;
         document.head.appendChild(style);
+
+        // Auth State Check
+        function updateAuthUI() {
+            const authContainer = document.getElementById('authNavButtons');
+            const stored = sessionStorage.getItem('chtdbUser');
+            
+            if (stored) {
+                const user = JSON.parse(stored);
+                if (user.loggedIn) {
+                    authContainer.innerHTML = `
+                        <a href="dashboard.html" class="btn btn-primary-custom" style="padding: 6px 16px;">
+                            <i class="bi bi-speedometer2 me-1"></i> ড্যাশবোর্ড
+                        </a>
+                        <div class="dropdown">
+                            <button class="btn btn-link text-decoration-none dropdown-toggle p-0 d-flex align-items-center" data-bs-toggle="dropdown" style="margin-left:8px;">
+                                <img src="${user.avatar}" alt="User" style="width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid var(--primary);">
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0" style="border-radius:12px;margin-top:10px;">
+                                <li class="px-3 py-2 text-center border-bottom mb-1">
+                                    <div class="fw-bold text-dark">${user.name}</div>
+                                    <div class="small text-muted">${user.course}</div>
+                                </li>
+                                <li><a class="dropdown-item" href="dashboard.html"><i class="bi bi-person me-2"></i>প্রোফাইল</a></li>
+                                <li><a class="dropdown-item text-danger" href="#" onclick="handleLogout()"><i class="bi bi-box-arrow-right me-2"></i>লগআউট</a></li>
+                            </ul>
+                        </div>
+                    `;
+                    return;
+                }
+            }
+            
+            // Not logged in state
+            authContainer.innerHTML = `
+                <a href="login.html" class="auth-btn-outline">
+                    <i class="bi bi-box-arrow-in-right me-1"></i> লগিন
+                </a>
+                <a href="register.html" class="btn btn-primary-custom" style="padding: 6px 16px;">
+                    <i class="bi bi-person-plus me-1"></i> নিবন্ধন
+                </a>
+            `;
+        }
+
+        function handleLogout() {
+            sessionStorage.removeItem('chtdbUser');
+            window.location.reload();
+        }
+
+        // Initialize UI
+        document.addEventListener('DOMContentLoaded', updateAuthUI);
     </script>
 </body>
 
