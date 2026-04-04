@@ -4,6 +4,9 @@
 @section('page-title', 'প্রশিক্ষণ তথ্য')
 
 @section('content')
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+@endpush
 <div class="dash-content-card border-0">
     <h5><i class="bi bi-mortarboard-fill text-primary"></i> প্রশিক্ষণ তথ্য</h5>
     <p class="card-subtitle">আপনি কোন বিষয়ে প্রশিক্ষণ নিয়েছেন তার বিস্তারিত তথ্য দিন</p>
@@ -70,13 +73,13 @@
 
             <div class="col-md-6">
                 <label class="dash-form-label">শুরুর তারিখ</label>
-                <input type="date" name="start_date" class="dash-form-control @error('start_date') is-invalid @enderror" value="{{ old('start_date', isset($user->training->start_date) ? $user->training->start_date?->format('Y-m-d') : '') }}">
+                <input type="text" name="start_date" id="start-date-picker" class="dash-form-control @error('start_date') is-invalid @enderror" value="{{ old('start_date', isset($user->training->start_date) ? $user->training->start_date?->format('Y-m-d') : '') }}" placeholder="YYYY-MM-DD">
                 @error('start_date')<div class="text-danger small mt-1">{{ $message }}</div>@enderror
             </div>
 
             <div class="col-md-6">
                 <label class="dash-form-label">সমাপ্তির তারিখ</label>
-                <input type="date" name="end_date" class="dash-form-control @error('end_date') is-invalid @enderror" value="{{ old('end_date', isset($user->training->end_date) ? $user->training->end_date?->format('Y-m-d') : '') }}">
+                <input type="text" name="end_date" id="end-date-picker" class="dash-form-control @error('end_date') is-invalid @enderror" value="{{ old('end_date', isset($user->training->end_date) ? $user->training->end_date?->format('Y-m-d') : '') }}" placeholder="YYYY-MM-DD">
                 @error('end_date')<div class="text-danger small mt-1">{{ $message }}</div>@enderror
             </div>
         </div>
@@ -86,4 +89,22 @@
         </div>
     </form>
 </div>
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        flatpickr("#start-date-picker", {
+            dateFormat: "Y-m-d",
+            altInput: true,
+            altFormat: "d M Y",
+        });
+        flatpickr("#end-date-picker", {
+            dateFormat: "Y-m-d",
+            altInput: true,
+            altFormat: "d M Y",
+        });
+    });
+</script>
+@endpush
 @endsection

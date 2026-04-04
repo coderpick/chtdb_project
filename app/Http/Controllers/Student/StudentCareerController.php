@@ -18,12 +18,20 @@ class StudentCareerController extends Controller
     public function update(Request $request)
     {
         $validated = $request->validate([
-            'status' => 'required|in:job,freelance,entrepreneur',
+            'status' => 'required|in:job,freelance,entrepreneur,job_and_freelance,seeking,higher_education',
             'designation' => 'nullable|string|max:255',
             'company' => 'nullable|string|max:255',
             'income' => 'nullable|numeric|min:0',
             'join_date' => 'nullable|date',
             'location' => 'nullable|string|max:255',
+            'platform' => 'nullable|string|max:255',
+            'profile_link' => 'nullable|url|max:500',
+            'completed_projects' => 'nullable|integer|min:0',
+            'rating' => 'nullable|string|max:10',
+            'business_name' => 'nullable|string|max:255',
+            'business_type' => 'nullable|string|max:255',
+            'employees' => 'nullable|integer|min:0',
+            'business_website' => 'nullable|url|max:500',
             'story' => 'nullable|string',
         ]);
 

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('careers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->enum('status', ['unemployed', 'job', 'freelance', 'entrepreneur', 'job_freelance'])->nullable();
+            $table->enum('status', ['job', 'freelance', 'entrepreneur', 'job_and_freelance', 'seeking', 'higher_education'])->nullable();
             $table->decimal('income', 15, 2)->nullable();
             // Job fields
             $table->string('company', 200)->nullable();

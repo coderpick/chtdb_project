@@ -15,7 +15,14 @@ class StudentPortfolioController extends Controller
 
         $portfolio = $user->portfolioSetting ?? new PortfolioSetting;
 
-        return view('student.portfolio.edit', compact('portfolio'));
+        $stats = [
+            'projects' => $user->projects()->count(),
+            'skills' => $user->skills()->count(),
+            'course' => $user->training->course->name ?? 'ICT Student',
+            'district' => $user->profile->district ?? 'CHT',
+        ];
+
+        return view('student.portfolio.edit', compact('portfolio', 'stats'));
     }
 
     public function update(Request $request)
@@ -23,11 +30,12 @@ class StudentPortfolioController extends Controller
         $user = auth()->user();
 
         $validated = $request->validate([
-            'slug' => 'required|alpha_dash|unique:portfolio_settings,slug,'.($user->portfolioSetting->id ?? 0).',id,user_id,'.$user->id,
+            'slug' => 'required|alpha_dash|unique:portfolio_settings,slug,'.($user->portfolioSetting->id ?? 0),
             'tagline' => 'nullable|string|max:255',
-            'theme' => 'nullable|string|max:50',
-            'is_visible' => 'boolean',
+            'theme' => 'nullable|in:green,blue,purple,orange,dark,teal',
         ]);
+
+        $validated['is_visible'] = $request->has('is_visible');
 
         if (! $user->portfolioSetting) {
             $user->portfolioSetting()->create($validated);

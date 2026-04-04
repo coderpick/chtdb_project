@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class StudentProjectController extends Controller
 {
+    use FileUploadTrait;
+
     public function index()
     {
         $user = auth()->user();
@@ -45,7 +47,7 @@ class StudentProjectController extends Controller
         ];
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('project-images', 'public');
+            $data['image'] = $this->fileUpload($request->file('image'), 'uploads/student/project');
         }
 
         $user->projects()->create($data);
@@ -92,9 +94,8 @@ class StudentProjectController extends Controller
 
         if ($request->hasFile('image')) {
             if ($project->image) {
-                Storage::disk('public')->delete($project->image);
+                $data['image'] = $this->fileUpload($request->file('image'), 'uploads/student/project', $project->image);
             }
-            $data['image'] = $request->file('image')->store('project-images', 'public');
         }
 
         $project->update($data);
@@ -108,7 +109,7 @@ class StudentProjectController extends Controller
         $project = $user->projects()->findOrFail($id);
 
         if ($project->image) {
-            Storage::disk('public')->delete($project->image);
+            $this->unlink($project->image);
         }
 
         $project->delete();

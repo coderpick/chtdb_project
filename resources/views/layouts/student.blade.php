@@ -94,6 +94,8 @@
                         <li><a href="{{ route('student.career.edit') }}" class="{{ request()->routeIs('student.career.*') ? 'active' : '' }}"><i class="bi bi-briefcase"></i> ক্যারিয়ার তথ্য</a></li>
                         <li><a href="{{ route('student.projects.index') }}" class="{{ request()->routeIs('student.projects.*') ? 'active' : '' }}"><i class="bi bi-collection"></i> পোর্টফোলিও</a></li>
                         <li><a href="{{ route('student.skills.edit') }}" class="{{ request()->routeIs('student.skills.*') ? 'active' : '' }}"><i class="bi bi-stars"></i> দক্ষতা সমূহ</a></li>
+                        {{-- social media links --}}
+                        <li><a href="{{ route('student.socials.edit') }}" class="{{ request()->routeIs('student.socials.*') ? 'active' : '' }}"><i class="bi bi-link-45deg"></i> সোশ্যাল মিডিয়া লিঙ্কস</a></li>
                         <li><a href="{{ route('student.portfolio.edit') }}" class="{{ request()->routeIs('student.portfolio.*') ? 'active' : '' }}"><i class="bi bi-link-45deg"></i> পাবলিক পোর্টফোলিও URL</a></li>
                     </ul>
                 </div>

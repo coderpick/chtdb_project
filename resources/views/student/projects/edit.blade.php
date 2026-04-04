@@ -44,7 +44,7 @@
                 <input type="file" name="image" class="dash-form-control @error('image') is-invalid @enderror" accept="image/*" style="padding: 9px 16px;">
                 @if($project->image)
                     <div class="mt-2">
-                        <img src="{{ asset('storage/'.$project->image) }}" alt="Preview" style="height: 60px; border-radius:8px; border:1px solid #ddd;">
+                        <img src="{{ asset($project->image) }}" alt="Preview" style="height: 60px; border-radius:8px; border:1px solid #ddd;">
                     </div>
                 @endif
                 @error('image')<div class="text-danger small mt-1">{{ $message }}</div>@enderror

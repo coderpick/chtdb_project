@@ -81,15 +81,39 @@ class StudentSeeder extends Seeder
 
             // Career (for 80% of students)
             if ($faker->boolean(80)) {
-                Career::create([
+                $status = $faker->randomElement(['job', 'freelance', 'entrepreneur', 'job_and_freelance', 'seeking', 'higher_education']);
+                
+                $careerData = [
                     'user_id' => $student->id,
-                    'status' => $faker->randomElement(['job', 'freelance', 'entrepreneur']),
-                    'income' => $faker->numberBetween(15000, 60000),
-                    'company' => $faker->company,
-                    'designation' => $faker->jobTitle,
-                    'join_date' => $faker->date('Y-m-d', 'now'),
-                    'location' => $faker->city,
-                ]);
+                    'status' => $status,
+                    'story' => $faker->paragraph,
+                ];
+
+                if (in_array($status, ['job', 'job_and_freelance'])) {
+                    $careerData['income'] = $faker->numberBetween(15000, 60000);
+                    $careerData['company'] = $faker->company;
+                    $careerData['designation'] = $faker->jobTitle;
+                    $careerData['join_date'] = $faker->date('Y-m-d', 'now');
+                    $careerData['location'] = $faker->city;
+                }
+
+                if (in_array($status, ['freelance', 'job_and_freelance'])) {
+                    $careerData['income'] = $careerData['income'] ?? $faker->numberBetween(20000, 80000);
+                    $careerData['platform'] = $faker->randomElement(['Upwork', 'Fiverr', 'Freelancer']);
+                    $careerData['profile_link'] = 'https://www.upwork.com/freelancers/~' . $faker->lexify('????????');
+                    $careerData['completed_projects'] = $faker->numberBetween(5, 50);
+                    $careerData['rating'] = $faker->randomFloat(1, 4.0, 5.0);
+                }
+
+                if ($status === 'entrepreneur') {
+                    $careerData['income'] = $faker->numberBetween(50000, 150000);
+                    $careerData['business_name'] = $faker->company;
+                    $careerData['business_type'] = $faker->randomElement(['Agency', 'E-commerce', 'IT Solutions']);
+                    $careerData['employees'] = $faker->numberBetween(2, 20);
+                    $careerData['business_website'] = $faker->url;
+                }
+
+                Career::create($careerData);
             }
         }
     }

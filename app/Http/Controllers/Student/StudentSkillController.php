@@ -23,30 +23,39 @@ class StudentSkillController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'skill' => 'required|string|max:50',
+            'skills' => 'nullable|string',
         ]);
 
         $user = auth()->user();
-        $skillName = trim($request->skill);
-
-        $skill = Skill::firstOrCreate(['name' => $skillName]);
-
-        if (! $user->skills()->where('skill_id', $skill->id)->exists()) {
-            $user->skills()->attach($skill->id);
+        $skillsInput = $request->skills;
+        $skillsData = json_decode($skillsInput, true);
+        
+        if (is_null($skillsData) && !empty($skillsInput)) {
+            // Fallback for non-JSON comma-separated string
+            $skillsData = array_map(function($s) {
+                return ['value' => trim($s)];
+            }, array_filter(explode(',', $skillsInput)));
         }
 
-        return back()->with('success', "Skill '$skillName' added.");
+        $skillsData = $skillsData ?? [];
+        $skillIds = [];
+
+        foreach ($skillsData as $data) {
+            $skillName = trim($data['value'] ?? '');
+            if (empty($skillName)) continue;
+
+            $skill = Skill::firstOrCreate(['name' => $skillName]);
+            $skillIds[] = $skill->id;
+        }
+
+        $user->skills()->sync($skillIds);
+
+        return back()->with('success', 'Skills updated successfully.');
     }
 
     public function destroy($skillName)
     {
-        $user = auth()->user();
-        $skill = Skill::where('name', $skillName)->first();
-
-        if ($skill) {
-            $user->skills()->detach($skill->id);
-        }
-
-        return back()->with('success', 'Skill removed.');
+        // No longer used as sync() handles removal
+        return back();
     }
 }
