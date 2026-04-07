@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminMessageController;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
 use App\Http\Controllers\Admin\StudentController as AdminStudentController;
 use App\Http\Controllers\Admin\SuccessStoryController as AdminSuccessStoryController;
 use App\Http\Controllers\Admin\TrainingCenterController as AdminCenterController;
 use App\Http\Controllers\Auth\StudentAuthController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PublicPortfolioController;
 use App\Http\Controllers\Student\StudentCareerController;
@@ -84,6 +86,9 @@ Route::prefix('student')->name('student.')->group(function () {
 // Public Portfolio
 Route::get('/portfolio/{slug}', [PublicPortfolioController::class, 'show'])->name('portfolio.public.show');
 
+/* contact form submission */
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
 /* get upazial by district */
 Route::get('/upazilas/{district}', function ($district) {
     $upazilas = Upazila::where('district_id', $district)->get();
@@ -132,6 +137,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
 
     // Gallery
     Route::resource('gallery', AdminGalleryController::class);
+
+    // Messages
+    Route::get('messages', [AdminMessageController::class, 'index'])->name('messages.index');
+    Route::get('messages/{message}', [AdminMessageController::class, 'show'])->name('messages.show');
+    Route::delete('messages/{message}', [AdminMessageController::class, 'destroy'])->name('messages.destroy');
 
     // Students Management
     Route::get('students', [AdminStudentController::class, 'index'])->name('students.index');

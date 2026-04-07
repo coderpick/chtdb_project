@@ -694,7 +694,7 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
                     <div class="col-md-4 reveal">
                         <div class="center-card">
                             <div class="center-card-header"
-                                style="background:linear-gradient(135deg,rgba(0,0,0,0.5),rgba(0,0,0,0.6)),url('{{ asset('img/' . ($center->district == 'khagrachhari' ? 'Khagrachari' : ($center->district == 'rangamati' ? 'rangamati' : 'bandarban')) . ($center->district == 'rangamati' ? '.jpeg' : '.jpg')) }}') center/cover no-repeat;">
+                                style="background:linear-gradient(135deg,rgba(0,0,0,0.5),rgba(0,0,0,0.6)),url('{{ asset('img/' . ($center->district == 'khagrachari' ? 'khagrachari' : ($center->district == 'rangamati' ? 'rangamati' : 'bandarban')) . ($center->district == 'rangamati' ? '.jpeg' : '.jpg')) }}') center/cover no-repeat;">
                                 <i class="bi bi-geo-alt-fill d-block"></i>
                                 <h5>{{ $center->name }}</h5>
                             </div>
@@ -744,11 +744,11 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-semibold">জেলা *</label>
-                                    <select name="district" class="form-select" required>
+                                    <select name="district_id" class="form-select" required>
                                         <option value="">জেলা নির্বাচন করুন</option>
-                                        <option value="rangamati">রাঙামাটি</option>
-                                        <option value="khagrachhari">খাগড়াছড়ি</option>
-                                        <option value="bandarban">বান্দরবান</option>
+                                        @foreach ($districts as $district)
+                                            <option value="{{ $district->id }}">{{ $district->bn_name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="col-12">
@@ -1123,6 +1123,48 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
         window.onload = () => {
             reveal();
             animateCounters();
+        }
+
+        // Contact form submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalBtnText = submitBtn.innerHTML;
+                
+                // Show loading state
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>প্রক্রিয়াকরণ হচ্ছে...';
+                
+                const formData = new FormData(this);
+                
+                fetch('{{ route('contact.store') }}', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message);
+                        contactForm.reset();
+                    } else {
+                        alert(data.message || 'কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('দুঃখিত, সংযোগ বিচ্ছিন্ন হয়েছে। আবার চেষ্টা করুন।');
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                });
+            });
         }
 
         // Success stories filter

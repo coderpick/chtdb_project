@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ContactMessage;
 use App\Models\Course;
 use App\Models\SuccessStory;
 use App\Models\TrainingCenter;
@@ -17,6 +18,8 @@ class AdminDashboardController extends Controller
             'courses' => Course::count(),
             'centers' => TrainingCenter::count(),
             'success_stories' => SuccessStory::where('status', 'approved')->count(),
+            'total_messages' => ContactMessage::count(),
+            'new_messages' => ContactMessage::where('status', 'new')->count(),
         ];
 
         $recentStudents = User::where('role', 'student')
