@@ -30,8 +30,4 @@ class Course extends Model
         return $this->hasMany(Training::class);
     }
 
-    public function testimonials()
-    {
-        return $this->hasMany(Testimonial::class);
-    }
 }

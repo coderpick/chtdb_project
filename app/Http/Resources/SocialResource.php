@@ -19,6 +19,8 @@ class SocialResource extends JsonResource
             'github' => $this->github,
             'website' => $this->website,
             'facebook' => $this->facebook,
+            'twitter' => $this->twitter,
+            'phone' => $this->phone,
         ];
     }
 }

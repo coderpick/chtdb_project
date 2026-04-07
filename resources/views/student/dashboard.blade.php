@@ -9,7 +9,7 @@
 @php
     $total = 7;
     $filled = 0;
-    if($user->profile && $user->profile->phone) $filled++;
+    if($user->studentProfile && $user->studentProfile->phone) $filled++;
     if($user->training && $user->training->course_id) $filled++;
     if(isset($user->career) && $user->career->designation) $filled++;
     if($user->projects->count() > 0) $filled++;
@@ -94,7 +94,7 @@
                     </div>
                 </a>
                 
-                <a href="{{ route('student.training.edit') }}" class="text-decoration-none text-dark">
+                <a href="{{ route('student.training.index') }}" class="text-decoration-none text-dark">
                     <div class="d-flex align-items-center gap-3 p-3" style="background:#f8faf9;border-radius:12px;cursor:pointer;">
                         <div style="width:42px;height:42px;border-radius:10px;background:rgba(0,123,255,0.1);display:flex;align-items:center;justify-content:center;">
                             <i class="bi bi-mortarboard-fill text-primary"></i>
@@ -151,7 +151,7 @@
                 </tr>
                 <tr>
                     <td class="text-muted">জেলা:</td>
-                    <td style="font-weight:600;">{{ $user->profile->district ?? 'দেওয়া হয়নি' }}</td>
+                    <td style="font-weight:600;">{{ $user->studentProfile->district->name ?? 'দেওয়া হয়নি' }}</td>
                 </tr>
                 <tr>
                     <td class="text-muted">কোর্স:</td>

@@ -27,15 +27,16 @@
         /* ── Sidebar ── */
         .sidebar {
             width: var(--sidebar-width);
-            min-height: 100vh;
+            height: 100vh;
             background: white;
             box-shadow: 2px 0 10px rgba(0,0,0,0.07);
             display: flex;
             flex-direction: column;
             flex-shrink: 0;
             transition: width var(--sidebar-transition);
-            overflow: hidden;
-            position: relative;
+            overflow-y: auto;
+            position: sticky;
+            top: 0;
             z-index: 100;
         }
 
@@ -261,11 +262,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.testimonials*') ? 'active' : '' }}"
-                       href="{{ route('admin.testimonials.index') }}"
-                       data-label="Testimonials">
-                        <i class="bi bi-stars"></i>
-                        <span class="link-text">Testimonials</span>
+                    <a href="{{ route('admin.success-stories.index') }}" class="nav-link {{ request()->routeIs('admin.success-stories.*') ? 'active' : '' }}" 
+                       data-label="Success Stories">
+                        <i class="bi bi-chat-quote-fill nav-icon"></i> 
+                        <span class="link-text">Success Stories</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -344,8 +344,8 @@
         const isMobile = () => window.innerWidth < 768;
         const STORAGE_KEY = 'chtdb_sidebar_collapsed';
 
-        // Restore saved state (desktop only)
-        if (!isMobile() && localStorage.getItem(STORAGE_KEY) === '1') {
+        // Auto-close on mobile load or restore saved state on desktop
+        if (isMobile() || localStorage.getItem(STORAGE_KEY) === '1') {
             sidebar.classList.add('collapsed');
         }
 
@@ -366,10 +366,19 @@
             overlay.classList.remove('visible');
         });
 
-        // On resize – reset mobile state
+        // On resize – handle mobile/desktop transitions
         window.addEventListener('resize', function () {
-            if (!isMobile()) {
+            if (isMobile()) {
+                sidebar.classList.add('collapsed');
                 overlay.classList.remove('visible');
+            } else {
+                overlay.classList.remove('visible');
+                // Restore desktop state from storage
+                if (localStorage.getItem(STORAGE_KEY) === '1') {
+                    sidebar.classList.add('collapsed');
+                } else {
+                    sidebar.classList.remove('collapsed');
+                }
             }
         });
     })();

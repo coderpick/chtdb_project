@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('slug')->unique();
-            $table->enum('theme', ['green', 'blue', 'purple', 'dark', 'teal'])->default('green');
+            $table->enum('theme', ['green', 'blue', 'purple', 'orange', 'dark', 'teal'])->default('green');
             $table->boolean('is_visible')->default(true);
             $table->string('tagline', 200)->nullable();
             $table->timestamps();

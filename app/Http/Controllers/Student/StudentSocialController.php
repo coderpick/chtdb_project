@@ -11,6 +11,7 @@ class StudentSocialController extends Controller
     public function edit()
     {
         $user = auth()->user();
+
         $user->load('socialLinks');
 
         $socials = $user->socialLinks ?? new SocialLink;
@@ -20,6 +21,7 @@ class StudentSocialController extends Controller
 
     public function update(Request $request)
     {
+
         $validated = $request->validate([
             'linkedin' => 'nullable|url',
             'github' => 'nullable|url',
@@ -30,7 +32,11 @@ class StudentSocialController extends Controller
         ]);
 
         $user = auth()->user();
-        $user->socialLinks()->update($validated);
+        if (! $user->socialLinks) {
+            $user->socialLinks()->create($validated);
+        } else {
+            $user->socialLinks()->update($validated);
+        }
 
         return back()->with('success', 'Social links updated.');
     }

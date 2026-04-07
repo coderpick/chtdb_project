@@ -31,7 +31,6 @@ class CareerResource extends JsonResource
             'business_type' => $this->business_type,
             'employees' => $this->employees,
             'business_website' => $this->business_website,
-            'story' => $this->story,
             'created_at' => $this->created_at?->toISOString(),
             'updated_at' => $this->updated_at?->toISOString(),
         ];

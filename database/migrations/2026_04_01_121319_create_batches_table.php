@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('batches', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('course_id')->constrained()->onDelete('cascade');
+            $table->foreignId('training_center_id')->constrained()->onDelete('cascade');
+            $table->foreignId('course_id')->nullable()->constrained()->onDelete('cascade');
+            $table->string('shift')->default('Morning'); // Morning, Afternoon
             $table->string('name');
             $table->date('start_date');
             $table->date('end_date')->nullable();

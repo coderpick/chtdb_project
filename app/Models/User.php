@@ -32,7 +32,7 @@ class User extends Authenticatable
     }
 
     // Relationships
-    public function profile()
+    public function studentProfile()
     {
         return $this->hasOne(StudentProfile::class);
     }
@@ -67,8 +67,8 @@ class User extends Authenticatable
         return $this->hasOne(PortfolioSetting::class);
     }
 
-    public function testimonials()
+    public function successStories()
     {
-        return $this->hasMany(Testimonial::class);
+        return $this->hasManyThrough(SuccessStory::class, StudentProfile::class);
     }
 }

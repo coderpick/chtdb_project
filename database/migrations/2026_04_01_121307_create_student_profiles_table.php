@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('phone', 20)->nullable();
-            $table->enum('district', ['rangamati', 'khagrachhari', 'bandarban'])->nullable();
-            $table->string('upazila', 100)->nullable();
+            $table->foreignId('district_id')->constrained('districts')->onDelete('cascade');
+            $table->foreignId('upazila_id')->constrained('upazilas')->onDelete('cascade');
             $table->date('dob')->nullable();
             $table->enum('gender', ['male', 'female', 'other'])->nullable();
             $table->string('nid', 20)->nullable();

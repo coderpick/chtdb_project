@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
 use App\Http\Controllers\Admin\StudentController as AdminStudentController;
-use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
+use App\Http\Controllers\Admin\SuccessStoryController as AdminSuccessStoryController;
 use App\Http\Controllers\Admin\TrainingCenterController as AdminCenterController;
 use App\Http\Controllers\Auth\StudentAuthController;
 use App\Http\Controllers\HomeController;
@@ -17,7 +17,10 @@ use App\Http\Controllers\Student\StudentProfileController;
 use App\Http\Controllers\Student\StudentProjectController;
 use App\Http\Controllers\Student\StudentSkillController;
 use App\Http\Controllers\Student\StudentSocialController;
+use App\Http\Controllers\Student\StudentSuccessStoryController;
 use App\Http\Controllers\Student\StudentTrainingController;
+use App\Models\Batch;
+use App\Models\Upazila;
 use Illuminate\Support\Facades\Route;
 
 // ===== PUBLIC ROUTES =====
@@ -48,7 +51,7 @@ Route::prefix('student')->name('student.')->group(function () {
             Route::post('profile/photo', [StudentProfileController::class, 'uploadPhoto'])->name('profile.photo');
 
             // Training
-            Route::get('training', [StudentTrainingController::class, 'edit'])->name('training.edit');
+            Route::get('training', [StudentTrainingController::class, 'index'])->name('training.index');
             Route::put('training', [StudentTrainingController::class, 'update'])->name('training.update');
 
             // Career
@@ -70,12 +73,36 @@ Route::prefix('student')->name('student.')->group(function () {
             // Portfolio Settings
             Route::get('portfolio', [StudentPortfolioController::class, 'edit'])->name('portfolio.edit');
             Route::put('portfolio', [StudentPortfolioController::class, 'update'])->name('portfolio.update');
+
+            /*  write success-story */
+            Route::get('success-story', [StudentSuccessStoryController::class, 'edit'])->name('success-story.edit');
+            Route::put('success-story', [StudentSuccessStoryController::class, 'update'])->name('success-story.update');
         });
     });
 });
 
 // Public Portfolio
 Route::get('/portfolio/{slug}', [PublicPortfolioController::class, 'show'])->name('portfolio.public.show');
+
+/* get upazial by district */
+Route::get('/upazilas/{district}', function ($district) {
+    $upazilas = Upazila::where('district_id', $district)->get();
+
+    return response()->json($upazilas);
+})->name('upazilas.by.district');
+/* get training center batches */
+Route::get('/training-center/{training_center}/batches', function ($training_center) {
+    $batches = Batch::where('training_center_id', $training_center)->get();
+
+    return response()->json($batches);
+})->name('training-center.batches');
+
+/* get upazila by district */
+Route::get('/district/{district}/upazilas', function ($district) {
+    $upazilas = Upazila::where('district_id', $district)->get();
+
+    return response()->json($upazilas);
+})->name('upazilas.by.district');
 
 // ===== ADMIN ROUTES (Existing) =====
 
@@ -97,8 +124,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     // Training Centers
     Route::resource('centers', AdminCenterController::class);
 
-    // Testimonials
-    Route::resource('testimonials', AdminTestimonialController::class);
+    // Success Stories
+    Route::resource('success-stories', AdminSuccessStoryController::class);
+    Route::patch('success-stories/{success_story}/approve', [AdminSuccessStoryController::class, 'approve'])->name('success-stories.approve');
+    Route::patch('success-stories/{success_story}/reject', [AdminSuccessStoryController::class, 'reject'])->name('success-stories.reject');
+    Route::get('districts/{district}/upazilas', [AdminSuccessStoryController::class, 'getUpazilas'])->name('districts.upazilas');
 
     // Gallery
     Route::resource('gallery', AdminGalleryController::class);
@@ -108,7 +138,4 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::get('students/{user}', [AdminStudentController::class, 'show'])->name('students.show');
     Route::get('students/{user}/edit', [AdminStudentController::class, 'edit'])->name('students.edit');
     Route::put('students/{user}', [AdminStudentController::class, 'update'])->name('students.update');
-});
-Route::get('/test', function () {
-    return 'OK';
 });

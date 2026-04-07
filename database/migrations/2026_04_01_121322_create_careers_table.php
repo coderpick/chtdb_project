@@ -31,7 +31,6 @@ return new class extends Migration
             $table->string('business_type', 150)->nullable();
             $table->integer('employees')->nullable();
             $table->string('business_website', 500)->nullable();
-            $table->text('story')->nullable();
             $table->timestamps();
         });
     }

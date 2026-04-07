@@ -17,9 +17,9 @@ class StudentPortfolioController extends Controller
 
         $stats = [
             'projects' => $user->projects()->count(),
-            'skills' => $user->skills()->count(),
-            'course' => $user->training->course->name ?? 'ICT Student',
-            'district' => $user->profile->district ?? 'CHT',
+            'skills' => $user->skills->pluck('name')->join(', '),
+            'course' => $user->training->course->name ?? 'Course Not Assigned',
+            'district' => $user->profile->district->name ?? 'CHT',
         ];
 
         return view('student.portfolio.edit', compact('portfolio', 'stats'));

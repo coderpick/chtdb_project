@@ -13,7 +13,8 @@ class Training extends Model
         'user_id',
         'course_id',
         'batch_id',
-        'center_id',
+        'district_id',
+        'upazila_id',
         'status',
         'start_date',
         'end_date',
@@ -42,8 +43,13 @@ class Training extends Model
         return $this->belongsTo(Batch::class);
     }
 
-    public function center()
+    public function district()
     {
-        return $this->belongsTo(TrainingCenter::class, 'center_id');
+        return $this->belongsTo(District::class);
+    }
+
+    public function upazila()
+    {
+        return $this->belongsTo(Upazila::class);
     }
 }

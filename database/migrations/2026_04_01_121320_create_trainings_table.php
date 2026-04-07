@@ -15,12 +15,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('course_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('batch_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('center_id')->nullable()->constrained('training_centers')->nullOnDelete();
+            $table->foreignId('batch_id')->nullable()->constrained()->nullOnDelete();       
+            $table->foreignId('district_id')->constrained('districts')->onDelete('cascade');        
+            $table->foreignId('upazila_id')->constrained('upazilas')->onDelete('cascade');
             $table->enum('status', ['ongoing', 'completed'])->default('ongoing');
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->string('certificate_no', 100)->nullable()->unique();
+            $table->string('certificate_no', 100)->nullable();
             $table->string('grade', 20)->nullable();
             $table->text('remarks')->nullable();
             $table->timestamps();

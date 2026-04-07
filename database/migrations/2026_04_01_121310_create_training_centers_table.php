@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('training_centers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('district_id')->constrained('districts')->onDelete('cascade');
             $table->string('name');
-            $table->enum('district', ['rangamati', 'khagrachhari', 'bandarban']);
             $table->text('address')->nullable();
             $table->string('phone', 20)->nullable();
             $table->string('email', 100)->nullable();

@@ -412,18 +412,18 @@
                         </div>
                         <div class="d-flex align-items-center gap-3 mb-3 p-3"
                             style="background:rgba(255,255,255,0.1);border-radius:12px;">
-                            <span style="font-size:1.8rem;font-weight:800;color:var(--secondary);">১০০+</span>
+                            <span style="font-size:1.8rem;font-weight:800;color:var(--secondary);">৫০+</span>
                             <span style="font-size:0.9rem;">একাডেমিক ইনস্টিটিউশন পার্টনার</span>
                         </div>
                         <div class="d-flex align-items-center gap-3 p-3"
                             style="background:rgba(255,255,255,0.1);border-radius:12px;">
-                            <span style="font-size:1.8rem;font-weight:800;color:var(--secondary);">৫০+</span>
+                            <span style="font-size:1.8rem;font-weight:800;color:var(--secondary);">১০০+</span>
                             <span style="font-size:0.9rem;">দক্ষ ও অভিজ্ঞ প্রশিক্ষক</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>      
+        </div>
     </section>
 
     <!-- Statistics Section -->
@@ -484,37 +484,71 @@
             </div>
 
             <div class="row g-4" id="storiesGrid">
-                @foreach ($testimonials as $index => $testimonial)
+                @foreach ($successStories as $index => $story)
+                    @php
+                        $user = $story->user;
+                        $profile = $user?->studentProfile;
+                        $name = $user?->name ?? 'শিক্ষার্থী';
+                        $district = $story->district; // Use SuccessStory's direct district relation
+$photo = $profile?->photo ?? null;
+
+// Map district name to slug (lowercase) for JS filter
+$districtSlug = $district ? strtolower($district->name) : '';
+$districtLabel = $district ? $district->bn_name : 'সকল জেলা';
+
+$training = $user?->training;
+$course = $training?->course;
+$courseName = $course?->name ?? 'আইসিটি কোর্স';
+$courseIcon = $course?->icon ?? 'bi-laptop';
+
+$career = $story->career;
+$income = $career?->income ?? 0;
+$careerStatus = $career?->status ?? 'job';
+
+$statusLabels = [
+    'job' => 'চাকরিজীবী',
+    'freelance' => 'ফ্রিল্যান্সার',
+    'entrepreneur' => 'উদ্যোক্তা',
+    'job_freelance' => 'চাকরি ও ফ্রিল্যান্সিং',
+    'unemployed' => 'বেকার',
+    'student' => 'শিক্ষার্থী',
+];
+$tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
+                    @endphp
                     <div class="col-md-6 col-lg-4 story-item {{ $index >= 6 ? 'd-none more-story' : '' }}"
-                        data-district="{{ $testimonial->district }}">
+                        @if ($districtSlug) data-district="{{ $districtSlug }}" @endif>
                         <div class="story-card reveal">
                             <div class="story-header">
-                                <img src="{{ $testimonial->photo ?? 'https://ui-avatars.com/api/?name=' . urlencode($testimonial->name) }}"
-                                    alt="{{ $testimonial->name }}" class="story-avatar">
+                                <img src="{{ $photo ? asset($photo) : 'https://ui-avatars.com/api/?name=' . urlencode($name) }}"
+                                    alt="{{ $name }}" class="story-avatar">
                                 <div class="story-header-info">
-                                    <h5>{{ $testimonial->name }}</h5>
+                                    <h5>{{ $name }}</h5>
                                     <span class="district-badge">
                                         <i class="bi bi-geo-alt"></i>
-                                        {{ $testimonial->district == 'rangamati' ? 'রাঙামাটি' : ($testimonial->district == 'khagrachhari' ? 'খাগড়াছড়ি' : 'বান্দরবান') }}
+                                        {{ $districtLabel }}
                                     </span>
                                 </div>
                             </div>
                             <div class="story-body">
-                                <span class="story-course"><i class="bi bi-code-slash me-1"></i>
-                                    {{ $testimonial->course ? $testimonial->course->name : 'আইসিটি কোর্স' }}</span>
-                                <p class="story-text">{{ Str::limit($testimonial->content, 200) }}</p>
+                                <span class="story-course"><i class="bi {{ $courseIcon }} me-1"></i>
+                                    {{ $courseName }}</span>
+                                <p class="story-text">{{ Str::limit($story->story_text, 200) }}</p>
                             </div>
                             <div class="story-footer">
-                                <span class="story-income"><i class="bi bi-currency-exchange"></i>
-                                    {{ $testimonial->job_title }}</span>
-                                <div class="story-tags"><span>সাফল্য</span></div>
+                                @if ($income > 0)
+                                    <span class="story-income"><i class="bi bi-currency-exchange"></i> মাসিক আয়:
+                                        {{ str_replace(range(0, 9), ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'], $income) }}৳</span>
+                                @else
+                                    <span class="story-income"></span>
+                                @endif
+                                <div class="story-tags"><span>{{ $tagText }}</span></div>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
 
-            @if ($testimonials->count() > 6)
+            @if ($successStories->count() > 6)
                 <div class="text-center mt-5 reveal">
                     <button class="btn btn-primary-custom btn-lg" id="loadMoreBtn" onclick="loadMore()">
                         <i class="bi bi-arrow-down-circle me-2"></i>আরও সাফল্যের গল্প দেখুন
@@ -550,77 +584,6 @@
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="section-padding">
-        <div class="container">
-            <div class="text-center centered reveal">
-                <div class="section-divider"></div>
-                <h2 class="section-title">শিক্ষার্থীদের মতামত</h2>
-                <p class="section-subtitle">প্রশিক্ষণ সম্পর্কে শিক্ষার্থীরা কী বলছেন</p>
-            </div>
-            <div class="row g-4">
-                @php
-                    $simpleTestimonials = $testimonials->where('is_featured', false);
-                @endphp
-                @foreach ($simpleTestimonials->take(6) as $testimonial)
-                    <div class="col-md-4 reveal">
-                        <div class="testimonial-card">
-                            <i class="bi bi-quote quote-icon"></i>
-                            <div class="stars">
-                                @for ($i = 0; $i < ($testimonial->rating ?? 5); $i++)
-                                    <i class="bi bi-star-fill"></i>
-                                @endfor
-                            </div>
-                            <p class="text">"{{ $testimonial->content }}"</p>
-                            <div class="testimonial-author">
-                                <img src="{{ $testimonial->photo ?? 'https://ui-avatars.com/api/?name=' . urlencode($testimonial->name) }}"
-                                    alt="{{ $testimonial->name }}">
-                                <div>
-                                    <h6>{{ $testimonial->name }}</h6>
-                                    <small>{{ $testimonial->job_title ?? 'শিক্ষার্থী' }},
-                                        {{ $testimonial->district == 'rangamati' ? 'রাঙামাটি' : ($testimonial->district == 'khagrachhari' ? 'খাগড়াছড়ি' : 'বান্দরবান') }}</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-
-            @if ($simpleTestimonials->count() > 6)
-                <div class="row g-4 mt-0" id="moreTestimonials" style="display:none;">
-                    @foreach ($simpleTestimonials->skip(6) as $testimonial)
-                        <div class="col-md-4">
-                            <div class="testimonial-card">
-                                <i class="bi bi-quote quote-icon"></i>
-                                <div class="stars">
-                                    @for ($i = 0; $i < ($testimonial->rating ?? 5); $i++)
-                                        <i class="bi bi-star-fill"></i>
-                                    @endfor
-                                </div>
-                                <p class="text">"{{ $testimonial->content }}"</p>
-                                <div class="testimonial-author">
-                                    <img src="{{ $testimonial->photo ?? 'https://ui-avatars.com/api/?name=' . urlencode($testimonial->name) }}"
-                                        alt="{{ $testimonial->name }}">
-                                    <div>
-                                        <h6>{{ $testimonial->name }}</h6>
-                                        <small>{{ $testimonial->job_title ?? 'শিক্ষার্থী' }},
-                                            {{ $testimonial->district == 'rangamati' ? 'রাঙামাটি' : ($testimonial->district == 'khagrachhari' ? 'খাগড়াছড়ি' : 'বান্দরবান') }}</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-
-                <div class="text-center mt-5 reveal">
-                    <button class="btn btn-primary-custom btn-lg" id="loadMoreTestimonialsBtn"
-                        onclick="loadMoreTestimonials()">
-                        <i class="bi bi-arrow-down-circle me-2"></i>আরও মতামত দেখুন
-                    </button>
-                </div>
-            @endif
-        </div>
-    </section>
 
     <!-- Timeline -->
     <section class="timeline-section section-padding" style="background:var(--bg-light);">
@@ -634,7 +597,7 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <span class="timeline-date">২০২৩ - শুরু</span>
+                        <span class="timeline-date">২০২৪ - শুরু</span>
                         <h5>প্রকল্প অনুমোদন ও পরিকল্পনা</h5>
                         <p>পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড কর্তৃক প্রকল্প অনুমোদন এবং PeopleNTech কে ট্রেনিং পার্টনার
                             হিসেবে নির্বাচন করা হয়।</p>
@@ -643,7 +606,7 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <span class="timeline-date">২০২৩ - মধ্যভাগ</span>
+                        <span class="timeline-date">২০২৫ - প্রথম ব্যাচ</span>
                         <h5>প্রথম ব্যাচ প্রশিক্ষণ শুরু</h5>
                         <p>রাঙামাটি, খাগড়াছড়ি ও বান্দরবানে একযোগে প্রশিক্ষণ কার্যক্রম আরম্ভ। প্রথম ব্যাচে ১০০+
                             শিক্ষার্থী অংশগ্রহণ।</p>
@@ -652,7 +615,7 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <span class="timeline-date">২০২৪</span>
+                        <span class="timeline-date">২০২৫ - মধ্যভাগ</span>
                         <h5>দ্বিতীয় ব্যাচ ও সম্প্রসারণ</h5>
                         <p>দ্বিতীয় ব্যাচে আরও ১১৫+ শিক্ষার্থী যোগদান। নতুন কোর্স সংযোজন এবং কারিকুলাম আপডেট করা হয়।
                         </p>
@@ -661,9 +624,9 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <span class="timeline-date">২০২৫</span>
+                        <span class="timeline-date">২০২৬ - প্রথম ভাগ</span>
                         <h5>সফল সমাপ্তি ও কর্মসংস্থান</h5>
-                        <p>২১৫+ শিক্ষার্থী সফলভাবে প্রশিক্ষণ সম্পন্ন। ৯২% শিক্ষার্থী কর্মসংস্থানে যুক্ত হয়েছে।</p>
+                        <p>২০০+ শিক্ষার্থী সফলভাবে প্রশিক্ষণ সম্পন্ন। ৮৫% শিক্ষার্থী কর্মসংস্থানে যুক্ত হয়েছে।</p>
                     </div>
                 </div>
             </div>
@@ -691,9 +654,9 @@
                     @for ($i = 1; $i <= 8; $i++)
                         <div class="col-6 col-md-4 col-lg-3 reveal">
                             <div class="gallery-item" onclick="openLightbox({{ $i - 1 }})">
-                                <img src="{{ asset('img/gallary/gallery-' . $i . '.jpg') }}"
+                                <img src="{{ asset('img/gallery/gallery-' . $i . '.jpg') }}"
                                     alt="প্রশিক্ষণ কার্যক্রম"
-                                    data-fullsize="{{ asset('img/gallary/gallery-' . $i . '.jpg') }}">
+                                    data-fullsize="{{ asset('img/gallery/gallery-' . $i . '.jpg') }}">
                                 <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
                             </div>
                         </div>
@@ -738,7 +701,8 @@
                             <div class="center-card-body">
                                 <p><i class="bi bi-building me-2 text-success"></i>{{ $center->address }}</p>
                                 <p><i class="bi bi-telephone me-2 text-success"></i>{{ $center->phone }}</p>
-                                <p><i class="bi bi-people me-2 text-primary"></i>{{ $center->total_trainee }}+ শিক্ষার্থী প্রশিক্ষিত</p>
+                                <p><i class="bi bi-people me-2 text-primary"></i>{{ $center->total_trainee }}+
+                                    শিক্ষার্থী প্রশিক্ষিত</p>
                                 <p><i class="bi bi-laptop me-2 text-success"></i>আধুনিক কম্পিউটার ল্যাব সুবিধা</p>
                                 <p><i class="bi bi-wifi me-2 text-success"></i>হাই-স্পিড ইন্টারনেট সংযোগ</p>
                             </div>
@@ -765,13 +729,13 @@
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label class="form-label fw-semibold">আপনার নাম *</label>
-                                    <input type="text" name="name" class="form-control" placeholder="পুরো নাম লিখুন"
-                                        required>
+                                    <input type="text" name="name" class="form-control"
+                                        placeholder="পুরো নাম লিখুন" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-semibold">মোবাইল নম্বর *</label>
-                                    <input type="tel" name="phone" class="form-control" placeholder="০১XXXXXXXXX"
-                                        required>
+                                    <input type="tel" name="phone" class="form-control"
+                                        placeholder="০১XXXXXXXXX" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-semibold">ইমেইল</label>
@@ -811,7 +775,8 @@
                 </div>
                 <div class="col-lg-5 reveal">
                     <div class="contact-info-card">
-                        <h5 class="mb-4" style="font-weight:700;"><i class="bi bi-headset me-2"></i> যোগাযোগের তথ্য</h5>
+                        <h5 class="mb-4" style="font-weight:700;"><i class="bi bi-headset me-2"></i> যোগাযোগের তথ্য
+                        </h5>
                         <div class="contact-info-item">
                             <div class="icon"><i class="bi bi-building"></i></div>
                             <div>
@@ -823,14 +788,14 @@
                             <div class="icon"><i class="bi bi-telephone"></i></div>
                             <div>
                                 <h6>ফোন নম্বর</h6>
-                                <p>+৮৮০-৩৫১-৬২০৮১</p>
+                                <p>০২৩৩৩৩৭৩২৩১</p>
                             </div>
                         </div>
                         <div class="contact-info-item">
                             <div class="icon"><i class="bi bi-envelope"></i></div>
                             <div>
                                 <h6>ইমেইল</h6>
-                                <p>info@chtdb.gov.bd</p>
+                                <p>mi@chtdb.gov.bd</p>
                             </div>
                         </div>
                         <div class="contact-info-item">
@@ -896,9 +861,16 @@
                 <div class="col-lg-3 col-md-4">
                     <h5>গুরুত্বপূর্ণ লিংক</h5>
                     <ul class="footer-links">
-                        <li><a href="https://chtdb.gov.bd" target="_blank">পা.চ. উন্নয়ন বোর্ড</a></li>
-                        <li><a href="https://peoplentech.com.bd" target="_blank">PeopleNTech</a></li>
-                        <li><a href="https://mochta.gov.bd" target="_blank">পা.চ. বিষয়ক মন্ত্রণালয়</a></li>
+                        <li><a href="https://chtdb.gov.bd" target="_blank"><i
+                                    class="bi bi-box-arrow-up-right me-1"></i>পা.চ. উন্নয়ন বোর্ড</a></li>
+                        <li><a href="https://peoplentech.com.bd" target="_blank"><i
+                                    class="bi bi-box-arrow-up-right me-1"></i>PeopleNTech</a></li>
+                        <li><a href="https://mochta.gov.bd" target="_blank"><i
+                                    class="bi bi-box-arrow-up-right me-1"></i>পা.চ. বিষয়ক মন্ত্রণালয়</a></li>
+                        <li><a href="https://ict.gov.bd" target="_blank"><i
+                                    class="bi bi-box-arrow-up-right me-1"></i>আইসিটি বিভাগ</a></li>
+                        <li><a href="https://bangladesh.gov.bd" target="_blank"><i
+                                    class="bi bi-box-arrow-up-right me-1"></i>বাংলাদেশ সরকার</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-4">
@@ -912,16 +884,12 @@
                             <i class="bi bi-send"></i>
                         </button>
                     </div>
-                    <div class="mt-4">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Flag_of_Bangladesh.svg/200px-Flag_of_Bangladesh.svg.png"
-                            alt="BD Flag" style="height:24px;border-radius:3px;margin-right:8px;">
-                        <span style="font-size:0.85rem;">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</span>
-                    </div>
                 </div>
             </div>
             <div class="footer-bottom text-center">
                 <p class="mb-0" style="font-size:0.85rem;">
-                    © {{ date('Y') }} তিন পার্বত্য জেলার আইসিটি দক্ষতা উন্নয়ন স্কিম | পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড |
+                    © {{ date('Y') }} তিন পার্বত্য জেলার আইসিটি দক্ষতা উন্নয়ন স্কিম | পার্বত্য চট্টগ্রাম উন্নয়ন
+                    বোর্ড |
                     ট্রেনিং পার্টনার: <a href="https://peoplentech.com.bd" target="_blank"
                         style="color:var(--secondary);text-decoration:none;">PeopleNTech Institute of IT</a>
                 </p>
@@ -950,7 +918,8 @@
     </div>
 
     <!-- ===== LOGIN MODAL ===== -->
-    <div class="modal fade auth-modal" id="loginModal" tabindex="-1">
+    <div class="modal fade auth-modal" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="row g-0">
@@ -975,8 +944,8 @@
                                 @csrf
                                 <div class="auth-input-group">
                                     <i class="bi bi-envelope input-icon"></i>
-                                    <input type="email" name="email" class="form-control" placeholder="আপনার ইমেইল"
-                                        required>
+                                    <input type="email" name="email" class="form-control"
+                                        placeholder="আপনার ইমেইল" required>
                                 </div>
                                 <div class="auth-input-group">
                                     <i class="bi bi-lock input-icon"></i>
@@ -990,7 +959,8 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="remember"
                                             id="rememberMe">
-                                        <label class="form-check-label" for="rememberMe" style="font-size:0.85rem;">মনে
+                                        <label class="form-check-label" for="rememberMe"
+                                            style="font-size:0.85rem;">মনে
                                             রাখুন</label>
                                     </div>
                                     <a href="#"
@@ -1014,7 +984,8 @@
     </div>
 
     <!-- ===== REGISTER MODAL ===== -->
-    <div class="modal fade auth-modal" id="registerModal" tabindex="-1">
+    <div class="modal fade auth-modal" id="registerModal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="row g-0">
@@ -1039,20 +1010,44 @@
                                 @csrf
                                 <div class="auth-input-group">
                                     <i class="bi bi-person input-icon"></i>
-                                    <input type="text" name="name" class="form-control" placeholder="আপনার পুরো নাম"
-                                        required>
+                                    <input type="text" name="name" class="form-control"
+                                        placeholder="আপনার পুরো নাম" required>
+                                    @error('name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="auth-input-group">
                                     <i class="bi bi-envelope input-icon"></i>
-                                    <input type="email" name="email" class="form-control" placeholder="আপনার ইমেইল"
-                                        required>
+                                    <input type="email" name="email" class="form-control"
+                                        placeholder="আপনার ইমেইল" required>
+                                    @error('email')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
+                                <div class="auth-input-group">
+                                    <i class="bi bi-geo-alt input-icon"></i>
+                                    <select name="district" class="form-control" required>
+                                        <option value="" selected disabled>জেলা নির্বাচন করুন</option>
+                                        <option value="rangamati">রাঙ্গামাটি</option>
+                                        <option value="khagrachhari">খাগড়াছড়ি</option>
+                                        <option value="bandarban">বান্দরবান</option>
+                                    </select>
+                                    @error('district')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+
                                 <div class="auth-input-group">
                                     <i class="bi bi-lock input-icon"></i>
                                     <input type="password" name="password" class="form-control" id="regPassword"
                                         placeholder="পাসওয়ার্ড (ন্যূনতম ৬ অক্ষর)" required minlength="6">
                                     <button type="button" class="toggle-pass"
-                                        onclick="togglePassword('regPassword', this)"><i class="bi bi-eye"></i></button>
+                                        onclick="togglePassword('regPassword', this)"><i
+                                            class="bi bi-eye"></i></button>
+                                    @error('password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="auth-input-group">
                                     <i class="bi bi-lock-fill input-icon"></i>
@@ -1065,8 +1060,10 @@
                                 <div class="form-check mb-3">
                                     <input class="form-check-input" type="checkbox" id="agreeTerms" required>
                                     <label class="form-check-label" for="agreeTerms" style="font-size:0.85rem;">
-                                        <a href="#" style="color:var(--primary);text-decoration:none;">শর্তাবলী</a> ও <a
-                                            href="#" style="color:var(--primary);text-decoration:none;">গোপনীয়তা
+                                        <a href="#"
+                                            style="color:var(--primary);text-decoration:none;">শর্তাবলী</a> ও <a
+                                            href="#"
+                                            style="color:var(--primary);text-decoration:none;">গোপনীয়তা
                                             নীতি</a> মেনে নিচ্ছি
                                     </label>
                                 </div>

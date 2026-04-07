@@ -15,7 +15,7 @@ class StudentProfileController extends Controller
     public function edit()
     {
         $user = auth()->user();
-        $user->load('profile');
+        $user->load('studentProfile');
 
         return view('student.profile.edit', compact('user'));
     }
@@ -29,11 +29,11 @@ class StudentProfileController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,'.$user->id,
             'phone' => 'nullable|string|max:20',
-            'district' => 'nullable|in:rangamati,khagrachhari,bandarban',
+            'district_id' => 'nullable|exists:districts,id',
+            'upazila_id' => 'nullable|exists:upazilas,id',
             'address' => 'nullable|string|max:500',
             'bio' => 'nullable|string|max:1000',
             'photo' => 'nullable|image|max:2048',
-            'upazila' => 'nullable|string|max:255',
             'dob' => 'nullable|date',
             'gender' => 'nullable|in:male,female,other',
             'nid' => 'nullable|string|max:17',
@@ -45,19 +45,19 @@ class StudentProfileController extends Controller
         ]);
 
         if ($request->hasFile('photo')) {
-            $path = $this->fileUpload($request->file('photo'), 'uploads/student', $user->profile->photo ?? null);
+            $path = $this->fileUpload($request->file('photo'), 'uploads/student', $user->studentProfile->photo ?? null);
         }
 
-        $user->profile()->update([
+        $user->studentProfile()->update([
             'phone' => $validated['phone'] ?? null,
-            'district' => $validated['district'] ?? null,
-            'upazila' => $validated['upazila'] ?? null,
+            'district_id' => $validated['district_id'] ?? null,
+            'upazila_id' => $validated['upazila_id'] ?? null,
             'dob' => ! empty($validated['dob']) ? Carbon::parse($validated['dob'])->format('Y-m-d') : null,
             'gender' => $validated['gender'] ?? null,
             'nid' => $validated['nid'] ?? null,
             'address' => $validated['address'] ?? null,
             'bio' => $validated['bio'] ?? null,
-            'photo' => $path ?? $user->profile->photo,
+            'photo' => $path ?? $user->studentProfile->photo,
         ]);
 
         return back()->with('success', 'Profile updated successfully.');
@@ -72,13 +72,13 @@ class StudentProfileController extends Controller
         $user = auth()->user();
 
         // Delete old photo if exists
-        if ($user->profile->photo) {
-            Storage::disk('public')->delete($user->profile->photo);
+        if ($user->studentProfile->photo) {
+            Storage::disk('public')->delete($user->studentProfile->photo);
         }
 
         $path = $request->file('photo')->store('profile-photos', 'public');
 
-        $user->profile()->update(['photo' => $path]);
+        $user->studentProfile()->update(['photo' => $path]);
 
         return back()->with('success', 'Profile photo updated.');
     }

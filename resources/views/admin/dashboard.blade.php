@@ -25,8 +25,8 @@
     </div>
     <div class="col-md-3">
         <div class="card p-3">
-            <h6 class="text-muted mb-1">Testimonials</h6>
-            <h3>{{ $stats['testimonials'] ?? 0 }}</h3>
+            <h6 class="text-muted mb-1">Success Stories</h6>
+            <h3>{{ $stats['success_stories'] ?? 0 }}</h3>
         </div>
     </div>
 </div>
@@ -51,7 +51,7 @@
                         <tr>
                             <td>{{ $student->name }}</td>
                             <td>{{ $student->email }}</td>
-                            <td>{{ $student->profile->district ?? '-' }}</td>
+                            <td>{{ $student->studentProfile->district->name ?? '-' }}</td>
                             <td>{{ $student->training->course->name ?? '-' }}</td>
                             <td>
                                 @if($student->training)
@@ -70,13 +70,19 @@
     </div>
 
     <div class="col-lg-4">
-        <div class="card p-3">
-            <h6 class="mb-3">Quick Links</h6>
-            <div class="d-grid gap-2">
-                <a href="{{ route('admin.courses.create') }}" class="btn btn-outline-success"><i class="bi bi-plus"></i> Add Course</a>
-                <a href="{{ route('admin.centers.create') }}" class="btn btn-outline-success"><i class="bi bi-plus"></i> Add Training Center</a>
-                <a href="{{ route('admin.testimonials.create') }}" class="btn btn-outline-success"><i class="bi bi-plus"></i> Add Testimonial</a>
-                <a href="{{ route('admin.gallery.create') }}" class="btn btn-outline-success"><i class="bi bi-plus"></i> Upload Gallery Image</a>
+        <!-- Quick Actions -->
+        <div class="card border-0 shadow-sm mb-4" style="border-radius: 15px;">
+            <div class="card-header bg-white border-0 pt-4 pb-0">
+                <h5 class="fw-bold"><i class="bi bi-lightning-charge text-warning"></i> Quick Actions</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="{{ route('admin.courses.create') }}" class="btn btn-outline-primary"><i class="bi bi-plus"></i> Add Course</a>
+                    <a href="{{ route('admin.students.index') }}" class="btn btn-outline-info"><i class="bi bi-search"></i> Find Student</a>
+                    <a href="{{ route('admin.centers.create') }}" class="btn btn-outline-warning"><i class="bi bi-geo-alt"></i> Add Center</a>
+                    <a href="{{ route('admin.success-stories.create') }}" class="btn btn-outline-success"><i class="bi bi-plus"></i> Add Success Story</a>
+                    <a href="{{ route('admin.gallery.create') }}" class="btn btn-outline-secondary"><i class="bi bi-image"></i> Upload Photo</a>
+                </div>
             </div>
         </div>
     </div>

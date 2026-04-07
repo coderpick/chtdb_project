@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('github', 500)->nullable();
             $table->string('website', 500)->nullable();
             $table->string('facebook', 500)->nullable();
+            $table->string('twitter', 500)->nullable();
+            $table->string('phone', 50)->nullable();
             $table->timestamps();
         });
     }

@@ -19,7 +19,6 @@ class TrainingResource extends JsonResource
             'user_id' => $this->user_id,
             'course' => new CourseResource($this->whenLoaded('course')),
             'batch' => new BatchResource($this->whenLoaded('batch')),
-            'center' => new TrainingCenterResource($this->whenLoaded('center')),
             'status' => $this->status,
             'start_date' => $this->start_date?->format('Y-m-d'),
             'end_date' => $this->end_date?->format('Y-m-d'),

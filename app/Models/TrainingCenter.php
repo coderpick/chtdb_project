@@ -11,15 +11,15 @@ class TrainingCenter extends Model
 
     protected $fillable = [
         'name',
-        'district',
+        'district_id',
         'address',
         'phone',
         'email',
         'is_active',
     ];
 
-    public function trainings()
+    public function district()
     {
-        return $this->hasMany(Training::class);
+        return $this->belongsTo(District::class);
     }
 }

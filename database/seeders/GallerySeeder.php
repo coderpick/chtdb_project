@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Gallery;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 
 class GallerySeeder extends Seeder
 {
@@ -12,20 +13,32 @@ class GallerySeeder extends Seeder
      */
     public function run(): void
     {
-        $items = [
-            ['caption' => 'Training session at Rangamati center', 'category' => 'Training', 'image' => 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800'],
-            ['caption' => 'Student success celebration', 'category' => 'Events', 'image' => 'https://images.unsplash.com/photo-1523240715639-960bc2f10d29?w=800'],
-            ['caption' => 'Workshop on Digital Marketing', 'category' => 'Training', 'image' => 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800'],
-            ['caption' => 'CHTDB officials visit', 'category' => 'Visit', 'image' => 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800'],
-            ['caption' => 'Hands-on Web Development training', 'category' => 'Training', 'image' => 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800'],
-            ['caption' => 'Graphic Design class in progress', 'category' => 'Training', 'image' => 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800'],
-        ];
+        $galleryPath = public_path('img/gallery');
+        
+        if (!File::exists($galleryPath)) {
+            File::makeDirectory($galleryPath, 0755, true);
+        }
 
-        foreach ($items as $index => $item) {
+        $files = File::files($galleryPath);
+        
+        // Filter for image files
+        $imageFiles = array_filter($files, function($file) {
+            return in_array(strtolower($file->getExtension()), ['jpg', 'jpeg', 'png', 'gif', 'webp']);
+        });
+
+        // Clear existing gallery records to avoid duplicates when re-seeding
+        Gallery::truncate();
+
+        foreach ($imageFiles as $index => $file) {
+            $filename = $file->getFilename();
+            
+            // Create a simple caption from the filename
+            $caption = ucwords(str_replace(['-', '_'], ' ', pathinfo($filename, PATHINFO_FILENAME)));
+            
             Gallery::create([
-                'image_path' => $item['image'],
-                'caption' => $item['caption'],
-                'category' => $item['category'],
+                'image_path' => 'img/gallery/' . $filename,
+                'caption' => $caption,
+                'category' => $index % 2 == 0 ? 'Training' : 'Events',
                 'sort_order' => $index,
                 'is_active' => true,
             ]);

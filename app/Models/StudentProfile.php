@@ -12,8 +12,8 @@ class StudentProfile extends Model
     protected $fillable = [
         'user_id',
         'phone',
-        'district',
-        'upazila',
+        'district_id',
+        'upazila_id',
         'dob',
         'gender',
         'nid',
@@ -29,5 +29,25 @@ class StudentProfile extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(District::class);
+    }
+
+    public function upazila()
+    {
+        return $this->belongsTo(Upazila::class);
+    }
+
+    public function successStories()
+    {
+        return $this->hasMany(SuccessStory::class);
+    }
+
+    public function trainings()
+    {
+        return $this->hasMany(Training::class, 'user_id', 'user_id');
     }
 }

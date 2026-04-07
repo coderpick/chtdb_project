@@ -10,7 +10,7 @@ class TrainingCenterController extends Controller
 {
     public function index()
     {
-        $centers = TrainingCenter::orderBy('name')->get();
+        $centers = TrainingCenter::get();
 
         return view('admin.centers.index', compact('centers'));
     }
@@ -24,7 +24,7 @@ class TrainingCenterController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'district' => 'required|string|max:100',
+            'district_id' => 'required|exists:districts,id',
             'address' => 'nullable|string',
             'phone' => 'nullable|string|max:50',
             'email' => 'nullable|email|max:100',
@@ -47,7 +47,7 @@ class TrainingCenterController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'district' => 'required|string|max:100',
+            'district_id' => 'required|exists:districts,id',
             'address' => 'nullable|string',
             'phone' => 'nullable|string|max:50',
             'email' => 'nullable|email|max:100',

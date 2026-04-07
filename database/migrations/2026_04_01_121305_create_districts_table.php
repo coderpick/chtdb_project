@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('social_links', function (Blueprint $table) {
-            $table->string('twitter', 500)->nullable()->after('facebook');
-            $table->string('phone', 50)->nullable()->after('twitter');
+        Schema::create('districts', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('bn_name')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -22,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('social_links', function (Blueprint $table) {
-            $table->dropColumn(['twitter', 'phone']);
-        });
+        Schema::dropIfExists('districts');
     }
 };

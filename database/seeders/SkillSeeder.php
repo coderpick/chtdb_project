@@ -13,24 +13,20 @@ class SkillSeeder extends Seeder
     public function run(): void
     {
         $commonSkills = [
-            // Web Development
-            'PHP', 'Laravel', 'JavaScript', 'HTML', 'CSS', 'MySQL', 'React', 'Vue.js', 'Node.js',
+            // Basic Computer Fundamentals
+            'MS Word', 'MS Excel', 'MS PowerPoint', 'Windows OS', 'Internet Browsing', 'Email Communication', 'Computer Hardware',
             // Graphic Design
-            'Photoshop', 'Illustrator', 'UI/UX', 'Figma', 'InDesign',
-            // Mobile Development
-            'Android', 'iOS', 'React Native', 'Flutter', 'Kotlin', 'Swift',
+            'Adobe Photoshop', 'Adobe Illustrator', 'Brand Identity', 'Logo Design', 'Print Media Design', 'Typography', 'UI/UX Design',
             // Digital Marketing
-            'SEO', 'Social Media Marketing', 'Google Ads', 'Facebook Ads', 'Content Writing',
-            // Database
-            'MongoDB', 'PostgreSQL', 'SQL', 'NoSQL',
-            // E-commerce
-            'WooCommerce', 'Shopify', 'Payment Gateway', 'Product Management',
-            // Cyber Security
-            'Network Security', 'Ethical Hacking', 'Firewall', 'Penetration Testing',
-            // Video Editing
-            'Premiere Pro', 'After Effects', 'Final Cut Pro', 'DaVinci Resolve',
-            // General
-            'Communication', 'Teamwork', 'Problem Solving', 'Time Management', 'Project Management',
+            'SEO', 'Social Media Marketing', 'Content Marketing', 'Google Ads', 'Facebook Ads', 'YouTube Marketing', 'Email Marketing',
+            // Audio & Video
+            'Adobe Premiere Pro', 'Adobe After Effects', 'Video Editing', 'Audio Editing', 'Color Grading', 'Motion Graphics',
+            // Web Design
+            'HTML5', 'CSS3', 'JavaScript', 'Bootstrap', 'Tailwind CSS', 'Responsive Design', 'Figma to HTML',
+            // 2D & 3D Animation
+            '2D Animation', '3D Modeling', 'Character Design', 'Blender', 'Autodesk Maya', 'Rendering',
+            // Soft Skills
+            'Communication', 'Teamwork', 'Problem Solving', 'Time Management', 'Freelancing Basics',
         ];
 
         foreach ($commonSkills as $skill) {

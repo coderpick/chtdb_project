@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\CourseResource;
 use App\Http\Resources\GalleryResource;
 use App\Http\Resources\PortfolioPublicResource;
-use App\Http\Resources\TestimonialResource;
+use App\Http\Resources\SuccessStoryResource;
 use App\Http\Resources\TrainingCenterResource;
 use App\Models\Course;
 use App\Models\Gallery;
 use App\Models\PortfolioSetting;
-use App\Models\Testimonial;
+use App\Models\SuccessStory;
+use App\Models\Training;
 use App\Models\TrainingCenter;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -45,33 +46,38 @@ class PublicController extends Controller
     }
 
     /**
-     * Get approved testimonials/stories.
-     * Optional filters: district, course_id, featured.
+     * Get approved success stories.
+     * Optional filter: district_id.
      */
     public function testimonials(Request $request)
     {
-        $query = Testimonial::with(['course', 'user.profile'])
-            ->where('status', 'approved')
-            ->orderBy('is_featured', 'desc')
+        $query = SuccessStory::with(['studentProfile.user', 'trainingCenter', 'career'])
+            ->approved()
             ->orderBy('created_at', 'desc');
 
-        if ($request->has('district')) {
-            $query->where('district', $request->district);
+        // Optional filter: district_id
+        if ($request->has('district_id')) {
+            $query->whereHas('studentProfile', function ($q) use ($request) {
+                $q->where('district_id', $request->district_id);
+            });
         }
 
-        if ($request->has('course_id')) {
-            $query->where('course_id', $request->course_id);
+        // Optional search by name or skill
+        if ($request->has('search')) {
+            $query->where(function ($q) use ($request) {
+                $q->whereHas('studentProfile.user', function ($u) use ($request) {
+                    $u->where('name', 'like', '%' . $request->search . '%');
+                })->orWhereHas('career', function ($c) use ($request) {
+                    $c->where('skill', 'like', '%' . $request->search . '%');
+                });
+            });
         }
 
-        if ($request->boolean('featured')) {
-            $query->where('is_featured', true);
-        }
-
-        $testimonials = $query->get();
+        $successStories = $query->get();
 
         return response()->json([
             'success' => true,
-            'data' => TestimonialResource::collection($testimonials)->toArray($request),
+            'data' => SuccessStoryResource::collection($successStories)->toArray($request),
         ]);
     }
 

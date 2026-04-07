@@ -10,7 +10,9 @@ class Batch extends Model
     use HasFactory;
 
     protected $fillable = [
+        'training_center_id',
         'course_id',
+        'shift',
         'name',
         'start_date',
         'end_date',
@@ -23,6 +25,11 @@ class Batch extends Model
         'start_date' => 'date',
         'end_date' => 'date',
     ];
+    
+    public function center()
+    {
+        return $this->belongsTo(TrainingCenter::class, 'training_center_id');
+    }
 
     public function course()
     {

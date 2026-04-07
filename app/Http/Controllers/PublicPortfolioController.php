@@ -8,7 +8,7 @@ class PublicPortfolioController extends Controller
 {
     public function show($slug)
     {
-        $portfolio = PortfolioSetting::with('user.profile', 'user.training.course', 'user.training.center', 'user.career', 'user.projects', 'user.skills', 'user.socialLinks')
+        $portfolio = PortfolioSetting::with('user.studentProfile', 'user.training.district', 'user.career', 'user.projects', 'user.skills', 'user.socialLinks')
             ->where('slug', $slug)
             ->firstOrFail();
 

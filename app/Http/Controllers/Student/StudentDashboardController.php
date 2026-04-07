@@ -12,10 +12,9 @@ class StudentDashboardController extends Controller
 
         // Eager load all relationships for dashboard
         $user->load([
-            'profile',
+            'studentProfile.district',
             'training.course',
-            'training.batch',
-            'training.center',
+            'training.batch',         
             'career',
             'projects',
             'skills',

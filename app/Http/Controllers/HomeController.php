@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\District;
 use App\Models\Gallery;
-use App\Models\Testimonial;
+use App\Models\SuccessStory;
 use App\Models\TrainingCenter;
 use App\Models\User;
 
@@ -16,19 +17,19 @@ class HomeController extends Controller
     public function index()
     {
         $stats = [
-            'students' => User::where('role', 'student')->count(),
+            // 'students' => User::where('role', 'student')->count(),
+            'students' => 200,
             'courses' => Course::count(),
             'centers' => TrainingCenter::count(),
-            'testimonials' => Testimonial::where('status', 'approved')->count(),
+            'success_stories' => SuccessStory::where('status', 'approved')->count(),
             'districts' => 3, // Fixed for three hill districts
-            'employment_rate' => 92, // Static as per design
+            'employment_rate' => 85, // Static as per design
         ];
 
         $courses = Course::orderBy('order')->get();
-
-        $testimonials = Testimonial::with('course')
-            ->where('status', 'approved')
-            ->orderBy('is_featured', 'desc')
+        $districts = District::all();
+        $successStories = SuccessStory::with(['user.studentProfile', 'user.training.course', 'career', 'district'])
+            ->approved()
             ->orderBy('created_at', 'desc')
             ->get();
 
@@ -38,6 +39,6 @@ class HomeController extends Controller
 
         $centers = TrainingCenter::all();
 
-        return view('welcome', compact('stats', 'courses', 'testimonials', 'gallery', 'centers'));
+        return view('welcome', compact('stats', 'courses', 'successStories', 'gallery', 'centers', 'districts'));
     }
 }

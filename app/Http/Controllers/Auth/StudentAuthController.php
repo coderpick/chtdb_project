@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\PortfolioSetting;
+use App\Models\StudentProfile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,20 +55,22 @@ class StudentAuthController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'district_id' => 'required|exists:districts,id',
         ]);
 
-        // Create user with student role
         $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
             'role' => 'student',
         ]);
 
-        // Create empty related records
-        $user->profile()->create();
+        StudentProfile::create([
+            'user_id' => $user->id,
+            'district_id' => $request->district_id,
+        ]);
         $user->training()->create();
         $user->career()->create();
         $user->socialLinks()->create();

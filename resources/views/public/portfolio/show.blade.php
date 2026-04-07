@@ -262,17 +262,19 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255, 255, 255, 0.05);
-            color: white;
+            background: var(--bg-light);
+            color: var(--primary);
             text-decoration: none;
             transition: all 0.3s;
             font-size: 1.2rem;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .social-btn:hover {
             background: var(--primary);
             transform: translateY(-5px);
             color: white;
+            box-shadow: 0 5px 15px var(--card-shadow);
         }
     </style>
 </head>
@@ -281,15 +283,16 @@
 
     <section class="hero-section">
         <div class="container hero-content">
-            <img src="{{ $user->profile && $user->profile->photo ? asset($user->profile->photo) : 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&background=random&size=200' }}"
+            <img src="{{ $user->studentProfile && $user->studentProfile->photo ? asset($user->studentProfile->photo) : 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&background=random&size=200' }}"
                 alt="{{ $user->name }}" class="hero-avatar">
             <h1 class="hero-title">{{ $user->name }}</h1>
             @if ($portfolio->tagline)
                 <p class="hero-tagline">{{ $portfolio->tagline }}</p>
             @endif
             <div class="hero-meta">
-                <span><i class="bi bi-geo-alt me-1"></i> {{ ucfirst( $user->profile->district) ?? 'CHT, Bangladesh' }}</span>
-                @if ($user->training && $user->training->course)
+                <span><i class="bi bi-geo-alt me-1"></i>
+                    {{ ucfirst($user->studentProfile->district->name) ?? 'CHT, Bangladesh' }}</span>
+                @if ($user->training)
                     <span><i class="bi bi-mortarboard me-1"></i> {{ $user->training->course->name }}</span>
                 @endif
             </div>
@@ -413,9 +416,13 @@
                     <div>
                         <h2 class="section-title"><i class="bi bi-chat-dots"></i> যোগাযোগ করুন</h2>
                         <div class="d-flex flex-wrap gap-2">
-                            @if ($user->socialLinks && $user->socialLinks->email)
-                                <a href="mailto:{{ $user->socialLinks->email }}" class="social-btn"
-                                    title="Email"><i class="bi bi-envelope"></i></a>
+                            <a href="mailto:{{ $user->email }}" class="social-btn" title="Email">
+                                <i class="bi bi-envelope"></i>
+                            </a>
+                            @if ($user->socialLinks && $user->socialLinks->phone)
+                                <a href="tel:{{ $user->socialLinks->phone }}" class="social-btn" title="Phone">
+                                    <i class="bi bi-telephone"></i>
+                                </a>
                             @endif
                             @if ($user->socialLinks && $user->socialLinks->linkedin)
                                 <a href="{{ $user->socialLinks->linkedin }}" target="_blank" class="social-btn"
@@ -429,6 +436,14 @@
                                 <a href="{{ $user->socialLinks->facebook }}" target="_blank" class="social-btn"
                                     title="Facebook"><i class="bi bi-facebook"></i></a>
                             @endif
+                            @if ($user->socialLinks && $user->socialLinks->twitter)
+                                <a href="{{ $user->socialLinks->twitter }}" target="_blank" class="social-btn"
+                                    title="Twitter"><i class="bi bi-twitter-x"></i></a>
+                            @endif
+                            @if ($user->socialLinks && $user->socialLinks->website)
+                                <a href="{{ $user->socialLinks->website }}" target="_blank" class="social-btn"
+                                    title="Website"><i class="bi bi-globe"></i></a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -439,7 +454,7 @@
     <footer class="footer">
         <div class="container">
             <p class="mb-2">© {{ date('Y') }} <strong>ICT Skill Development Scheme</strong></p>
-            <p class="small opacity-50">CHT Development Board, Bangladesh</p>
+            <a href="https://www.chtdb.gov.bd/" target="_blank" class="small opacity-50">CHT Development Board, Bangladesh</a>
         </div>
     </footer>
 

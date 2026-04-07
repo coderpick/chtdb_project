@@ -25,7 +25,7 @@ class Career extends Model
         'business_type',
         'employees',
         'business_website',
-        'story',
+
     ];
 
     protected $casts = [
@@ -35,5 +35,10 @@ class Career extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function successStories()
+    {
+        return $this->hasMany(SuccessStory::class);
     }
 }
