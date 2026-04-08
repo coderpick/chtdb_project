@@ -407,7 +407,7 @@
                         </div>
                         <div class="d-flex align-items-center gap-3 mb-3 p-3"
                             style="background:rgba(255,255,255,0.1);border-radius:12px;">
-                            <span style="font-size:1.8rem;font-weight:800;color:var(--secondary);">৫০+</span>
+                            <span style="font-size:1.8rem;font-weight:800;color:var(--secondary);">৯+</span>
                             <span style="font-size:0.9rem;">দেশে কার্যক্রম বিস্তৃত</span>
                         </div>
                         <div class="d-flex align-items-center gap-3 mb-3 p-3"
@@ -435,7 +435,8 @@
                         <div class="stat-icon"><i class="bi bi-mortarboard-fill"></i></div>
                         <div class="stat-number"><span class="counter"
                                 data-target="{{ $stats['extra_1_value'] }}">0</span>+</div>
-                        <div class="stat-label">{{ \App\Models\Setting::get('stat_extra_1_label', 'মোট প্রশিক্ষিত শিক্ষার্থী') }}</div>
+                        <div class="stat-label">
+                            {{ \App\Models\Setting::get('stat_extra_1_label', 'মোট প্রশিক্ষিত শিক্ষার্থী') }}</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-3 reveal">
@@ -443,7 +444,8 @@
                         <div class="stat-icon"><i class="bi bi-briefcase-fill"></i></div>
                         <div class="stat-number"><span class="counter"
                                 data-target="{{ $stats['extra_2_value'] }}">0</span>+</div>
-                        <div class="stat-label">{{ \App\Models\Setting::get('stat_extra_2_label', 'কর্মসংস্থান সৃষ্টি') }}</div>
+                        <div class="stat-label">
+                            {{ \App\Models\Setting::get('stat_extra_2_label', 'কর্মসংস্থান সৃষ্টি') }}</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-3 reveal">
@@ -451,7 +453,8 @@
                         <div class="stat-icon"><i class="bi bi-globe2"></i></div>
                         <div class="stat-number"><span class="counter"
                                 data-target="{{ $stats['extra_3_value'] }}">0</span>+</div>
-                        <div class="stat-label">{{ \App\Models\Setting::get('stat_extra_3_label', 'সফল ফ্রিল্যান্সার') }}</div>
+                        <div class="stat-label">
+                            {{ \App\Models\Setting::get('stat_extra_3_label', 'সফল ফ্রিল্যান্সার') }}</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-3 reveal">
@@ -459,7 +462,8 @@
                         <div class="stat-icon"><i class="bi bi-shop"></i></div>
                         <div class="stat-number"><span class="counter"
                                 data-target="{{ $stats['extra_4_value'] }}">0</span>+</div>
-                        <div class="stat-label">{{ \App\Models\Setting::get('stat_extra_4_label', 'উদ্যোক্তা তৈরি') }}</div>
+                        <div class="stat-label">{{ \App\Models\Setting::get('stat_extra_4_label', 'উদ্যোক্তা তৈরি') }}
+                        </div>
                     </div>
                 </div>
             </div>
