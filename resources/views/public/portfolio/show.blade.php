@@ -293,7 +293,7 @@
                 <span><i class="bi bi-geo-alt me-1"></i>
                     {{ ucfirst($user->studentProfile->district->name) ?? 'CHT, Bangladesh' }}</span>
                 @if ($user->training)
-                    <span><i class="bi bi-mortarboard me-1"></i> {{ $user->training->course->name }}</span>
+                    <span><i class="bi bi-mortarboard me-1"></i> {{ $user->training->course->name }} কোর্স</span>
                 @endif
             </div>
         </div>
@@ -454,7 +454,8 @@
     <footer class="footer">
         <div class="container">
             <p class="mb-2">© {{ date('Y') }} <strong>ICT Skill Development Scheme</strong></p>
-            <a href="https://www.chtdb.gov.bd/" target="_blank" class="small opacity-50">CHT Development Board, Bangladesh</a>
+            <a href="https://www.chtdb.gov.bd/" target="_blank" class="small opacity-50">CHT Development Board,
+                Bangladesh</a>
         </div>
     </footer>
 

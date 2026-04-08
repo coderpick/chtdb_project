@@ -350,6 +350,13 @@
                             <span class="link-text">Students</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('admin.settings*') ? 'active' : '' }}"
+                            href="{{ route('admin.settings.index') }}" data-label="Settings">
+                            <i class="bi bi-gear-fill"></i>
+                            <span class="link-text">Site Settings</span>
+                        </a>
+                    </li>
 
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('admin.messages*') ? 'active' : '' }}"

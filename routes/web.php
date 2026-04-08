@@ -148,4 +148,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::get('students/{user}', [AdminStudentController::class, 'show'])->name('students.show');
     Route::get('students/{user}/edit', [AdminStudentController::class, 'edit'])->name('students.edit');
     Route::put('students/{user}', [AdminStudentController::class, 'update'])->name('students.update');
+
+    // Site Settings
+    Route::get('settings', [App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings.index');
+    Route::post('settings', [App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');
 });

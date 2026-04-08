@@ -20,14 +20,19 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-7">
-                    <span><i class="bi bi-geo-alt me-1"></i> পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড, রাঙামাটি</span>
-                    <span class="ms-3"><i class="bi bi-envelope me-1"></i> info@chtdb.gov.bd</span>
-                    <span class="ms-3"><i class="bi bi-telephone me-1"></i> +৮৮০-৩৫১-৬২০৮১</span>
+                    <span><i class="bi bi-geo-alt me-1"></i>
+                        {{ \App\Models\Setting::get('topbar_address', 'পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড, রাঙামাটি') }}</span>
+                    <span class="ms-3"><i class="bi bi-envelope me-1"></i>
+                        {{ \App\Models\Setting::get('topbar_email', 'info@chtdb.gov.bd') }}</span>
+                    <span class="ms-3"><i class="bi bi-telephone me-1"></i>
+                        {{ \App\Models\Setting::get('topbar_phone', '+৮৮০-৩৫১-৬২০৮১') }}</span>
                 </div>
                 <div class="col-md-5 text-end">
-                    <a href="https://chtdb.gov.bd" target="_blank" class="me-3"><i class="bi bi-globe me-1"></i>
+                    <a href="{{ \App\Models\Setting::get('chtdb_website', 'https://chtdb.gov.bd') }}" target="_blank"
+                        class="me-3"><i class="bi bi-globe me-1"></i>
                         chtdb.gov.bd</a>
-                    <a href="https://peoplentech.com.bd" target="_blank"><i class="bi bi-globe me-1"></i>
+                    <a href="{{ \App\Models\Setting::get('peoplentech_website', 'https://peoplentech.com.bd') }}"
+                        target="_blank"><i class="bi bi-globe me-1"></i>
                         peoplentech.com.bd</a>
                 </div>
             </div>
@@ -110,9 +115,7 @@
     <!-- Marquee -->
     <div class="marquee-bar">
         <div class="marquee-content">
-            📢 তিন পার্বত্য জেলার বেকার যুবক যুবতীদের তথ্য ও যোগাযোগ প্রযুক্তি বিষয়ক দক্ষতা উন্নয়ন ও আত্মকর্মসংস্থান
-            সুযোগ সৃষ্টিকরণ স্কিম — পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড ও PeopleNTech এর যৌথ উদ্যোগে ২১৫+ শিক্ষার্থী
-            প্রশিক্ষিত — রাঙামাটি | খাগড়াছড়ি | বান্দরবান 🏔️
+            {{ \App\Models\Setting::get('marquee_text', '📢 তিন পার্বত্য জেলার বেকার যুবক যুবতীদের তথ্য ও যোগাযোগ প্রযুক্তি বিষয়ক দক্ষতা উন্নয়ন ও আত্মকর্মসংস্থান সুযোগ সৃষ্টিকরণ স্কিম — পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড ও PeopleNTech এর যৌথ উদ্যোগে ২১৫+ শিক্ষার্থী প্রশিক্ষিত — রাঙামাটি | খাগড়াছড়ি | বান্দরবান 🏔️') }}
         </div>
     </div>
 
@@ -127,17 +130,17 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-5 mb-lg-0">
                     <div class="hero-badge">
-                        <i class="bi bi-stars me-1"></i> পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড
+                        <i class="bi bi-stars me-1"></i>
+                        {{ \App\Models\Setting::get('hero_badge', 'পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড') }}
                     </div>
                     <h1 class="hero-title">
-                        তিন পার্বত্য জেলার<br>
-                        <span class="highlight">আইসিটি দক্ষতা উন্নয়ন</span><br>
-                        ও আত্মকর্মসংস্থান স্কিম
+                        {{ \App\Models\Setting::get('hero_title', 'তিন পার্বত্য জেলার') }}<br>
+                        <span
+                            class="highlight">{{ \App\Models\Setting::get('hero_highlight', 'আইসিটি দক্ষতা উন্নয়ন') }}</span><br>
+                        {{ \App\Models\Setting::get('hero_title_end', 'ও আত্মকর্মসংস্থান স্কিম') }}
                     </h1>
                     <p class="hero-subtitle">
-                        রাঙামাটি, খাগড়াছড়ি ও বান্দরবান জেলার বেকার যুবক-যুবতীদের তথ্য ও যোগাযোগ প্রযুক্তি বিষয়ক
-                        দক্ষতা উন্নয়নের মাধ্যমে আত্মকর্মসংস্থানের সুযোগ সৃষ্টি করা হচ্ছে। ট্রেনিং পার্টনার
-                        <strong>PeopleNTech</strong> এর সহযোগিতায়।
+                        {{ \App\Models\Setting::get('hero_subtitle', 'রাঙামাটি, খাগড়াছড়ি ও বান্দরবান জেলার বেকার যুবক-যুবতীদের তথ্য ও যোগাযোগ প্রযুক্তি বিষয়ক দক্ষতা উন্নয়নের মাধ্যমে আত্মকর্মসংস্থানের সুযোগ সৃষ্টি করা হচ্ছে। ট্রেনিং পার্টনার PeopleNTech এর সহযোগিতায়।') }}
                     </p>
                     <div class="d-flex flex-wrap gap-3">
                         <a href="#stories" class="btn btn-primary-custom btn-lg">
@@ -147,22 +150,23 @@
                             <i class="bi bi-info-circle me-2"></i>বিস্তারিত জানুন
                         </a>
                     </div>
+                    {{-- hero statistics title and values --}}
                     <div class="hero-stats">
                         <div class="hero-stat">
                             <h3><span class="counter" data-target="{{ $stats['students'] }}">0</span>+</h3>
-                            <p>প্রশিক্ষিত শিক্ষার্থী</p>
+                            <p>{{ \App\Models\Setting::get('stat_1_label', 'প্রশিক্ষিত শিক্ষার্থী') }}</p>
                         </div>
                         <div class="hero-stat">
                             <h3><span class="counter" data-target="{{ $stats['districts'] }}">0</span></h3>
-                            <p>পার্বত্য জেলা</p>
+                            <p>{{ \App\Models\Setting::get('stat_2_label', 'পার্বত্য জেলা') }}</p>
                         </div>
                         <div class="hero-stat">
                             <h3><span class="counter" data-target="{{ $stats['courses'] }}">0</span>+</h3>
-                            <p>আইসিটি কোর্স</p>
+                            <p>{{ \App\Models\Setting::get('stat_3_label', 'আইসিটি কোর্স') }}</p>
                         </div>
                         <div class="hero-stat">
                             <h3><span class="counter" data-target="{{ $stats['employment_rate'] }}">0</span>%</h3>
-                            <p>কর্মসংস্থান হার</p>
+                            <p>{{ \App\Models\Setting::get('stat_4_label', 'কর্মসংস্থান হার') }}</p>
                         </div>
                     </div>
                 </div>
@@ -211,23 +215,19 @@
                     <div class="about-img-wrapper">
                         <img src="{{ asset('img/about.jpg') }}" alt="প্রশিক্ষণ">
                         <div class="about-overlay-badge">
-                            <i class="bi bi-play-circle me-2"></i> চলমান প্রশিক্ষণ কার্যক্রম
+                            <i class="bi bi-play-circle me-2"></i>
+                            {{ \App\Models\Setting::get('about_badge', 'চলমান প্রশিক্ষণ কার্যক্রম') }}
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 reveal">
                     <div class="section-divider"></div>
-                    <h2 class="section-title">প্রকল্প সম্পর্কে</h2>
+                    <h2 class="section-title">{{ \App\Models\Setting::get('about_title', 'প্রকল্প সম্পর্কে') }}</h2>
                     <p class="section-subtitle" style="max-width:100%;">
-                        তিন পার্বত্য জেলার বেকার যুবক যুবতীদের তথ্য ও যোগাযোগ প্রযুক্তি বিষয়ক দক্ষতা উন্নয়ন ও
-                        আত্মকর্মসংস্থান সুযোগ সৃষ্টিকরণ স্কিমটি পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ডের একটি গুরুত্বপূর্ণ
-                        উদ্যোগ।
+                        {{ \App\Models\Setting::get('about_subtitle', 'তিন পার্বত্য জেলার বেকার যুবক যুবতীদের তথ্য ও যোগাযোগ প্রযুক্তি বিষয়ক দক্ষতা উন্নয়ন ও আত্মকর্মসংস্থান সুযোগ সৃষ্টিকরণ স্কিমটি পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ডের একটি গুরুত্বপূর্ণ উদ্যোগ।') }}
                     </p>
                     <p style="font-size:0.92rem;color:#555;line-height:1.8;margin-bottom:25px;">
-                        এই প্রকল্পের মাধ্যমে রাঙামাটি, খাগড়াছড়ি ও বান্দরবান পার্বত্য জেলার বেকার যুবক-যুবতীদের আধুনিক
-                        তথ্য ও যোগাযোগ প্রযুক্তি বিষয়ে হাতে-কলমে প্রশিক্ষণ প্রদান করা হয়েছে। প্রশিক্ষণ পার্টনার হিসেবে
-                        বাংলাদেশের অন্যতম শীর্ষস্থানীয় আইটি প্রশিক্ষণ প্রতিষ্ঠান <strong>PeopleNTech Institute of
-                            IT</strong> এই কার্যক্রম সফলভাবে পরিচালনা করেছে।
+                        {{ \App\Models\Setting::get('about_description', 'এই প্রকল্পের মাধ্যমে রাঙামাটি, খাগড়াছড়ি ও বান্দরবান পার্বত্য জেলার বেকার যুবক-যুবতীদের আধুনিক তথ্য ও যোগাযোগ প্রযুক্তি বিষয়ে হাতে-কলমে প্রশিক্ষণ প্রদান করা হয়েছে। প্রশিক্ষণ পার্টনার হিসেবে বাংলাদেশের অন্যতম শীর্ষস্থানীয় আইটি প্রশিক্ষণ প্রতিষ্ঠান PeopleNTech Institute of IT এই কার্যক্রম সফলভাবে পরিচালনা করেছে।') }}
                     </p>
                     <div class="row">
                         <div class="col-sm-6">
@@ -434,32 +434,32 @@
                     <div class="stat-box">
                         <div class="stat-icon"><i class="bi bi-mortarboard-fill"></i></div>
                         <div class="stat-number"><span class="counter"
-                                data-target="{{ $stats['students'] }}">0</span>+</div>
-                        <div class="stat-label">মোট প্রশিক্ষিত শিক্ষার্থী</div>
+                                data-target="{{ $stats['extra_1_value'] }}">0</span>+</div>
+                        <div class="stat-label">{{ \App\Models\Setting::get('stat_extra_1_label', 'মোট প্রশিক্ষিত শিক্ষার্থী') }}</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-3 reveal">
                     <div class="stat-box">
                         <div class="stat-icon"><i class="bi bi-briefcase-fill"></i></div>
                         <div class="stat-number"><span class="counter"
-                                data-target="{{ round($stats['students'] * 0.92) }}">0</span>+</div>
-                        <div class="stat-label">কর্মসংস্থান সৃষ্টি</div>
+                                data-target="{{ $stats['extra_2_value'] }}">0</span>+</div>
+                        <div class="stat-label">{{ \App\Models\Setting::get('stat_extra_2_label', 'কর্মসংস্থান সৃষ্টি') }}</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-3 reveal">
                     <div class="stat-box">
                         <div class="stat-icon"><i class="bi bi-globe2"></i></div>
                         <div class="stat-number"><span class="counter"
-                                data-target="{{ round($stats['students'] * 0.2) }}">0</span>+</div>
-                        <div class="stat-label">সফল ফ্রিল্যান্সার</div>
+                                data-target="{{ $stats['extra_3_value'] }}">0</span>+</div>
+                        <div class="stat-label">{{ \App\Models\Setting::get('stat_extra_3_label', 'সফল ফ্রিল্যান্সার') }}</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-3 reveal">
                     <div class="stat-box">
                         <div class="stat-icon"><i class="bi bi-shop"></i></div>
                         <div class="stat-number"><span class="counter"
-                                data-target="{{ round($stats['students'] * 0.15) }}">0</span>+</div>
-                        <div class="stat-label">উদ্যোক্তা তৈরি</div>
+                                data-target="{{ $stats['extra_4_value'] }}">0</span>+</div>
+                        <div class="stat-label">{{ \App\Models\Setting::get('stat_extra_4_label', 'উদ্যোক্তা তৈরি') }}</div>
                     </div>
                 </div>
             </div>
@@ -691,10 +691,15 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
             </div>
             <div class="row g-4">
                 @foreach ($centers as $center)
+                    @php
+                        $districtName = strtolower($center->district->name ?? 'rangamati');
+                        $fallbackImg = 'img/' . $districtName . ($districtName == 'rangamati' ? '.jpeg' : '.jpg');
+                        $bannerUrl = $center->banner ? asset($center->banner) : asset($fallbackImg);
+                    @endphp
                     <div class="col-md-4 reveal">
                         <div class="center-card">
                             <div class="center-card-header"
-                                style="background:linear-gradient(135deg,rgba(0,0,0,0.5),rgba(0,0,0,0.6)),url('{{ asset('img/' . ($center->district == 'khagrachari' ? 'khagrachari' : ($center->district == 'rangamati' ? 'rangamati' : 'bandarban')) . ($center->district == 'rangamati' ? '.jpeg' : '.jpg')) }}') center/cover no-repeat;">
+                                style="background:linear-gradient(135deg,rgba(0,0,0,0.5),rgba(0,0,0,0.6)),url('{{ $bannerUrl }}') center/cover no-repeat;">
                                 <i class="bi bi-geo-alt-fill d-block"></i>
                                 <h5>{{ $center->name }}</h5>
                             </div>
@@ -773,6 +778,7 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
                         </form>
                     </div>
                 </div>
+                {{--   contact information  --}}
                 <div class="col-lg-5 reveal">
                     <div class="contact-info-card">
                         <h5 class="mb-4" style="font-weight:700;"><i class="bi bi-headset me-2"></i> যোগাযোগের তথ্য
@@ -1132,38 +1138,39 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
                 e.preventDefault();
                 const submitBtn = this.querySelector('button[type="submit"]');
                 const originalBtnText = submitBtn.innerHTML;
-                
+
                 // Show loading state
                 submitBtn.disabled = true;
-                submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>প্রক্রিয়াকরণ হচ্ছে...';
-                
+                submitBtn.innerHTML =
+                    '<span class="spinner-border spinner-border-sm me-2"></span>প্রক্রিয়াকরণ হচ্ছে...';
+
                 const formData = new FormData(this);
-                
+
                 fetch('{{ route('contact.store') }}', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                        'Accept': 'application/json'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert(data.message);
-                        contactForm.reset();
-                    } else {
-                        alert(data.message || 'কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('দুঃখিত, সংযোগ বিচ্ছিন্ন হয়েছে। আবার চেষ্টা করুন।');
-                })
-                .finally(() => {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalBtnText;
-                });
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert(data.message);
+                            contactForm.reset();
+                        } else {
+                            alert(data.message || 'কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('দুঃখিত, সংযোগ বিচ্ছিন্ন হয়েছে। আবার চেষ্টা করুন।');
+                    })
+                    .finally(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
+                    });
             });
         }
 

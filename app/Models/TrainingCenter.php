@@ -16,6 +16,7 @@ class TrainingCenter extends Model
         'phone',
         'email',
         'is_active',
+        'banner',
     ];
 
     public function district()

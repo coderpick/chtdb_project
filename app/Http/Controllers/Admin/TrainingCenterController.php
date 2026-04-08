@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\District;
 use App\Models\TrainingCenter;
+use App\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
 
 class TrainingCenterController extends Controller
 {
+    use FileUploadTrait;
     public function index()
     {
         $centers = TrainingCenter::get();
@@ -17,7 +20,9 @@ class TrainingCenterController extends Controller
 
     public function create()
     {
-        return view('admin.centers.create');
+        $districts = District::all();
+
+        return view('admin.centers.create', compact('districts'));
     }
 
     public function store(Request $request)
@@ -29,7 +34,12 @@ class TrainingCenterController extends Controller
             'phone' => 'nullable|string|max:50',
             'email' => 'nullable|email|max:100',
             'is_active' => 'boolean',
+            'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        if ($request->hasFile('banner')) {
+            $validated['banner'] = $this->fileUpload($request->file('banner'), 'uploads/centers');
+        }
 
         $validated['is_active'] = $request->boolean('is_active', true);
 
@@ -40,7 +50,9 @@ class TrainingCenterController extends Controller
 
     public function edit(TrainingCenter $center)
     {
-        return view('admin.centers.edit', compact('center'));
+        $districts = District::all();
+
+        return view('admin.centers.edit', compact('center', 'districts'));
     }
 
     public function update(Request $request, TrainingCenter $center)
@@ -52,7 +64,12 @@ class TrainingCenterController extends Controller
             'phone' => 'nullable|string|max:50',
             'email' => 'nullable|email|max:100',
             'is_active' => 'boolean',
+            'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        if ($request->hasFile('banner')) {
+            $validated['banner'] = $this->fileUpload($request->file('banner'), 'uploads/centers', $center->banner);
+        }
 
         $validated['is_active'] = $request->boolean('is_active', true);
 

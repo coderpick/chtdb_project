@@ -13,4 +13,15 @@ class Setting extends Model
         'key',
         'value',
     ];
+
+    private static $cachedSettings = null;
+
+    public static function get($key, $default = null)
+    {
+        if (self::$cachedSettings === null) {
+            self::$cachedSettings = self::all()->pluck('value', 'key')->toArray();
+        }
+
+        return self::$cachedSettings[$key] ?? $default;
+    }
 }
