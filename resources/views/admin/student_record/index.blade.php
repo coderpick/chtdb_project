@@ -211,20 +211,32 @@
                 // Show loading state
                 batchSelect.innerHTML = '<option value="">Loading...</option>';
 
-                fetch(`/admin/get-batches/${districtId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        let html = '<option value="">All Batches</option>';
-                        data.forEach(batch => {
-                            const selected = batch.id == selectedBatch ? 'selected' : '';
-                            html += `<option value="${batch.id}" ${selected}>${batch.name}</option>`;
-                        });
-                        batchSelect.innerHTML = html;
-                    })
-                    .catch(error => {
-                        console.error('Error fetching batches:', error);
-                        batchSelect.innerHTML = '<option value="">Error loading batches</option>';
+                const url = "{{ route('admin.get.batches', ['district_id' => ':id']) }}".replace(':id', districtId);
+
+                fetch(url, {
+                    headers: {
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    let html = '<option value="">All Batches</option>';
+                    data.forEach(batch => {
+                        const selected = batch.id == selectedBatch ? 'selected' : '';
+                        html += `<option value="${batch.id}" ${selected}>${batch.name}</option>`;
                     });
+                    batchSelect.innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Error fetching batches:', error);
+                    batchSelect.innerHTML = '<option value="">Error loading batches</option>';
+                });
             }
 
             // Load batches on district change

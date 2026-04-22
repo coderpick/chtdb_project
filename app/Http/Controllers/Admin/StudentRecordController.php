@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Batch;
 use App\Models\District;
 use App\Models\StudentRecord;
+use App\Models\TrainingCenter;
 use Illuminate\Http\Request;
 
 class StudentRecordController extends Controller
@@ -77,5 +78,17 @@ class StudentRecordController extends Controller
         $student->update($validatedData);
 
         return redirect()->route('admin.student_record')->with('success', 'Student updated successfully!');
+    }
+
+    public function getBatches($district_id)
+    {
+        $center = TrainingCenter::where('district_id', $district_id)->first();
+        if ($center) {
+            $batches = Batch::where('training_center_id', $center->id)->get();
+
+            return response()->json($batches);
+        }
+
+        return response()->json([]);
     }
 }

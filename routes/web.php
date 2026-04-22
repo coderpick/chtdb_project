@@ -174,14 +174,5 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::put('student/update/{id}', [StudentRecordController::class, 'update'])->name('student.update');
 
     /* get batch data */
-    Route::get('get-batches/{district_id}', function ($district_id) {
-        $center = TrainingCenter::where('district_id', $district_id)->first();
-        if ($center) {
-            $batches = Batch::where('training_center_id', $center->id)->get();
-
-            return response()->json($batches);
-        } else {
-            return response()->json([]);
-        }
-    })->name('get.batches');
+    Route::get('get-batches/{district_id}', [StudentRecordController::class, 'getBatches'])->name('get.batches');
 });
