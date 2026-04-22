@@ -3,9 +3,13 @@
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminMessageController;
+use App\Http\Controllers\Admin\BatchController;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\StudentController as AdminStudentController;
+use App\Http\Controllers\Admin\StudentRecordController;
+use App\Http\Controllers\Admin\StudentRecordImportController;
 use App\Http\Controllers\Admin\SuccessStoryController as AdminSuccessStoryController;
 use App\Http\Controllers\Admin\TrainingCenterController as AdminCenterController;
 use App\Http\Controllers\Auth\StudentAuthController;
@@ -22,6 +26,7 @@ use App\Http\Controllers\Student\StudentSocialController;
 use App\Http\Controllers\Student\StudentSuccessStoryController;
 use App\Http\Controllers\Student\StudentTrainingController;
 use App\Models\Batch;
+use App\Models\TrainingCenter;
 use App\Models\Upazila;
 use Illuminate\Support\Facades\Route;
 
@@ -129,6 +134,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     // Training Centers
     Route::resource('centers', AdminCenterController::class);
 
+    /* Batch */
+    Route::resource('batch', BatchController::class);
+
     // Success Stories
     Route::resource('success-stories', AdminSuccessStoryController::class);
     Route::patch('success-stories/{success_story}/approve', [AdminSuccessStoryController::class, 'approve'])->name('success-stories.approve');
@@ -150,6 +158,30 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::put('students/{user}', [AdminStudentController::class, 'update'])->name('students.update');
 
     // Site Settings
-    Route::get('settings', [App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings.index');
-    Route::post('settings', [App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');
+    Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
+    Route::post('settings', [SettingController::class, 'update'])->name('settings.update');
+
+    Route::get('student-records/import', [StudentRecordImportController::class, 'showForm'])
+        ->name('student-records.import.form');
+
+    Route::post('student-records/import', [StudentRecordImportController::class, 'import'])
+        ->name('student-records.import.store');
+
+    /* Student Records List */
+    Route::get('student-records', [StudentRecordController::class, 'index'])->name('student_record');
+    Route::get('student/show/{id}', [StudentRecordController::class, 'show'])->name('student.show');
+    Route::get('student/edit/{id}', [StudentRecordController::class, 'edit'])->name('student.edit');
+    Route::put('student/update/{id}', [StudentRecordController::class, 'update'])->name('student.update');
+
+    /* get batch data */
+    Route::get('get-batches/{district_id}', function ($district_id) {
+        $center = TrainingCenter::where('district_id', $district_id)->first();
+        if ($center) {
+            $batches = Batch::where('training_center_id', $center->id)->get();
+
+            return response()->json($batches);
+        } else {
+            return response()->json([]);
+        }
+    })->name('get.batches');
 });
