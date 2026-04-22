@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\SuccessStoryController as AdminSuccessStoryContro
 use App\Http\Controllers\Admin\TrainingCenterController as AdminCenterController;
 use App\Http\Controllers\Auth\StudentAuthController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\EnrolledStudentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PublicPortfolioController;
 use App\Http\Controllers\Student\StudentCareerController;
@@ -25,13 +26,13 @@ use App\Http\Controllers\Student\StudentSkillController;
 use App\Http\Controllers\Student\StudentSocialController;
 use App\Http\Controllers\Student\StudentSuccessStoryController;
 use App\Http\Controllers\Student\StudentTrainingController;
-use App\Models\Batch;
-use App\Models\TrainingCenter;
-use App\Models\Upazila;
+use App\Http\Controllers\AjaxController;
 use Illuminate\Support\Facades\Route;
 
 // ===== PUBLIC ROUTES =====
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('students/directory', [EnrolledStudentController::class, 'index'])->name('student.directory');
 
 // Student Authentication (Web Guard)
 Route::prefix('student')->name('student.')->group(function () {
@@ -95,24 +96,13 @@ Route::get('/portfolio/{slug}', [PublicPortfolioController::class, 'show'])->nam
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 /* get upazial by district */
-Route::get('/upazilas/{district}', function ($district) {
-    $upazilas = Upazila::where('district_id', $district)->get();
+Route::get('/upazilas/{district}', [AjaxController::class, 'getUpazilas'])->name('upazilas.by.district');
 
-    return response()->json($upazilas);
-})->name('upazilas.by.district');
 /* get training center batches */
-Route::get('/training-center/{training_center}/batches', function ($training_center) {
-    $batches = Batch::where('training_center_id', $training_center)->get();
-
-    return response()->json($batches);
-})->name('training-center.batches');
+Route::get('/training-center/{training_center}/batches', [AjaxController::class, 'getBatches'])->name('training-center.batches');
 
 /* get upazila by district */
-Route::get('/district/{district}/upazilas', function ($district) {
-    $upazilas = Upazila::where('district_id', $district)->get();
-
-    return response()->json($upazilas);
-})->name('upazilas.by.district');
+Route::get('/district/{district}/upazilas', [AjaxController::class, 'getUpazilas'])->name('upazila.by.district');
 
 // ===== ADMIN ROUTES (Existing) =====
 
