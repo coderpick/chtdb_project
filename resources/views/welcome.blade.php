@@ -713,6 +713,6 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
         </div>
     </section>
 
-  
-   
+
+
 @endsection

@@ -25,13 +25,19 @@
                   </div>
               </div>
               <div class="col-lg-2 col-md-4">
-                  <h5>দ্রুত লিংক</h5>
+                  <h5>কুইক লিংক</h5>
                   <ul class="footer-links">
-                      <li><a href="#home">হোম</a></li>
-                      <li><a href="#about">প্রকল্প</a></li>
-                      <li><a href="#stories">সাফল্যের গল্প</a></li>
-                      <li><a href="#courses">কোর্সসমূহ</a></li>
-                      <li><a href="{{ route('student.directory') }}">Students Directory</a></li>
+                      <li><a href="{{ route('home') }}#home"><i class="bi bi-chevron-right me-1"></i>হোম</a></li>
+                      <li><a href="{{ route('home') }}#about"><i class="bi bi-chevron-right me-1"></i>প্রকল্প</a></li>
+                      <li><a href="{{ route('home') }}#stories"><i class="bi bi-chevron-right me-1"></i>সাফল্যের
+                              গল্প</a>
+                      </li>
+                      <li><a href="{{ route('home') }}#courses"><i class="bi bi-chevron-right me-1"></i>কোর্সসমূহ</a>
+                      </li>
+                      <li><a href="{{ route('home') }}#contact"><i class="bi bi-chevron-right me-1"></i>যোগাযোগ</a>
+                      </li>
+                      <li><a href="{{ route('student.directory') }}"> <i
+                                  class="bi bi-chevron-right me-1"></i>প্রশিক্ষণার্থীর তালিকা</a></li>
                   </ul>
               </div>
               <div class="col-lg-3 col-md-4">

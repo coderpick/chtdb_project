@@ -37,18 +37,22 @@
            </button>
            <div class="collapse navbar-collapse" id="navMenu">
                <ul class="navbar-nav ms-auto">
-                   <li class="nav-item"><a class="nav-link active" href="#home">হোম</a></li>
-                   <li class="nav-item"><a class="nav-link" href="#about">প্রকল্প</a></li>
-                   <li class="nav-item"><a class="nav-link" href="#organizations">সংস্থাসমূহ</a></li>
-                   <li class="nav-item"><a class="nav-link" href="#stories">সাফল্য</a></li>
-                   <li class="nav-item"><a class="nav-link" href="#courses">কোর্সসমূহ</a></li>
-                   <li class="nav-item"><a class="nav-link" href="#gallery">গ্যালারি</a></li>
-                   <li class="nav-item"><a class="nav-link" href="#contact">যোগাযোগ</a></li>
+                   <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
+                           href="{{ route('home') }}">হোম</a></li>
+                   <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#about">প্রকল্প</a></li>
+                   <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#organizations">সংস্থাসমূহ</a></li>
+                   <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#stories">সাফল্য</a></li>
+                   <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#courses">কোর্সসমূহ</a></li>
+                   <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#gallery">গ্যালারি</a></li>
+                   <li class="nav-item">
+                       <a class="nav-link {{ request()->routeIs('student.directory') ? 'active' : '' }}"
+                           href="{{ route('student.directory') }}">
+                           প্রশিক্ষণার্থীর তালিকা
+                       </a>
+                   </li>
+                   <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#contact">যোগাযোগ</a></li>
                </ul>
                <div class="nav-auth-btns d-flex gap-2 ms-lg-3 mt-2 mt-lg-0">
-                   <a href="#stories" class="btn btn-primary-custom">
-                       <i class="bi bi-trophy me-1"></i> সাফল্যের গল্প
-                   </a>
                    @auth
                        <div class="dropdown">
                            <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown">
