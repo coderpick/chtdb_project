@@ -9,30 +9,24 @@
                           <i class="bi bi-mortarboard-fill text-white" style="font-size:1.5rem;"></i>
                       </div>
                       <div>
-                          <h5 class="mb-0" style="font-size:1rem;">আইসিটি দক্ষতা উন্নয়ন স্কিম</h5>
+                          <h5 class="mb-0" style="font-size:1rem;">
+                              {{ \App\Models\Setting::get('site_name', 'আইসিটি দক্ষতা উন্নয়ন স্কিম') }}</h5>
                       </div>
                   </div>
                   <p style="font-size:0.88rem;line-height:1.8;opacity:0.8;">
-                      তিন পার্বত্য জেলার বেকার যুবক যুবতীদের তথ্য ও যোগাযোগ প্রযুক্তি বিষয়ক দক্ষতা উন্নয়ন ও
-                      আত্মকর্মসংস্থান সুযোগ সৃষ্টিকরণ স্কিম। পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড ও PeopleNTech এর যৌথ
-                      উদ্যোগ।
+                      {{ \App\Models\Setting::get('footer_description', 'তিন পার্বত্য জেলার বেকার যুবক যুবতীদের তথ্য ও যোগাযোগ প্রযুক্তি বিষয়ক দক্ষতা উন্নয়ন ও আত্মকর্মসংস্থান সুযোগ সৃষ্টিকরণ স্কিম। পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড ও PeopleNTech এর যৌথ উদ্যোগ।') }}
                   </p>
-                  <div class="social-links mt-3">
-                      <a href="#"><i class="bi bi-facebook"></i></a>
-                      <a href="#"><i class="bi bi-youtube"></i></a>
-                      <a href="#"><i class="bi bi-linkedin"></i></a>
-                      <a href="#"><i class="bi bi-twitter-x"></i></a>
-                  </div>
               </div>
               <div class="col-lg-2 col-md-4">
                   <h5>কুইক লিংক</h5>
                   <ul class="footer-links">
-                      <li><a href="{{ route('home') }}#home"><i class="bi bi-chevron-right me-1"></i>হোম</a></li>
-                      <li><a href="{{ route('home') }}#about"><i class="bi bi-chevron-right me-1"></i>প্রকল্প</a></li>
-                      <li><a href="{{ route('home') }}#stories"><i class="bi bi-chevron-right me-1"></i>সাফল্যের
-                              গল্প</a>
+                      <li><a href="{{ route('home') }}#home"><i class="bi bi-chevron-right me-1"></i>হোম</a></li>            
+                      <li><a href="{{ route('home') }}#stories"><i class="bi bi-chevron-right me-1"></i>
+                              ছাত্র/ছাত্রীদের মতামত
+                          </a>
                       </li>
-                      <li><a href="{{ route('home') }}#courses"><i class="bi bi-chevron-right me-1"></i>কোর্সসমূহ</a>
+                      <li><a href="{{ route('home') }}#courses"><i class="bi bi-chevron-right me-1"></i>কোর্স
+                              মডিউলসমূহ</a>
                       </li>
                       <li><a href="{{ route('home') }}#contact"><i class="bi bi-chevron-right me-1"></i>যোগাযোগ</a>
                       </li>
@@ -56,23 +50,23 @@
                   </ul>
               </div>
               <div class="col-lg-3 col-md-4">
-                  <h5>নিউজলেটার</h5>
-                  <p style="font-size:0.85rem;opacity:0.8;">সর্বশেষ আপডেট পেতে সাবস্ক্রাইব করুন</p>
-                  <div class="input-group mt-3">
-                      <input type="email" class="form-control" placeholder="আপনার ইমেইল"
-                          style="border-radius:12px 0 0 12px;border:none;">
-                      <button class="btn"
-                          style="background:var(--primary);color:white;border-radius:0 12px 12px 0;padding:0 20px;">
-                          <i class="bi bi-send"></i>
-                      </button>
+                  <h5>আমাদের সোশ্যাল মিডিয়া</h5>
+                  <p style="font-size:0.85rem;opacity:0.8;">আমাদের সাথে যুক্ত থাকুন সামাজিক যোগাযোগ মাধ্যমে</p>
+                  <div class="social-links mt-3">
+                      <a href="{{ \App\Models\Setting::get('social_facebook', '#') }}" target="_blank"><i class="bi bi-facebook"></i></a>
+                      <a href="{{ \App\Models\Setting::get('social_youtube', '#') }}" target="_blank"><i class="bi bi-youtube"></i></a>
+                      <a href="{{ \App\Models\Setting::get('social_linkedin', '#') }}" target="_blank"><i class="bi bi-linkedin"></i></a>
+                      <a href="{{ \App\Models\Setting::get('social_twitter', '#') }}" target="_blank"><i class="bi bi-twitter-x"></i></a>
                   </div>
               </div>
           </div>
           <div class="footer-bottom text-center">
               <p class="mb-0" style="font-size:0.85rem;">
-                  © {{ date('Y') }} তিন পার্বত্য জেলার আইসিটি দক্ষতা উন্নয়ন স্কিম | পার্বত্য চট্টগ্রাম উন্নয়ন
+                  © {{ date('Y') }}
+                  {{ \App\Models\Setting::get('site_name', 'তিন পার্বত্য জেলার আইসিটি দক্ষতা উন্নয়ন স্কিম') }} |
+                  পার্বত্য চট্টগ্রাম উন্নয়ন
                   বোর্ড |
-                  ট্রেনিং পার্টনার: <a href="https://peoplentech.com.bd" target="_blank"
+                  ট্রেনিং প্রদানকারী প্রতিষ্ঠান: <a href="https://peoplentech.com.bd" target="_blank"
                       style="color:var(--secondary);text-decoration:none;">PeopleNTech Institute of IT</a>
               </p>
           </div>
@@ -205,13 +199,13 @@
                               </div>
                               <div class="auth-input-group">
                                   <i class="bi bi-geo-alt input-icon"></i>
-                                  <select name="district" class="form-control" required>
+                                  <select name="district_id" class="form-control" required>
                                       <option value="" selected disabled>জেলা নির্বাচন করুন</option>
-                                      <option value="rangamati">রাঙ্গামাটি</option>
-                                      <option value="khagrachhari">খাগড়াছড়ি</option>
-                                      <option value="bandarban">বান্দরবান</option>
+                                      <option value="1">রাঙামাটি</option>
+                                      <option value="2">খাগড়াছড়ি</option>
+                                      <option value="3">বান্দরবান</option>
                                   </select>
-                                  @error('district')
+                                  @error('district_id')
                                       <span class="text-danger">{{ $message }}</span>
                                   @enderror
                               </div>

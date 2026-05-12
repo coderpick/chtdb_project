@@ -30,19 +30,23 @@
                    style="width:48px;height:48px;border-radius:12px;background:var(--gradient-1);display:flex;align-items:center;justify-content:center;">
                    <i class="bi bi-mortarboard-fill text-white" style="font-size:1.5rem;"></i>
                </div>
-               <div class="brand-text d-none d-sm-block">আইসিটি দক্ষতা উন্নয়ন<br>তিন পার্বত্য জেলা স্কিম</div>
+               <div class="brand-text d-none d-sm-block">
+                   {!! \App\Models\Setting::get('site_name_header', 'আইসিটি দক্ষতা উন্নয়ন<br>তিন পার্বত্য জেলা স্কিম') !!}
+               </div>
            </a>
            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
                <span class="navbar-toggler-icon"></span>
            </button>
            <div class="collapse navbar-collapse" id="navMenu">
                <ul class="navbar-nav ms-auto">
-                   <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
-                           href="{{ route('home') }}">হোম</a></li>
-                   <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#about">প্রকল্প</a></li>
-                   <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#organizations">সংস্থাসমূহ</a></li>
-                   <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#stories">সাফল্য</a></li>
-                   <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#courses">কোর্সসমূহ</a></li>
+                   {{-- <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
+                           href="{{ route('home') }}">হোম</a></li> --}}
+                   <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#about">প্রকল্প সম্পর্কে</a></li>
+                   <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#organizations">বাস্তবায়নকারী
+                           সংস্থা</a></li>
+                   <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#stories">শিক্ষার্থীদের কথা</a>
+                   </li>
+                   {{-- <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#courses">কোর্সসমূহ</a></li> --}}
                    <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#gallery">গ্যালারি</a></li>
                    <li class="nav-item">
                        <a class="nav-link {{ request()->routeIs('student.directory') ? 'active' : '' }}"

@@ -28,6 +28,10 @@
                     <i class="bi bi-list"></i>
                 </button>
                 <span class="header-title">@yield('page-title', 'Dashboard')</span>
+                {{-- add home link --}}
+                <a href="{{ url('/') }}" target="_blank" class="btn btn-sm btn-success">
+                    <i class="bi bi-house-door-fill"></i> Visit website
+                </a>
                 <span class="header-user">
                     <i class="bi bi-person-circle me-1"></i>{{ auth()->user()->name }}
                 </span>

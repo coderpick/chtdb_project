@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\StudentController as AdminStudentController;
 use App\Http\Controllers\Admin\StudentRecordController;
 use App\Http\Controllers\Admin\StudentRecordImportController;
+use App\Http\Controllers\Admin\ProjectOfficialController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SuccessStoryController as AdminSuccessStoryController;
 use App\Http\Controllers\Admin\TrainingCenterController as AdminCenterController;
 use App\Http\Controllers\Auth\StudentAuthController;
@@ -140,6 +142,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::get('messages', [AdminMessageController::class, 'index'])->name('messages.index');
     Route::get('messages/{message}', [AdminMessageController::class, 'show'])->name('messages.show');
     Route::delete('messages/{message}', [AdminMessageController::class, 'destroy'])->name('messages.destroy');
+
+    // Project Officials
+    Route::resource('officials', ProjectOfficialController::class);
+
+    // Hero Sliders
+    Route::resource('sliders', SliderController::class);
 
     // Students Management
     Route::get('students', [AdminStudentController::class, 'index'])->name('students.index');

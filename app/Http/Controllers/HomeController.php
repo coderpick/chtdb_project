@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\District;
 use App\Models\Gallery;
+use App\Models\ProjectOfficial;
+use App\Models\Slider;
 use App\Models\SuccessStory;
 use App\Models\TrainingCenter;
 use App\Models\User;
@@ -45,6 +47,8 @@ class HomeController extends Controller
             ->get();
 
         $centers = TrainingCenter::all();
+        $officials = ProjectOfficial::where('status', true)->orderBy('order')->get();
+        $sliders = Slider::where('status', true)->orderBy('order')->get();
 
         // Optimize duplicated district queries by manually associating the loaded collection
         $successStories->each(function ($story) use ($districts) {
@@ -54,6 +58,6 @@ class HomeController extends Controller
             $center->setRelation('district', $districts->find($center->district_id));
         });
 
-        return view('welcome', compact('stats', 'courses', 'successStories', 'gallery', 'centers', 'districts'));
+        return view('welcome', compact('stats', 'courses', 'successStories', 'gallery', 'centers', 'districts', 'officials', 'sliders'));
     }
 }

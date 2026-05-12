@@ -1,7 +1,7 @@
 @extends('admin.layouts.admin')
 
-@section('title', 'Add Course')
-@section('page-title', 'Add New Course')
+@section('title', 'Add Course Module')
+@section('page-title', 'Add New Course Module')
 
 @section('content')
 <div class="card">
@@ -9,7 +9,7 @@
         <form action="{{ route('admin.courses.store') }}" method="POST">
             @csrf
             <div class="mb-3">
-                <label class="form-label">Course Name</label>
+                <label class="form-label">Course Module Name</label>
                 <input type="text" name="name" class="form-control" required value="{{ old('name') }}">
             </div>
             <div class="mb-3">

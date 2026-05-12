@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
             BatchSeeder::class,
             SkillSeeder::class,
             AdminUserSeeder::class,
-            StudentSeeder::class,
-            SuccessStorySeeder::class,
+            // StudentSeeder::class,
+            // SuccessStorySeeder::class,
             GallerySeeder::class,
         ]);
     }

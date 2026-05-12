@@ -27,7 +27,7 @@
                   <a class="nav-link {{ request()->routeIs('admin.courses*') ? 'active' : '' }}"
                       href="{{ route('admin.courses.index') }}" data-label="Courses">
                       <i class="bi bi-book"></i>
-                      <span class="link-text">Courses</span>
+                      <span class="link-text">Course Modules</span>
                   </a>
               </li>
 
@@ -38,15 +38,6 @@
                       <span class="link-text">Batches</span>
                   </a>
               </li>
-
-              <li class="nav-item">
-                  <a href="{{ route('admin.success-stories.index') }}"
-                      class="nav-link {{ request()->routeIs('admin.success-stories.*') ? 'active' : '' }}"
-                      data-label="Success Stories">
-                      <i class="bi bi-chat-quote-fill nav-icon"></i>
-                      <span class="link-text">Success Stories</span>
-                  </a>
-              </li>
               <li class="nav-item">
                   <a class="nav-link {{ request()->routeIs('admin.gallery*') ? 'active' : '' }}"
                       href="{{ route('admin.gallery.index') }}" data-label="Gallery">
@@ -55,17 +46,33 @@
                   </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link {{ request()->routeIs('admin.students*') ? 'active' : '' }}"
-                      href="{{ route('admin.students.index') }}" data-label="Students">
-                      <i class="bi bi-people"></i>
-                      <span class="link-text">Students</span>
+                  <a class="nav-link {{ request()->routeIs('admin.officials*') ? 'active' : '' }}"
+                      href="{{ route('admin.officials.index') }}" data-label="Officials">
+                      <i class="bi bi-person-badge-fill"></i>
+                      <span class="link-text">Project Officials</span>
                   </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link {{ request()->routeIs('admin.settings*') ? 'active' : '' }}"
-                      href="{{ route('admin.settings.index') }}" data-label="Settings">
-                      <i class="bi bi-gear-fill"></i>
-                      <span class="link-text">Site Settings</span>
+                  <a class="nav-link {{ request()->routeIs('admin.sliders*') ? 'active' : '' }}"
+                      href="{{ route('admin.sliders.index') }}" data-label="Sliders">
+                      <i class="bi bi-collection-play-fill"></i>
+                      <span class="link-text">Hero Sliders</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link {{ request()->routeIs('admin.students*') ? 'active' : '' }}"
+                      href="{{ route('admin.students.index') }}" data-label="Students">
+                      <i class="bi bi-people"></i>
+                      <span class="link-text">Registered Students</span>
+                  </a>
+              </li>
+
+              <li class="nav-item">
+                  <a href="{{ route('admin.success-stories.index') }}"
+                      class="nav-link {{ request()->routeIs('admin.success-stories.*') ? 'active' : '' }}"
+                      data-label="Student Feedback">
+                      <i class="bi bi-chat-quote-fill nav-icon"></i>
+                      <span class="link-text">Student Feedback</span>
                   </a>
               </li>
 
@@ -82,12 +89,18 @@
                       @endif
                   </a>
               </li>
-
               <li class="nav-item">
                   <a class="nav-link {{ request()->routeIs('admin.student-records*') ? 'active' : '' }}"
                       href="{{ route('admin.student_record') }}" data-label="Student Records">
                       <i class="bi bi-database"></i>
                       <span class="link-text">Student Records</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link {{ request()->routeIs('admin.settings*') ? 'active' : '' }}"
+                      href="{{ route('admin.settings.index') }}" data-label="Settings">
+                      <i class="bi bi-gear-fill"></i>
+                      <span class="link-text">Site Settings</span>
                   </a>
               </li>
 

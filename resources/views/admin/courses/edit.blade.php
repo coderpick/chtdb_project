@@ -1,7 +1,7 @@
 @extends('admin.layouts.admin')
 
-@section('title', 'Edit Course')
-@section('page-title', 'Edit Course')
+@section('title', 'Edit Course Module')
+@section('page-title', 'Edit Course Module')
 
 @section('content')
 <div class="card">
@@ -10,7 +10,7 @@
             @csrf
             @method('PUT')
             <div class="mb-3">
-                <label class="form-label">Course Name</label>
+                <label class="form-label">Course Module Name</label>
                 <input type="text" name="name" class="form-control" required value="{{ old('name', $course->name) }}">
             </div>
             <div class="mb-3">

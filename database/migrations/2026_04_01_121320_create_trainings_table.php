@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('course_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('batch_id')->nullable()->constrained()->nullOnDelete();       
-            $table->foreignId('district_id')->constrained('districts')->onDelete('cascade');        
-            $table->foreignId('upazila_id')->constrained('upazilas')->onDelete('cascade');
+            $table->foreignId('batch_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('district_id')->constrained('districts')->onDelete('cascade');
+            $table->foreignId('upazila_id')->nullable()->constrained('upazilas')->onDelete('cascade');
             $table->enum('status', ['ongoing', 'completed'])->default('ongoing');
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();

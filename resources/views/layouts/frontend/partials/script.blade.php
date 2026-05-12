@@ -165,10 +165,18 @@
         // Navbar interaction
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('mainNav');
+            const backToTop = document.getElementById('backToTop');
+            
             if (window.scrollY > 50) {
                 nav.classList.add('navbar-scrolled');
             } else {
                 nav.classList.remove('navbar-scrolled');
+            }
+
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
             }
         });
     </script>

@@ -30,6 +30,19 @@
             </div>
 
             <div class="mb-3">
+                <label for="district_id" class="form-label">জেলা</label>
+                <select name="district_id" id="district_id" class="form-select @error('district_id') is-invalid @enderror" required>
+                    <option value="" selected disabled>জেলা নির্বাচন করুন</option>
+                    <option value="1" {{ old('district_id') == 1 ? 'selected' : '' }}>রাঙামাটি</option>
+                    <option value="2" {{ old('district_id') == 2 ? 'selected' : '' }}>খাগড়াছড়ি</option>
+                    <option value="3" {{ old('district_id') == 3 ? 'selected' : '' }}>বান্দরবান</option>
+                </select>
+                @error('district_id')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
                 <label for="password" class="form-label">পাসওয়ার্ড</label>
                 <div class="position-relative">
                     <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required minlength="6" oninput="checkPasswordStrength(this.value)">

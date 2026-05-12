@@ -71,7 +71,9 @@ class StudentAuthController extends Controller
             'user_id' => $user->id,
             'district_id' => $request->district_id,
         ]);
-        $user->training()->create();
+        $user->training()->create([
+            'district_id' => $request->district_id,
+        ]);
         $user->career()->create();
         $user->socialLinks()->create();
         $user->portfolioSetting()->create([

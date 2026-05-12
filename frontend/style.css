@@ -210,9 +210,8 @@ body {
 .hero-img-card {
   background: white;
   border-radius: 24px;
-  padding: 20px;
+  padding: 20px !important;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-  transform: rotate(2deg);
 }
 .hero-img-card img {
   width: 100%;
@@ -220,34 +219,6 @@ body {
   height: 380px;
   object-fit: cover;
 }
-.floating-badge {
-  position: absolute;
-  background: white;
-  border-radius: 16px;
-  padding: 14px 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  animation: floatBadge 3s ease-in-out infinite;
-}
-.floating-badge.badge-1 {
-  bottom: -20px;
-  left: -30px;
-  animation-delay: 0s;
-}
-.floating-badge.badge-2 {
-  top: -20px;
-  right: -20px;
-  animation-delay: 1.5s;
-}
-@keyframes floatBadge {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-12px);
-  }
-}
-
 /* Particles */
 .particle {
   position: absolute;
@@ -805,8 +776,14 @@ body {
   animation: lightboxZoom 0.3s ease-out;
 }
 @keyframes lightboxZoom {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 .lightbox-content img {
   max-width: 100%;
@@ -863,8 +840,12 @@ body {
   background: rgba(255, 255, 255, 0.2);
   transform: translateY(-50%) scale(1.1);
 }
-.lightbox-prev { left: 30px; }
-.lightbox-next { right: 30px; }
+.lightbox-prev {
+  left: 30px;
+}
+.lightbox-next {
+  right: 30px;
+}
 
 @media (max-width: 768px) {
   .lightbox-nav {
@@ -872,9 +853,16 @@ body {
     height: 40px;
     font-size: 1.2rem;
   }
-  .lightbox-prev { left: 10px; }
-  .lightbox-next { right: 10px; }
-  .lightbox-close { top: 20px; right: 20px; }
+  .lightbox-prev {
+    left: 10px;
+  }
+  .lightbox-next {
+    right: 10px;
+  }
+  .lightbox-close {
+    top: 20px;
+    right: 20px;
+  }
 }
 
 /* Contact */
@@ -964,12 +952,12 @@ body {
 .center-card-header i {
   font-size: 2.2rem;
   margin-bottom: 10px;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 .center-card-header h5 {
   font-weight: 700;
   margin: 0;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   font-size: 1.1rem;
 }
 .center-card-body {
@@ -1246,7 +1234,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height:100%;
+  height: 100%;
   position: relative;
   overflow: hidden;
 }

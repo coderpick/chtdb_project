@@ -39,7 +39,7 @@
                         </div>
                         <div class="info-item mb-3">
                             <i class="bi bi-people text-primary me-2"></i>
-                            <span>{{ $center->total_trainee }}+ Students</span>
+                            <span>{{ $center->total_trainee }} Students</span>
                         </div>
 
                         <div class="d-flex gap-2 mt-auto pt-3 border-top">
