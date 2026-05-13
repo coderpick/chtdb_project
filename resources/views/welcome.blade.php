@@ -60,12 +60,14 @@
                                     margin-right: 5%;
                                     margin-bottom: 1rem;
                                 }
+
                                 #heroCarousel .carousel-indicators [data-bs-target] {
                                     width: 10px;
                                     height: 10px;
                                     border-radius: 50%;
                                     margin: 0 4px;
                                 }
+
                                 #heroCarousel .carousel-caption {
                                     bottom: 2.5rem;
                                     text-align: left;
@@ -75,23 +77,34 @@
                                 }
                             </style>
                             <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                                @if($sliders->count() > 0)
-                                    @if($sliders->count() > 1)
+                                @if ($sliders->count() > 0)
+                                    @if ($sliders->count() > 1)
                                         <div class="carousel-indicators">
-                                            @foreach($sliders as $key => $slider)
-                                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ $key }}"
-                                                    class="{{ $key == 0 ? 'active' : '' }}" aria-current="{{ $key == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $key + 1 }}"></button>
+                                            @foreach ($sliders as $key => $slider)
+                                                <button type="button" data-bs-target="#heroCarousel"
+                                                    data-bs-slide-to="{{ $key }}"
+                                                    class="{{ $key == 0 ? 'active' : '' }}"
+                                                    aria-current="{{ $key == 0 ? 'true' : 'false' }}"
+                                                    aria-label="Slide {{ $key + 1 }}"></button>
                                             @endforeach
                                         </div>
                                     @endif
                                     <div class="carousel-inner rounded-4 overflow-hidden">
-                                        @foreach($sliders as $key => $slider)
-                                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" data-bs-interval="4000">
-                                                <img src="{{ asset($slider->image) }}" class="d-block w-100" alt="{{ $slider->title }}" style="height: 380px; object-fit: cover;">
-                                                @if($slider->title || $slider->subtitle)
-                                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-4">
-                                                        @if($slider->title) <h6 class="mb-0 text-white fw-bold">{{ $slider->title }}</h6> @endif
-                                                        @if($slider->subtitle) <p class="x-small mb-0 text-white-50">{{ $slider->subtitle }}</p> @endif
+                                        @foreach ($sliders as $key => $slider)
+                                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}"
+                                                data-bs-interval="4000">
+                                                <img src="{{ asset($slider->image) }}" class="d-block w-100"
+                                                    alt="{{ $slider->title }}" style="height: 380px; object-fit: cover;">
+                                                @if ($slider->title || $slider->subtitle)
+                                                    <div
+                                                        class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-4">
+                                                        @if ($slider->title)
+                                                            <h6 class="mb-0 text-white fw-bold">{{ $slider->title }}</h6>
+                                                        @endif
+                                                        @if ($slider->subtitle)
+                                                            <p class="x-small mb-0 text-white-50">{{ $slider->subtitle }}
+                                                            </p>
+                                                        @endif
                                                     </div>
                                                 @endif
                                             </div>
@@ -100,29 +113,35 @@
                                 @else
                                     {{-- Fallback Static Carousel --}}
                                     <div class="carousel-indicators">
-                                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+                                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0"
+                                            class="active"></button>
                                         <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
                                         <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
                                     </div>
                                     <div class="carousel-inner rounded-4 overflow-hidden">
                                         <div class="carousel-item active" data-bs-interval="3000">
-                                            <img src="{{ asset('img/hero_image.jpg') }}" class="d-block w-100" alt="ট্রেনিং সেশন" style="height: 380px; object-fit: cover;">
+                                            <img src="{{ asset('img/hero_image.jpg') }}" class="d-block w-100"
+                                                alt="ট্রেনিং সেশন" style="height: 380px; object-fit: cover;">
                                         </div>
                                         <div class="carousel-item" data-bs-interval="3000">
-                                            <img src="{{ asset('img/rangamati.jpeg') }}" class="d-block w-100" alt="রাঙামাটি জেলা" style="height: 380px; object-fit: cover;">
+                                            <img src="{{ asset('img/rangamati.jpeg') }}" class="d-block w-100"
+                                                alt="রাঙামাটি জেলা" style="height: 380px; object-fit: cover;">
                                         </div>
                                         <div class="carousel-item" data-bs-interval="3000">
-                                            <img src="{{ asset('img/khagrachari.jpg') }}" class="d-block w-100" alt="খাগড়াছড়ি জেলা" style="height: 380px; object-fit: cover;">
+                                            <img src="{{ asset('img/khagrachari.jpg') }}" class="d-block w-100"
+                                                alt="খাগড়াছড়ি জেলা" style="height: 380px; object-fit: cover;">
                                         </div>
                                     </div>
                                 @endif
-                                
-                                @if($sliders->count() > 1 || $sliders->count() == 0)
-                                    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+
+                                @if ($sliders->count() > 1 || $sliders->count() == 0)
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel"
+                                        data-bs-slide="prev">
                                         <span class="carousel-control-prev-icon shadow-sm" aria-hidden="true"></span>
                                         <span class="visually-hidden">Previous</span>
                                     </button>
-                                    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                                    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel"
+                                        data-bs-slide="next">
                                         <span class="carousel-control-next-icon shadow-sm" aria-hidden="true"></span>
                                         <span class="visually-hidden">Next</span>
                                     </button>
@@ -218,15 +237,21 @@
                         <div class="org-logo" style="background:rgba(13,74,40,0.08);">
                             <i class="bi bi-building text-success"></i>
                         </div>
-                        <span class="badge bg-success mb-3">{{ \App\Models\Setting::get('chtdb_badge', 'প্রকল্প বাস্তবায়নকারী') }}</span>
+                        <span
+                            class="badge bg-success mb-3">{{ \App\Models\Setting::get('chtdb_badge', 'প্রকল্প বাস্তবায়নকারী') }}</span>
                         <h4>{{ \App\Models\Setting::get('chtdb_name', 'পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড') }}</h4>
                         <p>{{ \App\Models\Setting::get('chtdb_description', 'পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড (CHTDB) বাংলাদেশ সরকারের পার্বত্য চট্টগ্রাম বিষয়ক মন্ত্রণালয়ের অধীনে একটি স্বায়ত্তশাসিত সংস্থা। রাঙামাটি, খাগড়াছড়ি ও বান্দরবান — এই তিন পার্বত্য জেলার সার্বিক আর্থ-সামাজিক উন্নয়নে গুরুত্বপূর্ণ ভূমিকা পালন করছে এই প্রতিষ্ঠান।') }}
                         </p>
                         <div class="org-list">
-                            {!! \App\Models\Setting::get('chtdb_list', '<ul><li>পার্বত্য এলাকায় টেকসই সামাজিক সেবা প্রদান প্রকল্প</li><li>আইসিটি ভিত্তিক দক্ষ জনবল সৃষ্টির মাধ্যমে আত্মকর্মসংস্থান সৃষ্টিকরণ</li><li>কৃষি, অবকাঠামো ও শিক্ষা খাতে উন্নয়ন প্রকল্প পরিচালনা</li><li>পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড ও PeopleNTech এর যৌথ উদ্যোগে আইসিটি বিষয়ক প্রশিক্ষণ প্রদান</li><li>সোলার প্যানেল স্থাপনের মাধ্যমে বিদ্যুৎ সরবরাহ প্রকল্প</li></ul>') !!}
+                            {!! \App\Models\Setting::get(
+                                'chtdb_list',
+                                '<ul><li>পার্বত্য এলাকায় টেকসই সামাজিক সেবা প্রদান প্রকল্প</li><li>আইসিটি ভিত্তিক দক্ষ জনবল সৃষ্টির মাধ্যমে আত্মকর্মসংস্থান সৃষ্টিকরণ</li><li>কৃষি, অবকাঠামো ও শিক্ষা খাতে উন্নয়ন প্রকল্প পরিচালনা</li><li>পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড ও PeopleNTech এর যৌথ উদ্যোগে আইসিটি বিষয়ক প্রশিক্ষণ প্রদান</li><li>সোলার প্যানেল স্থাপনের মাধ্যমে বিদ্যুৎ সরবরাহ প্রকল্প</li></ul>',
+                            ) !!}
                         </div>
-                        <a href="{{ \App\Models\Setting::get('chtdb_website', 'https://chtdb.gov.bd') }}" target="_blank" class="btn btn-primary-custom mt-3">
-                            <i class="bi bi-globe me-1"></i> {{ \App\Models\Setting::get('chtdb_website_label', 'chtdb.gov.bd ভিজিট করুন') }}
+                        <a href="{{ \App\Models\Setting::get('chtdb_website', 'https://chtdb.gov.bd') }}" target="_blank"
+                            class="btn btn-primary-custom mt-3">
+                            <i class="bi bi-globe me-1"></i>
+                            {{ \App\Models\Setting::get('chtdb_website_label', 'chtdb.gov.bd ভিজিট করুন') }}
                         </a>
                     </div>
                 </div>
@@ -237,15 +262,22 @@
                         <div class="org-logo" style="background:rgba(0,123,255,0.08);">
                             <i class="bi bi-pc-display-horizontal text-primary"></i>
                         </div>
-                        <span class="badge bg-primary mb-3">{{ \App\Models\Setting::get('peoplentech_badge', 'ট্রেনিং প্রদানকারী প্রতিষ্ঠান') }}</span>
+                        <span
+                            class="badge bg-primary mb-3">{{ \App\Models\Setting::get('peoplentech_badge', 'ট্রেনিং প্রদানকারী প্রতিষ্ঠান') }}</span>
                         <h4>{{ \App\Models\Setting::get('peoplentech_name', 'PeopleNTech Institute of IT') }}</h4>
-                        <p>{{ \App\Models\Setting::get('peoplentech_description', 'PeopleNTech গত ১৪+ বছর ধরে বাংলাদেশে আইটি প্রশিক্ষণ ও জব প্লেসমেন্ট সেবা প্রদান করে আসছে। বিশ্বমানের আইটি বিশেষজ্ঞ তৈরির লক্ষ্যে কাজ করছে এই প্রতিষ্ঠানটি। BASIS ও ISO 9001:2015 সার্টিফিকেটধারী এই প্রতিষ্ঠান দেশ-বিদেশে সুনাম অর্জন করেছে।') }}</p>
+                        <p>{{ \App\Models\Setting::get('peoplentech_description', 'PeopleNTech গত ১৪+ বছর ধরে বাংলাদেশে আইটি প্রশিক্ষণ ও জব প্লেসমেন্ট সেবা প্রদান করে আসছে। বিশ্বমানের আইটি বিশেষজ্ঞ তৈরির লক্ষ্যে কাজ করছে এই প্রতিষ্ঠানটি। BASIS ও ISO 9001:2015 সার্টিফিকেটধারী এই প্রতিষ্ঠান দেশ-বিদেশে সুনাম অর্জন করেছে।') }}
+                        </p>
                         <div class="org-list">
-                            {!! \App\Models\Setting::get('peoplentech_list', '<ul><li>ইন্ডাস্ট্রি-ফোকাসড লাইভ কোর্স পরিচালনা</li><li>চাকরি ও ইন্টার্নশিপ প্লেসমেন্ট সার্ভিস</li><li>ফ্রিল্যান্স ক্যারিয়ার গাইডেন্স ও সাপোর্ট</li><li>লাইফটাইম স্টুডেন্ট সাপোর্ট সিস্টেম</li><li>WUST (USA) এর সাথে গ্লোবাল একাডেমিক সহযোগিতা</li></ul>') !!}
+                            {!! \App\Models\Setting::get(
+                                'peoplentech_list',
+                                '<ul><li>ইন্ডাস্ট্রি-ফোকাসড লাইভ কোর্স পরিচালনা</li><li>চাকরি ও ইন্টার্নশিপ প্লেসমেন্ট সার্ভিস</li><li>ফ্রিল্যান্স ক্যারিয়ার গাইডেন্স ও সাপোর্ট</li><li>লাইফটাইম স্টুডেন্ট সাপোর্ট সিস্টেম</li><li>WUST (USA) এর সাথে গ্লোবাল একাডেমিক সহযোগিতা</li></ul>',
+                            ) !!}
                         </div>
-                        <a href="{{ \App\Models\Setting::get('peoplentech_website', 'https://peoplentech.com.bd') }}" target="_blank" class="btn btn-primary-custom mt-3"
+                        <a href="{{ \App\Models\Setting::get('peoplentech_website', 'https://peoplentech.com.bd') }}"
+                            target="_blank" class="btn btn-primary-custom mt-3"
                             style="background:linear-gradient(135deg,#0d6efd,#0b5ed7);">
-                            <i class="bi bi-globe me-1"></i> {{ \App\Models\Setting::get('peoplentech_website_label', 'peoplentech.com.bd ভিজিট করুন') }}
+                            <i class="bi bi-globe me-1"></i>
+                            {{ \App\Models\Setting::get('peoplentech_website_label', 'peoplentech.com.bd ভিজিট করুন') }}
                         </a>
                     </div>
                 </div>
@@ -342,7 +374,8 @@
         <div class="container">
             <div class="text-center centered reveal">
                 <h2 class="section-title">
-                    {{ \App\Models\Setting::get('officials_title', 'এই প্রকল্প বাস্তবায়নে যাদের ভূমিকা অনস্বীকার্য') }}</h2>
+                    {{ \App\Models\Setting::get('officials_title', 'এই প্রকল্প বাস্তবায়নে যাদের ভূমিকা অনস্বীকার্য') }}
+                </h2>
                 <div class="section-divider"></div>
                 <p class="section-subtitle">
                     {{ \App\Models\Setting::get('officials_subtitle', 'পরিকল্পনা, বাস্তবায়ন ও নির্দেশনার মাধ্যমে যারা এই প্রকল্পকে সফল করতে নিরলস কাজ করেছেন') }}
@@ -437,7 +470,8 @@
         <div class="container">
             <div class="text-center centered reveal">
                 <div class="section-divider"></div>
-                <h2 class="section-title">{{ \App\Models\Setting::get('stories_title', 'প্রশিক্ষিত ছাত্র/ছাত্রীদের মতামত') }}</h2>
+                <h2 class="section-title">
+                    {{ \App\Models\Setting::get('stories_title', 'প্রশিক্ষিত ছাত্র/ছাত্রীদের মতামত') }}</h2>
                 <p class="section-subtitle">
                     {{ \App\Models\Setting::get('stories_subtitle', 'প্রশিক্ষণার্থীদের বাস্তব অভিজ্ঞতার আলোকে এই অংশটি তৈরি করা হয়েছে।') }}
                 </p>
@@ -502,13 +536,12 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
                                     {{ $courseName }}</span>
                                 <p class="story-text">
                                     {{ Str::limit($story->story_text, 200) }}
-                                    @if(strlen($story->story_text) > 200)
-                                        <a href="javascript:void(0)" class="read-more-btn" 
-                                           data-name="{{ $name }}" 
-                                           data-district="{{ $districtLabel }}"
-                                           data-course="{{ $courseName }}"
-                                           data-photo="{{ $photo ? asset($photo) : 'https://ui-avatars.com/api/?name=' . urlencode($name) }}"
-                                           data-story="{{ $story->story_text }}">আরও পড়ুন</a>
+                                    @if (strlen($story->story_text) > 200)
+                                        <a href="javascript:void(0)" class="read-more-btn"
+                                            data-name="{{ $name }}" data-district="{{ $districtLabel }}"
+                                            data-course="{{ $courseName }}"
+                                            data-photo="{{ $photo ? asset($photo) : 'https://ui-avatars.com/api/?name=' . urlencode($name) }}"
+                                            data-story="{{ $story->story_text }}">আরও পড়ুন</a>
                                     @endif
                                 </p>
                             </div>
@@ -541,7 +574,8 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
         <div class="container">
             <div class="text-center centered reveal">
                 <div class="section-divider"></div>
-                <h2 class="section-title">{{ \App\Models\Setting::get('courses_title', 'প্রশিক্ষণের কোর্স মডিউলসমূহ') }}</h2>
+                <h2 class="section-title">{{ \App\Models\Setting::get('courses_title', 'প্রশিক্ষণের কোর্স মডিউলসমূহ') }}
+                </h2>
                 <p class="section-subtitle">
                     {{ \App\Models\Setting::get('courses_subtitle', 'পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড এর তত্ত্বাবধানে পরিচালিত আইসিটি কোর্স মডিউলসমূহ') }}
                 </p>
@@ -566,7 +600,7 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
 
 
     <!-- Timeline -->
-    <section class="timeline-section section-padding" style="background:var(--bg-light);">
+    {{--  <section class="timeline-section section-padding" style="background:var(--bg-light);">
         <div class="container">
             <div class="text-center centered reveal">
                 <div class="section-divider"></div>
@@ -576,13 +610,13 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
                 </p>
             </div>
             <div class="timeline reveal">
-                @for($i = 1; $i <= 4; $i++)
+                @for ($i = 1; $i <= 4; $i++)
                     @php
                         $date = \App\Models\Setting::get("timeline_{$i}_date");
                         $title = \App\Models\Setting::get("timeline_{$i}_title");
                         $content = \App\Models\Setting::get("timeline_{$i}_content");
                     @endphp
-                    @if($date || $title || $content)
+                    @if ($date || $title || $content)
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
                             <div class="timeline-content">
@@ -595,7 +629,7 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
                 @endfor
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- Gallery -->
     <section class="section-padding" id="gallery">
@@ -603,7 +637,8 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
             <div class="text-center centered reveal">
                 <div class="section-divider"></div>
                 <h2 class="section-title">{{ \App\Models\Setting::get('gallery_title', 'ফটো গ্যালারি') }}</h2>
-                <p class="section-subtitle">{{ \App\Models\Setting::get('gallery_subtitle', 'প্রশিক্ষণ কার্যক্রমের বিভিন্ন মুহূর্ত') }}</p>
+                <p class="section-subtitle">
+                    {{ \App\Models\Setting::get('gallery_subtitle', 'প্রশিক্ষণ কার্যক্রমের বিভিন্ন মুহূর্ত') }}</p>
             </div>
             <div class="row g-3">
                 @forelse($gallery as $index => $item)
@@ -650,7 +685,8 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
             <div class="text-center centered reveal">
                 <div class="section-divider"></div>
                 <h2 class="section-title">{{ \App\Models\Setting::get('centers_title', 'প্রশিক্ষণ ল্যাব সমূহ') }}</h2>
-                <p class="section-subtitle">{{ \App\Models\Setting::get('centers_subtitle', 'তিন পার্বত্য জেলায় আমাদের কম্পিউটার ল্যাব সমূহ') }}
+                <p class="section-subtitle">
+                    {{ \App\Models\Setting::get('centers_subtitle', 'তিন পার্বত্য জেলায় আমাদের কম্পিউটার ল্যাব সমূহ') }}
                 </p>
             </div>
             <div class="row g-4">
@@ -689,7 +725,8 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
                 <div class="section-divider"></div>
                 <h2 class="section-title">{{ \App\Models\Setting::get('contact_title', 'যোগাযোগ করুন') }}</h2>
                 <p class="section-subtitle">
-                    {{ \App\Models\Setting::get('contact_subtitle', 'আমাদের সাথে যোগাযোগ করতে নিচের ফর্মটি পূরণ করুন') }}</p>
+                    {{ \App\Models\Setting::get('contact_subtitle', 'আমাদের সাথে যোগাযোগ করতে নিচের ফর্মটি পূরণ করুন') }}
+                </p>
             </div>
             <div class="row g-4">
                 <div class="col-lg-7 reveal">
@@ -751,8 +788,10 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
                         <div class="contact-info-item">
                             <div class="icon"><i class="bi bi-building"></i></div>
                             <div>
-                                <h6>{{ \App\Models\Setting::get('contact_address_title', 'পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড') }}</h6>
-                                <p>{{ \App\Models\Setting::get('contact_address', 'রাঙামাটি পার্বত্য জেলা, চট্টগ্রাম বিভাগ, বাংলাদেশ') }}</p>
+                                <h6>{{ \App\Models\Setting::get('contact_address_title', 'পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড') }}
+                                </h6>
+                                <p>{{ \App\Models\Setting::get('contact_address', 'রাঙামাটি পার্বত্য জেলা, চট্টগ্রাম বিভাগ, বাংলাদেশ') }}
+                                </p>
                             </div>
                         </div>
                         <div class="contact-info-item">
@@ -773,7 +812,8 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
                             <div class="icon"><i class="bi bi-globe"></i></div>
                             <div>
                                 <h6>ওয়েবসাইট</h6>
-                                <p><a href="{{ \App\Models\Setting::get('chtdb_website', 'https://chtdb.gov.bd') }}" target="_blank" style="color:#f5d060;">chtdb.gov.bd</a>
+                                <p><a href="{{ \App\Models\Setting::get('chtdb_website', 'https://chtdb.gov.bd') }}"
+                                        target="_blank" style="color:#f5d060;">chtdb.gov.bd</a>
                                 </p>
                             </div>
                         </div>
@@ -782,9 +822,10 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
                         <div class="contact-info-item">
                             <div class="icon"><i class="bi bi-pc-display"></i></div>
                             <div>
-                                <h6>{{ \App\Models\Setting::get('training_partner_name', 'PeopleNTech Institute of IT') }}</h6>
-                                <p><a href="{{ \App\Models\Setting::get('peoplentech_website', 'https://peoplentech.com.bd') }}" target="_blank"
-                                        style="color:#f5d060;">peoplentech.com.bd</a></p>
+                                <h6>{{ \App\Models\Setting::get('training_partner_name', 'PeopleNTech Institute of IT') }}
+                                </h6>
+                                <p><a href="{{ \App\Models\Setting::get('peoplentech_website', 'https://peoplentech.com.bd') }}"
+                                        target="_blank" style="color:#f5d060;">peoplentech.com.bd</a></p>
                             </div>
                         </div>
                     </div>
@@ -799,24 +840,31 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
             <div class="modal-content border-0 shadow-lg" style="border-radius: 24px; overflow: hidden;">
                 <div class="modal-header border-0 bg-light p-4">
                     <div class="d-flex align-items-center">
-                        <img src="" alt="" id="modalPhoto" class="rounded-circle me-3" style="width: 65px; height: 65px; object-fit: cover; border: 3px solid var(--primary-light, #266b3c);">
+                        <img src="" alt="" id="modalPhoto" class="rounded-circle me-3"
+                            style="width: 65px; height: 65px; object-fit: cover; border: 3px solid var(--primary-light, #266b3c);">
                         <div>
-                            <h5 class="modal-title mb-0 fw-bold" id="modalName" style="color: var(--primary); font-size: 1.25rem;"></h5>
+                            <h5 class="modal-title mb-0 fw-bold" id="modalName"
+                                style="color: var(--primary); font-size: 1.25rem;"></h5>
                             <small class="text-muted" id="modalMeta" style="font-size: 0.9rem;"></small>
                         </div>
                     </div>
-                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4 p-md-5 position-relative">
-                    <div class="quote-icon mb-3" style="font-size: 3rem; color: var(--primary); opacity: 0.1; position: absolute; top: 20px; left: 30px;">
+                    <div class="quote-icon mb-3"
+                        style="font-size: 3rem; color: var(--primary); opacity: 0.1; position: absolute; top: 20px; left: 30px;">
                         <i class="bi bi-quote"></i>
                     </div>
                     <div class="story-content-wrapper position-relative" style="z-index: 1;">
-                        <p id="modalStoryText" style="font-size: 1.1rem; line-height: 1.8; color: #444; white-space: pre-line; text-align: justify;"></p>
+                        <p id="modalStoryText"
+                            style="font-size: 1.1rem; line-height: 1.8; color: #444; white-space: pre-line; text-align: justify;">
+                        </p>
                     </div>
                 </div>
                 <div class="modal-footer border-0 bg-light p-3">
-                    <button type="button" class="btn btn-secondary px-4 rounded-pill" data-bs-dismiss="modal">বন্ধ করুন</button>
+                    <button type="button" class="btn btn-secondary px-4 rounded-pill" data-bs-dismiss="modal">বন্ধ
+                        করুন</button>
                 </div>
             </div>
         </div>
