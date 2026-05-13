@@ -42,11 +42,14 @@
                    {{-- <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
                            href="{{ route('home') }}">হোম</a></li> --}}
                    <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#about">প্রকল্প সম্পর্কে</a></li>
-                   <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#organizations">বাস্তবায়নকারী
-                           সংস্থা</a></li>
+                   <li class="nav-item">
+                       <a class="nav-link" href="{{ route('home') }}#organizations">
+                           নিযুক্ত প্রতিষ্ঠান
+                       </a>
+                   </li>
                    <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#stories">শিক্ষার্থীদের কথা</a>
                    </li>
-                   {{-- <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#courses">কোর্সসমূহ</a></li> --}}
+                   <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#courses">কোর্স মডিউলস</a></li>
                    <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#gallery">গ্যালারি</a></li>
                    <li class="nav-item">
                        <a class="nav-link {{ request()->routeIs('student.directory') ? 'active' : '' }}"

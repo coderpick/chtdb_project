@@ -153,65 +153,46 @@
             </div>
         </div>
     </section>
-
-    <!-- About Section -->
-    <section class="about-section section-padding" id="about">
+    {{-- Hero slider end --}}
+    <!-- CHTDB Intro Section -->
+    <section class="chtdb-intro-section section-padding" id="chtdb-info"
+        style="background: linear-gradient(to bottom, #ffffff, #fcfdfc);">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0 reveal">
-                    <div class="about-img-wrapper">
-                        <img src="{{ asset('img/about.jpg') }}" alt="প্রশিক্ষণ">
-                        <div class="about-overlay-badge">
-                            <i class="bi bi-play-circle me-2"></i>
-                            {{ \App\Models\Setting::get('about_badge', 'চলমান প্রশিক্ষণ কার্যক্রম') }}
+                <div class="col-lg-6 mb-5 mb-lg-0 reveal">
+                    <div class="chtdb-img-wrapper">
+                        <img src="{{ asset(\App\Models\Setting::get('chtdb_building_image', 'img/chtdb_building.png')) }}"
+                            alt="পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড" class="img-fluid rounded-4 shadow-lg">
+                        <div class="established-badge">
+                            <i class="bi bi-award me-1"></i>
+                            <span>{{ \App\Models\Setting::get('chtdb_intro_badge', 'স্থাপিত: ১৯৭৬') }}</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 reveal">
-                    <h2 class="section-title">{{ \App\Models\Setting::get('about_title', 'প্রকল্প সম্পর্কে') }}</h2>
+                <div class="col-lg-6 reveal ps-lg-5">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-success bg-opacity-10 p-2 rounded-3 me-3">
+                            <i class="bi bi-building-check text-success fs-3"></i>
+                        </div>
+                        <h2 class="section-title mb-0">
+                            {{ \App\Models\Setting::get('chtdb_intro_title', 'পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড') }}</h2>
+                    </div>
                     <div class="section-divider"></div>
-                    <p class="section-subtitle" style="max-width:100%;">
-                        {{ \App\Models\Setting::get('about_subtitle', 'তিন পার্বত্য জেলার বেকার যুবক যুবতীদের তথ্য ও যোগাযোগ প্রযুক্তি বিষয়ক দক্ষতা উন্নয়ন ও আত্মকর্মসংস্থান সুযোগ সৃষ্টিকরণ স্কিমটি পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ডের একটি গুরুত্বপূর্ণ উদ্যোগ।') }}
+                    <p class="lead mb-4" style="color: var(--primary); font-weight: 700; letter-spacing: -0.02em;">
+                        {{ \App\Models\Setting::get('chtdb_intro_highlight', 'পার্বত্য চট্টগ্রামের টেকসই উন্নয়নের অগ্রদূত') }}
                     </p>
-                    <p style="font-size:0.92rem;color:#555;line-height:1.8;margin-bottom:25px;">
-                        {{ \App\Models\Setting::get('about_description', 'এই প্রকল্পের মাধ্যমে রাঙামাটি, খাগড়াছড়ি ও বান্দরবান পার্বত্য জেলার বেকার যুবক-যুবতীদের আধুনিক তথ্য ও যোগাযোগ প্রযুক্তি বিষয়ে হাতে-কলমে প্রশিক্ষণ প্রদান করা হয়েছে। প্রশিক্ষণ পার্টনার হিসেবে বাংলাদেশের অন্যতম শীর্ষস্থানীয় আইটি প্রশিক্ষণ প্রতিষ্ঠান PeopleNTech Institute of IT এই কার্যক্রম সফলভাবে পরিচালনা করেছে।') }}
+                    <p style="font-size:1.05rem;color:#444;line-height:1.9;text-align:justify; margin-bottom: 30px;">
+                        {{ \App\Models\Setting::get('chtdb_intro_description', '১৯৭৬ সালের ৭৭ নং অধ্যাদেশ বলে পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড গঠিত হয়। পার্বত্য চট্টগ্রাম অঞ্চলে বিভিন্ন উন্নয়নমূলক ও আয়বর্ধকমূলক প্রকল্প/স্কিম গ্রহণ ও বাস্তবায়নে পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড গুরুত্বপূর্ণ ভূমিকা পালন করে যাচ্ছে। পার্বত্য চট্টগ্রামে দুর্গম এলাকার যোগাযোগ ব্যবস্থার উন্নয়ন, কৃষি ও সেচ, শিক্ষা, সমাজকল্যাণ, ক্রীড়া ও সংস্কৃতির উন্নয়ন ও বিকাশ, আইসিটি দক্ষতা বৃদ্ধিসহ অন্যান্য প্রয়োজনীয় অবকাঠামো নির্মাণ ও জনগণের আর্থ-সামাজিক অবস্থার উন্নয়নে পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ডের ভূমিকা অনস্বীকার্য।') }}
                     </p>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="feature-item">
-                                <div class="feature-icon"><i class="bi bi-laptop"></i></div>
-                                <div>
-                                    <h6>আইসিটি প্রশিক্ষণ</h6>
-                                    <p>আধুনিক প্রযুক্তি বিষয়ে হাতে-কলমে প্রশিক্ষণ</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="feature-item">
-                                <div class="feature-icon"><i class="bi bi-briefcase"></i></div>
-                                <div>
-                                    <h6>কর্মসংস্থান সৃষ্টি</h6>
-                                    <p>চাকরি ও ফ্রিল্যান্সিং এর সুযোগ</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="feature-item">
-                                <div class="feature-icon"><i class="bi bi-people"></i></div>
-                                <div>
-                                    <h6>যুব উন্নয়ন</h6>
-                                    <p>বেকার যুবক-যুবতীদের দক্ষতা বৃদ্ধি</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="feature-item">
-                                <div class="feature-icon"><i class="bi bi-globe2"></i></div>
-                                <div>
-                                    <h6>ডিজিটাল বাংলাদেশ</h6>
-                                    <p>পার্বত্য অঞ্চলে ডিজিটাল সেবা সম্প্রসারণ</p>
-                                </div>
-                            </div>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="{{ \App\Models\Setting::get('chtdb_website', 'https://chtdb.gov.bd/') }}"
+                            target="_blank" class="btn btn-success rounded-pill px-4 py-2 shadow-sm">
+                            <i
+                                class="bi bi-globe me-2"></i>{{ \App\Models\Setting::get('chtdb_intro_website_label', 'ওয়েবসাইট দেখুন') }}
+                        </a>
+                        <div class="d-flex align-items-center text-muted small">
+                            <i class="bi bi-info-circle me-2"></i>
+                            <span>{{ \App\Models\Setting::get('chtdb_intro_org_type', 'সরকারি স্বায়ত্তশাসিত সংস্থা') }}</span>
                         </div>
                     </div>
                 </div>
@@ -219,153 +200,106 @@
         </div>
     </section>
 
-    <!-- Organizations Section -->
-    <section class="section-padding" id="organizations">
+    <!-- Project About Section -->
+    <section class="about-section section-padding" id="about" style="background: var(--bg-light);">
         <div class="container">
-            <div class="text-center centered reveal">
-                <h2 class="section-title">
-                    {{ \App\Models\Setting::get('org_section_title', 'বাস্তবায়নকারী সংস্থা ও নিযুক্ত প্রতিষ্ঠান') }}</h2>
-                <div class="section-divider"></div>
-                <p class="section-subtitle">
-                    {{ \App\Models\Setting::get('org_section_subtitle', 'এই প্রকল্পের সাথে সংশ্লিষ্ট প্রধান সংস্থা ও তাদের ভূমিকা') }}
-                </p>
+            <div class="row">
+                <div class="col-lg-12 reveal mb-5 text-center">
+                    <h2 class="section-title">{{ \App\Models\Setting::get('scheme_title', 'স্কিম সম্পর্কে') }}</h2>
+                    <div class="section-divider mx-auto"></div>
+                    <p class="section-subtitle mx-auto"
+                        style="max-width: 950px; font-size: 1.1rem; line-height: 1.8; color: #333;">
+                        {{ \App\Models\Setting::get('scheme_subtitle', 'তিন পার্বত্য জেলার শিক্ষিত জনগোষ্ঠীর মধ্যে তথ্য ও যোগাযোগ প্রযুক্তির ব্যাপক প্রসার ঘটানো, তথ্য প্রযুক্তিতে দক্ষ ও প্রতিযোগিতামূলক মানবসম্পদ তৈরি করা এবং তথ্য প্রযুক্তির কার্যকর ব্যবহারের মাধ্যমে এ অঞ্চলের শিক্ষিত যুবক-যুবতীদের বিকল্প আত্মকর্মসংস্থানের সুযোগ সৃষ্টি করে তাদের জীবনমান উন্নয়ন করা এ কার্যক্রমের মূল লক্ষ্য। একইসাথে তথ্যপ্রযুক্তিভিত্তিক কর্মসংস্থানের মাধ্যমে নারীর ক্ষমতায়নে ইতিবাচক অবদান রাখা, বিশ্ববাজারে ফ্রিল্যান্সিং খাতের অপার সম্ভাবনাকে কাজে লাগিয়ে দক্ষ ফ্রিল্যান্সার তৈরি করা এবং বৈদেশিক মুদ্রা অর্জনে সহায়তা করাও এর অন্যতম উদ্দেশ্য।') }}
+                    </p>
+                </div>
             </div>
-            <div class="row g-4">
-                <!-- CHTDB -->
-                <div class="col-lg-6 reveal">
-                    <div class="org-card">
-                        <div class="org-logo" style="background:rgba(13,74,40,0.08);">
-                            <i class="bi bi-building text-success"></i>
-                        </div>
-                        <span
-                            class="badge bg-success mb-3">{{ \App\Models\Setting::get('chtdb_badge', 'প্রকল্প বাস্তবায়নকারী') }}</span>
-                        <h4>{{ \App\Models\Setting::get('chtdb_name', 'পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড') }}</h4>
-                        <p>{{ \App\Models\Setting::get('chtdb_description', 'পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড (CHTDB) বাংলাদেশ সরকারের পার্বত্য চট্টগ্রাম বিষয়ক মন্ত্রণালয়ের অধীনে একটি স্বায়ত্তশাসিত সংস্থা। রাঙামাটি, খাগড়াছড়ি ও বান্দরবান — এই তিন পার্বত্য জেলার সার্বিক আর্থ-সামাজিক উন্নয়নে গুরুত্বপূর্ণ ভূমিকা পালন করছে এই প্রতিষ্ঠান।') }}
+
+            <div class="row g-4 align-items-stretch">
+                <!-- Project Description Extra -->
+                <div class="col-lg-12 reveal mb-4">
+                    <div class="p-4 bg-white rounded-4 shadow-sm border-start border-4 border-success">
+                        <p style="font-size:1rem;color:#555;line-height:1.8;margin-bottom:0;">
+                            {{ \App\Models\Setting::get('scheme_description_box', 'প্রচলিত কর্মসংস্থানের পাশাপাশি অনলাইনভিত্তিক আত্মকর্মসংস্থানে শিক্ষিত যুবসমাজকে উৎসাহিত করার লক্ষ্যে তিন পার্বত্য জেলার দুই ব্যাচে মোট ২০০ জন শিক্ষিত যুবক-যুবতীকে সম্পূর্ণ বিনামূল্যে প্রশিক্ষণ প্রদান করা হয়েছে, যাতে তারা স্বাবলম্বী হতে পারে। প্রশিক্ষণ চলাকালীন অধিকাংশ প্রশিক্ষণার্থীর জন্য দেশীয় ও আন্তর্জাতিক প্রতিষ্ঠানের সাথে সংযোগ স্থাপনের মাধ্যমে আয়ের বাস্তব সুযোগ সৃষ্টি করা হয়েছে এবং পরবর্তীতে নতুন স্কিমের আওতায় উচ্চতর পর্যায়ের প্রশিক্ষণ প্রদানের মাধ্যমে ইতোমধ্যে প্রশিক্ষণপ্রাপ্ত যুবক-যুবতীদের দক্ষ, পেশাদার ও আত্মনির্ভরশীল ফ্রিল্যান্সার হিসেবে গড়ে তোলা হবে।') }}
                         </p>
-                        <div class="org-list">
-                            {!! \App\Models\Setting::get(
-                                'chtdb_list',
-                                '<ul><li>পার্বত্য এলাকায় টেকসই সামাজিক সেবা প্রদান প্রকল্প</li><li>আইসিটি ভিত্তিক দক্ষ জনবল সৃষ্টির মাধ্যমে আত্মকর্মসংস্থান সৃষ্টিকরণ</li><li>কৃষি, অবকাঠামো ও শিক্ষা খাতে উন্নয়ন প্রকল্প পরিচালনা</li><li>পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড ও PeopleNTech এর যৌথ উদ্যোগে আইসিটি বিষয়ক প্রশিক্ষণ প্রদান</li><li>সোলার প্যানেল স্থাপনের মাধ্যমে বিদ্যুৎ সরবরাহ প্রকল্প</li></ul>',
-                            ) !!}
-                        </div>
-                        <a href="{{ \App\Models\Setting::get('chtdb_website', 'https://chtdb.gov.bd') }}" target="_blank"
-                            class="btn btn-primary-custom mt-3">
-                            <i class="bi bi-globe me-1"></i>
-                            {{ \App\Models\Setting::get('chtdb_website_label', 'chtdb.gov.bd ভিজিট করুন') }}
-                        </a>
                     </div>
                 </div>
 
-                <!-- PeopleNTech -->
+                <!-- Objectives -->
                 <div class="col-lg-6 reveal">
-                    <div class="org-card">
-                        <div class="org-logo" style="background:rgba(0,123,255,0.08);">
-                            <i class="bi bi-pc-display-horizontal text-primary"></i>
-                        </div>
-                        <span
-                            class="badge bg-primary mb-3">{{ \App\Models\Setting::get('peoplentech_badge', 'ট্রেনিং প্রদানকারী প্রতিষ্ঠান') }}</span>
-                        <h4>{{ \App\Models\Setting::get('peoplentech_name', 'PeopleNTech Institute of IT') }}</h4>
-                        <p>{{ \App\Models\Setting::get('peoplentech_description', 'PeopleNTech গত ১৪+ বছর ধরে বাংলাদেশে আইটি প্রশিক্ষণ ও জব প্লেসমেন্ট সেবা প্রদান করে আসছে। বিশ্বমানের আইটি বিশেষজ্ঞ তৈরির লক্ষ্যে কাজ করছে এই প্রতিষ্ঠানটি। BASIS ও ISO 9001:2015 সার্টিফিকেটধারী এই প্রতিষ্ঠান দেশ-বিদেশে সুনাম অর্জন করেছে।') }}
-                        </p>
-                        <div class="org-list">
+                    <div class="h-100 p-4 rounded-4 shadow-sm"
+                        style="background: linear-gradient(135deg, #ffffff 0%, #f0f7f2 100%); border: 1px solid #e0e0e0;">
+                        <h4 class="mb-4 d-flex align-items-center" style="color: var(--primary-dark); font-weight: 700;">
+                            <span
+                                class="me-3 bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px;"><i class="bi bi-bullseye"></i></span>
+                            {{ \App\Models\Setting::get('objectives_title', 'স্কিমের লক্ষ্য ও উদ্দেশ্য:') }}
+                        </h4>
+                        <div class="objectives-list">
                             {!! \App\Models\Setting::get(
-                                'peoplentech_list',
-                                '<ul><li>ইন্ডাস্ট্রি-ফোকাসড লাইভ কোর্স পরিচালনা</li><li>চাকরি ও ইন্টার্নশিপ প্লেসমেন্ট সার্ভিস</li><li>ফ্রিল্যান্স ক্যারিয়ার গাইডেন্স ও সাপোর্ট</li><li>লাইফটাইম স্টুডেন্ট সাপোর্ট সিস্টেম</li><li>WUST (USA) এর সাথে গ্লোবাল একাডেমিক সহযোগিতা</li></ul>',
+                                'objectives_list',
+                                '<ul><li>তিন পার্বত্য জেলার শিক্ষিত জনগোষ্ঠীর মধ্যে তথ্য প্রযুক্তির প্রসার ঘটানো;</li><li>তথ্য প্রযুক্তিতে দক্ষ জনশক্তি তৈরি করা;</li><li>তথ্য প্রযুক্তিকে কাজে লাগিয়ে এতদঞ্চলের শিক্ষিত যুবক-যুবতীদের বিকল্প আত্ম-কর্মসংস্থানের সুযোগ সৃষ্টির মাধ্যমে জীবনমান উন্নয়ন; নারীর ক্ষমতায়নে অবদান রাখা;</li><li>বিশ্ববাজারে ফ্রিল্যান্সিংয়ের অপার সম্ভাবনাকে কাজে লাগানোর নিমিত্ত ফ্রিল্যান্সিংয়ে দক্ষ মানব সম্পদ সৃষ্টির মাধ্যমে মূল্যবান রেমিটেন্স আয়ের অবদান রাখা;</li><li>বিদ্যমান কর্মসংস্থানের পাশাপাশি অনলাইন ভিত্তিক আত্ম-কর্মসংস্থানে উৎসাহ প্রদান;</li><li>তিন পার্বত্য জেলার দুই ব্যাচের মোট ২০০ জন শিক্ষিত যুবক-যুবতীদের প্রশিক্ষণ প্রদান করে স্বাবলম্বী হতে সহায়তা করা;</li><li>প্রশিক্ষণ চলাকালীন অধিকাংশ প্রশিক্ষণার্থীকে দেশীয়/বিদেশী প্রতিষ্ঠানের সাথে সংযোগ স্থাপনপূর্বক আয়ের উৎস সৃষ্টিকরণ এবং</li><li>শিক্ষিত যুবক-যুবতীদের ফ্রিল্যান্সার হিসেবে গড়ে তোলা।</li></ul>',
                             ) !!}
                         </div>
-                        <a href="{{ \App\Models\Setting::get('peoplentech_website', 'https://peoplentech.com.bd') }}"
-                            target="_blank" class="btn btn-primary-custom mt-3"
-                            style="background:linear-gradient(135deg,#0d6efd,#0b5ed7);">
-                            <i class="bi bi-globe me-1"></i>
-                            {{ \App\Models\Setting::get('peoplentech_website_label', 'peoplentech.com.bd ভিজিট করুন') }}
-                        </a>
+                    </div>
+                </div>
+
+                <!-- Scope of Work -->
+                <div class="col-lg-6 reveal">
+                    <div class="h-100 p-4 rounded-4 shadow-sm"
+                        style="background: linear-gradient(135deg, #ffffff 0%, #fff9e6 100%); border: 1px solid #e0e0e0;">
+                        <h4 class="mb-4 d-flex align-items-center" style="color: var(--primary-dark); font-weight: 700;">
+                            <span
+                                class="me-3 bg-warning text-dark rounded-circle d-inline-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px;"><i class="bi bi-clipboard-data"></i></span>
+                            {{ \App\Models\Setting::get('scope_title', 'স্কিমের কার্যপরিধি:') }}
+                        </h4>
+                        <div class="mb-4 p-3 bg-white rounded-3 border">
+                            <p class="mb-0 fw-bold text-dark">
+                                {{ \App\Models\Setting::get('scope_description', 'রাঙ্গামাটি পার্বত্য জেলায় দুই ব্যাচে ৮০ জন এবং বান্দরবান পার্বত্য জেলায় দুই ব্যাচে ৬০ জন এবং খাগড়াছড়ি পার্বত্য জেলায় দুই ব্যাচে ৬০ জন করে মোট ২০০ জন শিক্ষিত যুবক-যুবতীকে তথ্য ও যোগাযোগ প্রযুক্তি বিষয়ে ২০০ কার্যদিবসে প্রশিক্ষণ প্রদান;') }}
+                            </p>
+                        </div>
+                        <h6 class="fw-bold mb-3">
+                            {{ \App\Models\Setting::get('scope_module_title', 'প্রশিক্ষণ মডিউল ও সময়কাল:') }}</h6>
+                        <div class="row g-2 mb-4">
+                            <div class="col-6">
+                                <div class="p-2 border rounded bg-white text-center project-module-card">
+                                    <div class="small text-muted">বেসিক রিফ্রেসার্স</div>
+                                    <div class="fw-bold text-success">৩০ কার্যদিবস</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 border rounded bg-white text-center project-module-card">
+                                    <div class="small text-muted">গ্রাফিক্স কোর্স</div>
+                                    <div class="fw-bold text-success">৪৫ কার্যদিবস</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 border rounded bg-white text-center project-module-card">
+                                    <div class="small text-muted">ডিজিটাল মার্কেটিং</div>
+                                    <div class="fw-bold text-success">৪৫ কার্যদিবস</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 border rounded bg-white text-center project-module-card">
+                                    <div class="small text-muted">অডিও-ভিডিও</div>
+                                    <div class="fw-bold text-success">৩০ কার্যদিবস</div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="p-2 border rounded bg-white text-center project-module-card">
+                                    <div class="small text-muted">ওয়েবসাইট ডিজাইন এবং অ্যানিমেশন</div>
+                                    <div class="fw-bold text-success">৫০ কার্যদিবস</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-white rounded-3 border border-warning border-opacity-25">
+                            <i class="bi bi-calendar-event me-2 text-warning"></i>
+                            <span
+                                class="fw-bold">{{ \App\Models\Setting::get('scope_workshop_text', 'কোর্সের বিভিন্ন মডিউল এর বিষয়ে ৩ টি কর্মশালা আয়োজন;') }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- PeopleNTech Detailed Section -->
-            {{-- <div class="row mt-5 align-items-center reveal">
-                <div class="col-lg-7">
-                    <div
-                        style="background:linear-gradient(135deg,#e8f5e9,#fff);border-radius:20px;padding:35px;border:1px solid rgba(26,107,60,0.1);">
-                        <h4 style="font-weight:700;color:var(--primary-dark);margin-bottom:15px;">
-                            <i class="bi bi-award me-2 text-success"></i>PeopleNTech কেন এই প্রকল্পের ট্রেনিং প্রদানকারী? 
-                        </h4>
-                        <p style="font-size:0.92rem;color:#555;line-height:1.8;">
-                            PeopleNTech Institute of IT বাংলাদেশের অন্যতম শীর্ষস্থানীয় আইটি প্রশিক্ষণ প্রতিষ্ঠান। গত ১৪
-                            বছরেরও বেশি সময় ধরে তারা সফলভাবে হাজার হাজার শিক্ষার্থীকে দক্ষ আইটি পেশাজীবী হিসেবে গড়ে
-                            তুলেছে। তাদের ইন্ডাস্ট্রি-ফোকাসড কারিকুলাম, অভিজ্ঞ মেন্টর ও জব প্লেসমেন্ট সাপোর্ট এই
-                            প্রকল্পের সফলতায় গুরুত্বপূর্ণ ভূমিকা রেখেছে।
-                        </p>
-                        <div class="row g-3 mt-2">
-                            <div class="col-sm-6">
-                                <div class="d-flex align-items-center gap-2 p-3"
-                                    style="background:white;border-radius:12px;">
-                                    <i class="bi bi-patch-check-fill text-success fs-4"></i>
-                                    <div>
-                                        <div style="font-weight:700;font-size:0.88rem;">ISO 9001:2015</div>
-                                        <div style="font-size:0.78rem;color:#888;">সার্টিফাইড প্রতিষ্ঠান</div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="d-flex align-items-center gap-2 p-3"
-                                    style="background:white;border-radius:12px;">
-                                    <i class="bi bi-shield-check text-primary fs-4"></i>
-                                    <div>
-                                        <div style="font-weight:700;font-size:0.88rem;">BASIS সদস্য</div>
-                                        <div style="font-size:0.78rem;color:#888;">জাতীয় সফটওয়্যার সমিতি</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="d-flex align-items-center gap-2 p-3"
-                                    style="background:white;border-radius:12px;">
-                                    <i class="bi bi-globe2 text-info fs-4"></i>
-                                    <div>
-                                        <div style="font-weight:700;font-size:0.88rem;">WUST (USA)</div>
-                                        <div style="font-size:0.78rem;color:#888;">গ্লোবাল একাডেমিক পার্টনার</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="d-flex align-items-center gap-2 p-3"
-                                    style="background:white;border-radius:12px;">
-                                    <i class="bi bi-people-fill text-warning fs-4"></i>
-                                    <div>
-                                        <div style="font-weight:700;font-size:0.88rem;">১৪+ বছরের অভিজ্ঞতা</div>
-                                        <div style="font-size:0.78rem;color:#888;">আইটি প্রশিক্ষণে</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5 mt-4 mt-lg-0">
-                    <div style="background:var(--gradient-2);border-radius:20px;padding:35px;color:white;">
-                        <h5 style="font-weight:700;margin-bottom:20px;"><i class="bi bi-graph-up-arrow me-2"></i>
-                            PeopleNTech এর অর্জন</h5>
-                        <div class="d-flex align-items-center gap-3 mb-3 p-3"
-                            style="background:rgba(255,255,255,0.1);border-radius:12px;">
-                            <span style="font-size:1.8rem;font-weight:800;color:var(--secondary);">১৪+</span>
-                            <span style="font-size:0.9rem;">বছর ধরে সফল কার্যক্রম</span>
-                        </div>
-                        <div class="d-flex align-items-center gap-3 mb-3 p-3"
-                            style="background:rgba(255,255,255,0.1);border-radius:12px;">
-                            <span style="font-size:1.8rem;font-weight:800;color:var(--secondary);">৯+</span>
-                            <span style="font-size:0.9rem;">দেশে কার্যক্রম বিস্তৃত</span>
-                        </div>
-                        <div class="d-flex align-items-center gap-3 mb-3 p-3"
-                            style="background:rgba(255,255,255,0.1);border-radius:12px;">
-                            <span style="font-size:1.8rem;font-weight:800;color:var(--secondary);">৫০+</span>
-                            <span style="font-size:0.9rem;">একাডেমিক ইনস্টিটিউশন পার্টনার</span>
-                        </div>
-                        <div class="d-flex align-items-center gap-3 p-3"
-                            style="background:rgba(255,255,255,0.1);border-radius:12px;">
-                            <span style="font-size:1.8rem;font-weight:800;color:var(--secondary);">১০০+</span>
-                            <span style="font-size:0.9rem;">দক্ষ ও অভিজ্ঞ প্রশিক্ষক</span>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
         </div>
     </section>
 
@@ -421,6 +355,156 @@
         </div>
     </section>
 
+    <!-- Training Organization Section -->
+    <section class="section-padding" id="organizations"
+        style="background: linear-gradient(to bottom, #fcfdfc, #ffffff);">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="text-center centered reveal mb-5">
+                <h2 class="section-title">
+                    {{ \App\Models\Setting::get('org_section_title', 'ট্রেনিং এ নিযুক্ত প্রতিষ্ঠান') }}</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">
+                    {{ \App\Models\Setting::get('org_section_subtitle', 'এই প্রকল্পের অধীনে যারা ট্রেনিং প্রদান করেন') }}
+                </p>
+            </div>
+            <div class="row g-4 reveal">
+                <div class="col-12">
+                    <div class="org-showcase-card">
+                        <div class="row g-0">
+                            <!-- Left Side: Basic Info -->
+                            <div class="col-lg-5 p-4 p-md-5 d-flex flex-column justify-content-center border-end-lg">
+
+                                <div class="org-brand mb-4">
+                                    <div class="org-logo-wrapper mb-4">
+                                        <img src="{{ asset(\App\Models\Setting::get('peoplentech_logo', 'img/PNT_logo.webp')) }}"
+                                            alt="PeopleNTech" class="img-fluid">
+                                    </div>
+                                    <h3 class="org-name-large">
+                                        {{ \App\Models\Setting::get('peoplentech_name', 'PeopleNTech Institute of IT') }}
+                                    </h3>
+                                </div>
+                                <p class="org-desc-large mb-4">
+                                    {{ \App\Models\Setting::get('peoplentech_description', 'PeopleNTech গত ১৪+ বছর ধরে বাংলাদেশে আইটি প্রশিক্ষণ ও জব প্লেসমেন্ট সেবা প্রদান করে আসছে। বিশ্বমানের আইটি বিশেষজ্ঞ তৈরির লক্ষ্যে কাজ করছে এই প্রতিষ্ঠানটি। BASIS ও ISO 9001:2015 সার্টিফিকেটধারী এই প্রতিষ্ঠান দেশ-বিদেশে সুনাম অর্জন করেছে।') }}
+                                </p>
+
+
+
+                                <div class="mt-5 p-4 rounded-4 bg-white shadow-sm border">
+                                    <h6 class="fw-bold mb-3 d-flex align-items-center" style="color: var(--primary-dark);">
+                                        <span class="me-3 bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center"
+                                            style="width: 32px; height: 32px;"><i class="bi bi-list-check"></i></span>
+                                        প্রশিক্ষণ সেবা ও সুবিধা:
+                                    </h6>
+                                    <div class="org-list-new">
+                                        {!! \App\Models\Setting::get(
+                                            'peoplentech_list',
+                                            '<ul><li>ইন্ডাস্ট্রি-ফোকাসড লাইভ কোর্স পরিচালনা</li><li>চাকরি ও ইন্টার্নশিপ প্লেসমেন্ট সার্ভিস</li><li>ফ্রিল্যান্স ক্যারিয়ার গাইডেন্স ও সাপোর্ট</li><li>লাইফটাইম স্টুডেন্ট সাপোর্ট সিস্টেম</li><li>WUST (USA) এর সাথে গ্লোবাল একাডেমিক সহযোগিতা</li></ul>',
+                                        ) !!}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Right Side: Features & Achievements -->
+                            <div class="col-lg-7 p-4 p-md-5">
+                                <h5 class="feature-heading mb-4"><i
+                                        class="bi bi-award-fill me-2"></i>{{ \App\Models\Setting::get('org_why_title', 'কেন PeopleNTech সেরা?') }}
+                                </h5>
+                                <div class="row g-3">
+                                    @for ($i = 1; $i <= 4; $i++)
+                                        @php
+                                            $default_titles = [
+                                                1 => 'ISO 9001:2015',
+                                                2 => 'BASIS সদস্য',
+                                                3 => 'WUST (USA)',
+                                                4 => '১৪+ বছর',
+                                            ];
+                                            $default_subtitles = [
+                                                1 => 'সার্টিফাইড প্রতিষ্ঠান',
+                                                2 => 'জাতীয় সফটওয়্যার সমিতি',
+                                                3 => 'গ্লোবাল একাডেমিক পার্টনার',
+                                                4 => 'আইটি প্রশিক্ষণে অভিজ্ঞতা',
+                                            ];
+                                            $default_icons = [
+                                                1 => 'bi-patch-check-fill',
+                                                2 => 'bi-shield-check',
+                                                3 => 'bi-globe2',
+                                                4 => 'bi-people-fill',
+                                            ];
+
+                                            $f_title = \App\Models\Setting::get(
+                                                'org_feature_' . $i . '_title',
+                                                $default_titles[$i],
+                                            );
+                                            $f_subtitle = \App\Models\Setting::get(
+                                                'org_feature_' . $i . '_subtitle',
+                                                $default_subtitles[$i],
+                                            );
+                                            $f_icon = \App\Models\Setting::get(
+                                                'org_feature_' . $i . '_icon',
+                                                $default_icons[$i],
+                                            );
+                                        @endphp
+                                        <div class="col-sm-6">
+                                            <div class="feature-box-new">
+                                                <div class="icon-circle bg-primary-soft">
+                                                    <i class="bi {{ $f_icon }} text-primary"></i>
+                                                </div>
+                                                <div>
+                                                    <h6>{{ $f_title }}</h6>
+                                                    <p>{{ $f_subtitle }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endfor
+                                </div>
+                                <hr class="my-5 opacity-10">
+                                <h5 class="feature-heading mb-4"><i
+                                        class="bi bi-graph-up-arrow me-2"></i>{{ \App\Models\Setting::get('org_achieve_title', 'একনজরে অর্জন') }}
+                                </h5>
+                                <div class="row g-3 text-center">
+                                    @for ($i = 1; $i <= 4; $i++)
+                                        @php
+                                            $default_vals = [1 => '১৪+', 2 => '৯+', 3 => '৫০+', 4 => '১০০+'];
+                                            $default_labels = [
+                                                1 => 'বছর',
+                                                2 => 'দেশ',
+                                                3 => 'পার্টনার',
+                                                4 => 'প্রশিক্ষক',
+                                            ];
+
+                                            $s_val = \App\Models\Setting::get(
+                                                'org_stat_' . $i . '_val',
+                                                $default_vals[$i],
+                                            );
+                                            $s_label = \App\Models\Setting::get(
+                                                'org_stat_' . $i . '_label',
+                                                $default_labels[$i],
+                                            );
+                                        @endphp
+                                        <div class="col-6 col-md-3">
+                                            <div class="stat-pill">
+                                                <span class="stat-val">{{ $s_val }}</span>
+                                                <span class="stat-label">{{ $s_label }}</span>
+                                            </div>
+                                        </div>
+                                    @endfor
+                                </div>
+
+                                <div class="mt-5 pt-3">
+                                    <a href="{{ \App\Models\Setting::get('peoplentech_website', 'https://peoplentech.com.bd') }}"
+                                        target="_blank" class="btn btn-premium btn-lg">
+                                        <i class="bi bi-globe me-2"></i>
+                                        {{ \App\Models\Setting::get('peoplentech_website_label', 'peoplentech.com.bd ভিজিট করুন') }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Statistics Section -->
     <section class="stats-section section-padding">
         <div class="container">
@@ -469,9 +553,10 @@
     <section class="stories-section section-padding" id="stories">
         <div class="container">
             <div class="text-center centered reveal">
-                <div class="section-divider"></div>
                 <h2 class="section-title">
-                    {{ \App\Models\Setting::get('stories_title', 'প্রশিক্ষিত ছাত্র/ছাত্রীদের মতামত') }}</h2>
+                    {{ \App\Models\Setting::get('stories_title', 'প্রশিক্ষিত ছাত্র/ছাত্রীদের মতামত') }}
+                </h2>
+                <div class="section-divider"></div>
                 <p class="section-subtitle">
                     {{ \App\Models\Setting::get('stories_subtitle', 'প্রশিক্ষণার্থীদের বাস্তব অভিজ্ঞতার আলোকে এই অংশটি তৈরি করা হয়েছে।') }}
                 </p>
@@ -573,9 +658,9 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
     <section class="section-padding" id="courses" style="background:var(--bg-light);">
         <div class="container">
             <div class="text-center centered reveal">
-                <div class="section-divider"></div>
                 <h2 class="section-title">{{ \App\Models\Setting::get('courses_title', 'প্রশিক্ষণের কোর্স মডিউলসমূহ') }}
                 </h2>
+                <div class="section-divider"></div>
                 <p class="section-subtitle">
                     {{ \App\Models\Setting::get('courses_subtitle', 'পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড এর তত্ত্বাবধানে পরিচালিত আইসিটি কোর্স মডিউলসমূহ') }}
                 </p>
@@ -597,46 +682,12 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
             </div>
         </div>
     </section>
-
-
-    <!-- Timeline -->
-    {{--  <section class="timeline-section section-padding" style="background:var(--bg-light);">
-        <div class="container">
-            <div class="text-center centered reveal">
-                <div class="section-divider"></div>
-                <h2 class="section-title">{{ \App\Models\Setting::get('timeline_title', 'প্রকল্পের পথচলা') }}</h2>
-                <p class="section-subtitle">
-                    {{ \App\Models\Setting::get('timeline_subtitle', 'প্রকল্প শুরু থেকে আজ পর্যন্ত গুরুত্বপূর্ণ মাইলফলকসমূহ') }}
-                </p>
-            </div>
-            <div class="timeline reveal">
-                @for ($i = 1; $i <= 4; $i++)
-                    @php
-                        $date = \App\Models\Setting::get("timeline_{$i}_date");
-                        $title = \App\Models\Setting::get("timeline_{$i}_title");
-                        $content = \App\Models\Setting::get("timeline_{$i}_content");
-                    @endphp
-                    @if ($date || $title || $content)
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <span class="timeline-date">{{ $date }}</span>
-                                <h5>{{ $title }}</h5>
-                                <p>{{ $content }}</p>
-                            </div>
-                        </div>
-                    @endif
-                @endfor
-            </div>
-        </div>
-    </section> --}}
-
     <!-- Gallery -->
     <section class="section-padding" id="gallery">
         <div class="container">
             <div class="text-center centered reveal">
-                <div class="section-divider"></div>
                 <h2 class="section-title">{{ \App\Models\Setting::get('gallery_title', 'ফটো গ্যালারি') }}</h2>
+                <div class="section-divider"></div>
                 <p class="section-subtitle">
                     {{ \App\Models\Setting::get('gallery_subtitle', 'প্রশিক্ষণ কার্যক্রমের বিভিন্ন মুহূর্ত') }}</p>
             </div>
@@ -683,8 +734,8 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
     <section class="section-padding" style="background:var(--bg-light);">
         <div class="container">
             <div class="text-center centered reveal">
-                <div class="section-divider"></div>
                 <h2 class="section-title">{{ \App\Models\Setting::get('centers_title', 'প্রশিক্ষণ ল্যাব সমূহ') }}</h2>
+                <div class="section-divider"></div>
                 <p class="section-subtitle">
                     {{ \App\Models\Setting::get('centers_subtitle', 'তিন পার্বত্য জেলায় আমাদের কম্পিউটার ল্যাব সমূহ') }}
                 </p>
@@ -722,8 +773,8 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
     <section class="contact-section section-padding" id="contact">
         <div class="container">
             <div class="text-center centered reveal">
-                <div class="section-divider"></div>
                 <h2 class="section-title">{{ \App\Models\Setting::get('contact_title', 'যোগাযোগ করুন') }}</h2>
+                <div class="section-divider"></div>
                 <p class="section-subtitle">
                     {{ \App\Models\Setting::get('contact_subtitle', 'আমাদের সাথে যোগাযোগ করতে নিচের ফর্মটি পূরণ করুন') }}
                 </p>
@@ -1044,6 +1095,214 @@ $tagText = $statusLabels[$careerStatus] ?? 'সাফল্য';
             line-height: 1.7;
             color: #555;
             margin-bottom: 1rem;
+        }
+
+        /* Organization Showcase Custom Styles */
+        .org-showcase-card {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.07);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        @media (min-width: 992px) {
+            .border-end-lg {
+                border-right: 1px solid rgba(0, 0, 0, 0.05);
+            }
+        }
+
+        .bg-light-soft {
+            background-color: #fcfdfd;
+        }
+
+        .org-badge-new {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(26, 107, 60, 0.08);
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.85rem;
+            border-radius: 50px;
+            border: 1px solid rgba(26, 107, 60, 0.15);
+        }
+
+        .org-logo-wrapper {
+            width: 140px;
+            height: auto;
+            transition: all 0.3s ease;
+        }
+
+        .org-logo-wrapper:hover {
+            transform: translateY(-3px);
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+        }
+
+        .org-logo-wrapper img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .wust-link h6 {
+            transition: color 0.3s ease;
+        }
+
+        .wust-link:hover h6 {
+            color: var(--primary);
+        }
+
+        .wust-link i {
+            font-size: 0.7rem;
+            vertical-align: middle;
+            opacity: 0.6;
+        }
+
+        .org-name-large {
+            font-weight: 800;
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+            line-height: 1.3;
+        }
+
+        .org-desc-large {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.9;
+        }
+
+        .btn-premium {
+            background: var(--gradient-2);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 16px;
+            font-weight: 700;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(26, 107, 60, 0.2);
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(26, 107, 60, 0.3);
+            color: white;
+        }
+
+        .feature-heading {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+        }
+
+        .feature-box-new {
+            background: white;
+            padding: 18px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .feature-box-new:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            border-color: var(--primary-soft);
+        }
+
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .bg-success-soft {
+            background: rgba(25, 135, 84, 0.1);
+        }
+
+        .bg-primary-soft {
+            background: rgba(13, 110, 253, 0.1);
+        }
+
+        .bg-info-soft {
+            background: rgba(13, 202, 240, 0.1);
+        }
+
+        .bg-warning-soft {
+            background: rgba(255, 193, 7, 0.1);
+        }
+
+        .feature-box-new h6 {
+            font-weight: 700;
+            margin-bottom: 2px;
+            font-size: 0.95rem;
+        }
+
+        .feature-box-new p {
+            font-size: 0.78rem;
+            color: #888;
+            margin: 0;
+        }
+
+        .stat-pill {
+            padding: 20px 10px;
+            border-radius: 20px;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .stat-pill .stat-val {
+            display: block;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-pill .stat-label {
+            font-size: 0.8rem;
+            color: #888;
+            font-weight: 600;
+        }
+
+        .org-list-new ul,
+        .objectives-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .org-list-new li,
+        .objectives-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .org-list-new li::before,
+        .objectives-list li::before {
+            content: "\f270";
+            /* bi-check2-circle */
+            font-family: "bootstrap-icons";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--primary);
+            font-size: 1.1rem;
+            font-weight: bold;
         }
     </style>
 @endpush

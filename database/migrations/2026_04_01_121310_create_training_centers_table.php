@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('phone', 20)->nullable();
             $table->string('email', 100)->nullable();
             $table->integer('total_trainee')->default(0);
+            $table->string('banner')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

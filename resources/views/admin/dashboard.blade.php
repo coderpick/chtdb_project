@@ -68,21 +68,7 @@
         }
     </style>
 
-    <div class="row g-4 mb-4">
-        <!-- Total Students -->
-        <div class="col-12 col-sm-6 col-xl">
-            <div class="card stat-card p-3 border-0 shadow-sm">
-                <div class="d-flex align-items-center justify-content-between">
-                    <div>
-                        <h6 class="text-muted mb-1 small text-uppercase fw-bold">Students</h6>
-                        <h3 class="mb-0 fw-bold">{{ $stats['students'] ?? 0 }}</h3>
-                    </div>
-                    <div class="stat-icon bg-primary-subtle text-primary">
-                        <i class="bi bi-people"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="row g-4 mb-4">     
         <!-- Total Courses -->
         <div class="col-12 col-sm-6 col-xl">
             <div class="card stat-card p-3 border-0 shadow-sm">
@@ -141,6 +127,51 @@
                                 {{ $stats['new_messages'] }}
                             </span>
                         @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-4">
+        <!-- Gallery Items -->
+        <div class="col-12 col-sm-6 col-md-4">
+            <div class="card stat-card p-3 border-0 shadow-sm">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <h6 class="text-muted mb-1 small text-uppercase fw-bold">Gallery Items</h6>
+                        <h3 class="mb-0 fw-bold">{{ $stats['gallery_items'] ?? 0 }}</h3>
+                    </div>
+                    <div class="stat-icon bg-secondary-subtle text-secondary">
+                        <i class="bi bi-images"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sliders -->
+        <div class="col-12 col-sm-6 col-md-4">
+            <div class="card stat-card p-3 border-0 shadow-sm">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <h6 class="text-muted mb-1 small text-uppercase fw-bold">Hero Sliders</h6>
+                        <h3 class="mb-0 fw-bold">{{ $stats['sliders'] ?? 0 }}</h3>
+                    </div>
+                    <div class="stat-icon bg-dark-subtle text-dark">
+                        <i class="bi bi-collection-play"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Officials -->
+        <div class="col-12 col-sm-6 col-md-4">
+            <div class="card stat-card p-3 border-0 shadow-sm">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <h6 class="text-muted mb-1 small text-uppercase fw-bold">Project Officials</h6>
+                        <h3 class="mb-0 fw-bold">{{ $stats['officials'] ?? 0 }}</h3>
+                    </div>
+                    <div class="stat-icon bg-primary-subtle text-primary">
+                        <i class="bi bi-person-badge"></i>
                     </div>
                 </div>
             </div>

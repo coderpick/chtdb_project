@@ -19,39 +19,48 @@
                             <div class="nav nav-pills flex-column flex-xl-column p-3" id="settingsTabs" role="tablist"
                                 aria-orientation="vertical">
                                 <button class="nav-link active text-start mb-2" id="general-tab" data-bs-toggle="tab"
-                                    data-bs-target="#general" type="button">
+                                    data-bs-target="#general" type="button" role="tab" aria-controls="general"
+                                    aria-selected="true">
                                     <i class="bi bi-info-circle me-2"></i>General & Topbar
                                 </button>
                                 <button class="nav-link text-start mb-2" id="hero-tab" data-bs-toggle="tab"
-                                    data-bs-target="#hero" type="button">
+                                    data-bs-target="#hero" type="button" role="tab" aria-controls="hero"
+                                    aria-selected="false">
                                     <i class="bi bi-stars me-2"></i>Hero & Marquee
                                 </button>
+                                <button class="nav-link text-start mb-2" id="chtdb-tab" data-bs-toggle="tab"
+                                    data-bs-target="#chtdb" type="button" role="tab" aria-controls="chtdb"
+                                    aria-selected="false">
+                                    <i class="bi bi-building me-2"></i>CHTDB Intro Section
+                                </button>
                                 <button class="nav-link text-start mb-2" id="about-tab" data-bs-toggle="tab"
-                                    data-bs-target="#about" type="button">
-                                    <i class="bi bi-card-text me-2"></i>About Section
+                                    data-bs-target="#about" type="button" role="tab" aria-controls="about"
+                                    aria-selected="false">
+                                    <i class="bi bi-card-text me-2"></i>About & Scheme Section
                                 </button>
                                 <button class="nav-link text-start mb-2" id="section-titles-tab" data-bs-toggle="tab"
-                                    data-bs-target="#section-titles" type="button">
-                                    <i class="bi bi-fonts me-2"></i>Section Titles & Footer
-                                </button>
-                                <button class="nav-link text-start mb-2" id="orgs-tab" data-bs-toggle="tab"
-                                    data-bs-target="#orgs" type="button">
-                                    <i class="bi bi-building me-2"></i>Organizations Details
+                                    data-bs-target="#section-titles" type="button" role="tab"
+                                    aria-controls="section-titles" aria-selected="false">
+                                    <i class="bi bi-fonts me-2"></i>Section Titles & Subtitles
                                 </button>
                                 <button class="nav-link text-start mb-2" id="stats-tab" data-bs-toggle="tab"
-                                    data-bs-target="#stats" type="button">
+                                    data-bs-target="#stats" type="button" role="tab" aria-controls="stats"
+                                    aria-selected="false">
                                     <i class="bi bi-bar-chart me-2"></i>Statistics Items
                                 </button>
-                                <button class="nav-link text-start mb-2" id="timeline-tab" data-bs-toggle="tab"
-                                    data-bs-target="#timeline" type="button">
-                                    <i class="bi bi-clock-history me-2"></i>Timeline Milestones
+                                <button class="nav-link text-start mb-2" id="orgs-tab" data-bs-toggle="tab"
+                                    data-bs-target="#orgs" type="button" role="tab" aria-controls="orgs"
+                                    aria-selected="false">
+                                    <i class="bi bi-building-gear me-2"></i>Training Partner & Orgs
                                 </button>
                                 <button class="nav-link text-start mb-2" id="social-tab" data-bs-toggle="tab"
-                                    data-bs-target="#social" type="button">
+                                    data-bs-target="#social" type="button" role="tab" aria-controls="social"
+                                    aria-selected="false">
                                     <i class="bi bi-share me-2"></i>Social Links
                                 </button>
                                 <button class="nav-link text-start mb-2" id="contact-tab" data-bs-toggle="tab"
-                                    data-bs-target="#contact" type="button">
+                                    data-bs-target="#contact" type="button" role="tab" aria-controls="contact"
+                                    aria-selected="false">
                                     <i class="bi bi-headset me-2"></i>Contact Info
                                 </button>
                             </div>
@@ -194,28 +203,94 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <!-- About Section -->
-                                    <div class="tab-pane fade" id="about" role="tabpanel">
-                                        <h5 class="mb-4 border-bottom pb-2">About Section Content</h5>
+                                    <!-- CHTDB Intro Section -->
+                                    <div class="tab-pane fade" id="chtdb" role="tabpanel">
+                                        <h5 class="mb-4 border-bottom pb-2">CHTDB Intro Section Content</h5>
                                         <div class="row g-3">
                                             <div class="col-md-6">
-                                                <label class="form-label">About Badge</label>
-                                                <input type="text" name="about_badge" class="form-control"
-                                                    value="{{ $settings['about_badge'] ?? 'চলমান প্রশিক্ষণ কার্যক্রম' }}">
+                                                <label class="form-label">Intro Badge</label>
+                                                <input type="text" name="chtdb_intro_badge" class="form-control"
+                                                    value="{{ $settings['chtdb_intro_badge'] ?? 'স্থাপিত: ১৯৭৬' }}">
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="form-label">About Section Title</label>
-                                                <input type="text" name="about_title" class="form-control"
-                                                    value="{{ $settings['about_title'] ?? 'প্রকল্প সম্পর্কে' }}">
+                                                <label class="form-label">Intro Title</label>
+                                                <input type="text" name="chtdb_intro_title" class="form-control"
+                                                    value="{{ $settings['chtdb_intro_title'] ?? 'পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড' }}">
                                             </div>
                                             <div class="col-12">
-                                                <label class="form-label">About Subtitle</label>
-                                                <textarea name="about_subtitle" class="form-control" rows="2">{{ $settings['about_subtitle'] ?? 'তিন পার্বত্য জেলার বেকার যুবক যুবতীদের তথ্য ও যোগাযোগ প্রযুক্তি বিষয়ক দক্ষতা উন্নয়ন ও আত্মকর্মসংস্থান সুযোগ সৃষ্টিকরণ স্কিমটি পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ডের একটি গুরুত্বপূর্ণ উদ্যোগ।' }}</textarea>
+                                                <label class="form-label">Intro Highlight</label>
+                                                <input type="text" name="chtdb_intro_highlight" class="form-control"
+                                                    value="{{ $settings['chtdb_intro_highlight'] ?? 'পার্বত্য চট্টগ্রামের টেকসই উন্নয়নের অগ্রদূত' }}">
                                             </div>
                                             <div class="col-12">
-                                                <label class="form-label">About Detailed Description</label>
-                                                <textarea name="about_description" class="form-control" rows="4">{{ $settings['about_description'] ?? 'এই প্রকল্পের মাধ্যমে রাঙামাটি, খাগড়াছড়ি ও বান্দরবান পার্বত্য জেলার বেকার যুবক-যুবতীদের আধুনিক তথ্য ও যোগাযোগ প্রযুক্তি বিষয়ে হাতে-কলমে প্রশিক্ষণ প্রদান করা হয়েছে। প্রশিক্ষণ পার্টনার হিসেবে বাংলাদেশের অন্যতম শীর্ষস্থানীয় আইটি প্রশিক্ষণ প্রতিষ্ঠান PeopleNTech Institute of IT এই কার্যক্রম সফলভাবে পরিচালনা করেছে।' }}</textarea>
+                                                <label class="form-label">Intro Description</label>
+                                                <textarea name="chtdb_intro_description" class="form-control" rows="5">{{ $settings['chtdb_intro_description'] ?? '১৯৭৬ সালের ৭৭ নং অধ্যাদেশ বলে পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড গঠিত হয়। পার্বত্য চট্টগ্রাম অঞ্চলে বিভিন্ন উন্নয়নমূলক ও আয়বর্ধকমূলক প্রকল্প/স্কিম গ্রহণ ও বাস্তবায়নে পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড গুরুত্বপূর্ণ ভূমিকা পালন করে যাচ্ছে। পার্বত্য চট্টগ্রাম অঞ্চলে দুর্গম এলাকার যোগাযোগ ব্যবস্থার উন্নয়ন, কৃষি ও সেচ, শিক্ষা, সমাজকল্যাণ, ক্রীড়া ও সংস্কৃতির উন্নয়ন ও বিকাশ, আইসিটি দক্ষতা বৃদ্ধিসহ অন্যান্য প্রয়োজনীয় অবকাঠামো নির্মাণ ও জনগণের আর্থ-সামাজিক অবস্থার উন্নয়নে পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ডের ভূমিকা অনস্বীকার্য।' }}</textarea>
+                                            </div>
+                                            <div class="col-12">
+                                                <label class="form-label">Building Image Path (e.g.
+                                                    img/chtdb_building.png)</label>
+                                                <input type="text" name="chtdb_building_image" class="form-control"
+                                                    value="{{ $settings['chtdb_building_image'] ?? 'img/chtdb_building.png' }}">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Website Button Label</label>
+                                                <input type="text" name="chtdb_intro_website_label"
+                                                    class="form-control"
+                                                    value="{{ $settings['chtdb_intro_website_label'] ?? 'ওয়েবসাইট দেখুন' }}">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Organization Type Label</label>
+                                                <input type="text" name="chtdb_intro_org_type" class="form-control"
+                                                    value="{{ $settings['chtdb_intro_org_type'] ?? 'সরকারি স্বায়ত্তশাসিত সংস্থা' }}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- About & Scheme Section -->
+                                    <div class="tab-pane fade" id="about" role="tabpanel">
+                                        <h5 class="mb-4 border-bottom pb-2">About & Scheme Content</h5>
+                                        <div class="row g-3">
+                                            <div class="col-md-12">
+                                                <label class="form-label">Scheme Title</label>
+                                                <input type="text" name="scheme_title" class="form-control"
+                                                    value="{{ $settings['scheme_title'] ?? 'স্কিম সম্পর্কে' }}">
+                                            </div>
+                                            <div class="col-12">
+                                                <label class="form-label">Scheme Subtitle/Description</label>
+                                                <textarea name="scheme_subtitle" class="form-control" rows="4">{{ $settings['scheme_subtitle'] ?? 'তিন পার্বত্য জেলার শিক্ষিত জনগোষ্ঠীর মধ্যে তথ্য ও যোগাযোগ প্রযুক্তির ব্যাপক প্রসার ঘটানো, তথ্য প্রযুক্তিতে দক্ষ ও প্রতিযোগিতামূলক মানবসম্পদ তৈরি করা এবং তথ্য প্রযুক্তির কার্যকর ব্যবহারের মাধ্যমে এ অঞ্চলের শিক্ষিত যুবক-যুবতীদের বিকল্প আত্মকর্মসংস্থানের সুযোগ সৃষ্টি করে তাদের জীবনমান উন্নয়ন করা এ কার্যক্রমের মূল লক্ষ্য। একইসাথে তথ্যপ্রযুক্তিভিত্তিক কর্মসংস্থানের মাধ্যমে নারীর ক্ষমতায়নে ইতিবাচক অবদান রাখা, বিশ্ববাজারে ফ্রিল্যান্সিং খাতের অপার সম্ভাবনাকে কাজে লাগিয়ে দক্ষ ফ্রিল্যান্সার তৈরি করা এবং বৈদেশিক মুদ্রা অর্জনে সহায়তা করাও এর অন্যতম উদ্দেশ্য।' }}</textarea>
+                                            </div>
+                                            <div class="col-12">
+                                                <label class="form-label">Scheme Description Box (Highlighted)</label>
+                                                <textarea name="scheme_description_box" class="form-control" rows="4">{{ $settings['scheme_description_box'] ?? 'প্রচলিত কর্মসংস্থানের পাশাপাশি অনলাইনভিত্তিক আত্মকর্মসংস্থানে শিক্ষিত যুবকসমাজকে উৎসাহিত করার লক্ষ্যে তিন পার্বত্য জেলার দুই ব্যাচে মোট ২০০ জন শিক্ষিত যুবক-যুবতীকে সম্পূর্ণ বিনামূল্যে প্রশিক্ষণ প্রদান করা হয়েছে, যাতে তারা স্বাবলম্বী হতে পারে। প্রশিক্ষণ চলাকালীন অধিকাংশ প্রশিক্ষণার্থীর জন্য দেশীয় ও আন্তর্জাতিক প্রতিষ্ঠানের সাথে সংযোগ স্থাপনের মাধ্যমে আয়ের বাস্তব সুযোগ সৃষ্টি করা হয়েছে এবং পরবর্তীতে নতুন স্কিমের আওতায় উচ্চতর পর্যায়ের প্রশিক্ষণ প্রদানের মাধ্যমে ইতোমধ্যে প্রশিক্ষণপ্রাপ্ত যুবক-যুবতীদের দক্ষ, পেশাদার ও আত্মনির্ভরশীল ফ্রিল্যান্সার হিসেবে গড়ে তোলা হবে।' }}</textarea>
+                                            </div>
+                                            <div class="col-md-12 border-top pt-3 mt-3">
+                                                <label class="form-label fw-bold">Objectives Section</label>
+                                                <input type="text" name="objectives_title" class="form-control mb-2"
+                                                    placeholder="Objectives Title"
+                                                    value="{{ $settings['objectives_title'] ?? 'স্কিমের লক্ষ্য ও উদ্দেশ্য:' }}">
+                                                <textarea name="objectives_list" class="form-control summernote-list" rows="6">{{ $settings['objectives_list'] ?? '<ul><li>তিন পার্বত্য জেলার শিক্ষিত জনগোষ্ঠীর মধ্যে তথ্য প্রযুক্তির প্রসার ঘটানো;</li><li>তথ্য প্রযুক্তিতে দক্ষ জনশক্তি তৈরি করা;</li><li>তথ্য প্রযুক্তিকে কাজে লাগিয়ে এতদঞ্চলের শিক্ষিত যুবক-যুবতীদের বিকল্প আত্ম-কর্মসংস্থানের সুযোগ সৃষ্টির মাধ্যমে জীবনমান উন্নয়ন; নারীর ক্ষমতায়নে অবদান রাখা;</li><li>বিশ্ববাজারে ফ্রিল্যান্সিংয়ের অপার সম্ভাবনাকে কাজে লাগানোর নিমিত্ত ফ্রিল্যান্সিংয়ে দক্ষ মানব সম্পদ সৃষ্টির মাধ্যমে মূল্যবান রেমিটেন্স আয়ের অবদান রাখা;</li><li>বিদ্যমান কর্মসংস্থানের পাশাপাশি অনলাইন ভিত্তিক আত্ম-কর্মসংস্থানে উৎসাহ প্রদান;</li><li>তিন পার্বত্য জেলার দুই ব্যাচের মোট ২০০ জন শিক্ষিত যুবক-যুবতীদের প্রশিক্ষণ প্রদান করে স্বাবলম্বী হতে সহায়তা করা;</li><li>প্রশিক্ষণ চলাকালীন অধিকাংশ প্রশিক্ষণার্থীকে দেশীয়/বিদেশী প্রতিষ্ঠানের সাথে সংযোগ স্থাপনপূর্বক আয়ের উৎস সৃষ্টিকরণ এবং</li><li>শিক্ষিত যুবক-যুবতীদের ফ্রিল্যান্সার হিসেবে গড়ে তোলা।</li></ul>' }}</textarea>
+                                            </div>
+                                            <div class="col-md-12 border-top pt-3 mt-3">
+                                                <label class="form-label fw-bold">Scope of Work Section</label>
+                                                <input type="text" name="scope_title" class="form-control mb-2"
+                                                    placeholder="Scope Title"
+                                                    value="{{ $settings['scope_title'] ?? 'স্কিমের কার্যপরিধি:' }}">
+                                                <textarea name="scope_description" class="form-control mb-3" rows="3">{{ $settings['scope_description'] ?? 'রাঙ্গামাটি পার্বত্য জেলায় দুই ব্যাচে ৮০ জন এবং বান্দরবান পার্বত্য জেলায় দুই ব্যাচে ৬০ জন এবং খাগড়াছড়ি পার্বত্য জেলায় দুই ব্যাচে ৬০ জন করে মোট ২০০ জন শিক্ষিত যুবক-যুবতীকে তথ্য ও যোগাযোগ প্রযুক্তি বিষয়ে ২০০ কার্যদিবসে প্রশিক্ষণ প্রদান;' }}</textarea>
+
+                                                <div class="row g-2">
+                                                    <div class="col-md-6">
+                                                        <label class="form-label small">Module Section Title</label>
+                                                        <input type="text" name="scope_module_title"
+                                                            class="form-control"
+                                                            value="{{ $settings['scope_module_title'] ?? 'প্রশিক্ষণ মডিউল ও সময়কাল:' }}">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label small">Workshop Text</label>
+                                                        <input type="text" name="scope_workshop_text"
+                                                            class="form-control"
+                                                            value="{{ $settings['scope_workshop_text'] ?? 'কোর্সের বিভিন্ন মডিউল এর বিষয়ে ৩ টি কর্মশালা আয়োজন;' }}">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -328,7 +403,7 @@
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="p-3 border rounded text-center h-100">
-                                                    <i class="bi bi-globe2 mb-2 d-block text-warning"
+                                                    <i class="bi bi-globe2 mb-2 d-block text-info"
                                                         style="font-size: 1.5rem;"></i>
                                                     <label class="form-label">Extra Stat 3</label>
                                                     <input type="text" name="stat_extra_3_label"
@@ -341,7 +416,7 @@
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="p-3 border rounded text-center h-100">
-                                                    <i class="bi bi-shop mb-2 d-block text-danger"
+                                                    <i class="bi bi-shop mb-2 d-block text-warning"
                                                         style="font-size: 1.5rem;"></i>
                                                     <label class="form-label">Extra Stat 4</label>
                                                     <input type="text" name="stat_extra_4_label"
@@ -354,161 +429,114 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <!-- Organizations Details -->
                                     <div class="tab-pane fade" id="orgs" role="tabpanel">
-                                        <h5 class="mb-4 border-bottom pb-2">Organizations Detail Info</h5>
+                                        <h5 class="mb-4 border-bottom pb-2">Training Partner Details (PeopleNTech)</h5>
                                         <div class="row g-4">
-                                            <!-- CHTDB Details -->
-                                            <div class="col-md-12 p-3 bg-light-subtle rounded border border-white">
-                                                <h6 class="text-success mb-3 fw-bold">CHTDB Details</h6>
+                                            <!-- PeopleNTech Brand -->
+                                            <div class="col-md-12 p-3 bg-light-subtle rounded border">
+                                                <h6 class="text-primary mb-3 fw-bold"><i
+                                                        class="bi bi-briefcase me-2"></i>PeopleNTech Branding</h6>
                                                 <div class="row g-3">
                                                     <div class="col-md-6">
-                                                        <label class="form-label">Name</label>
-                                                        <input type="text" name="chtdb_name" class="form-control"
-                                                            value="{{ $settings['chtdb_name'] ?? 'পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড' }}">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label class="form-label">Badge Text</label>
-                                                        <input type="text" name="chtdb_badge" class="form-control"
-                                                            value="{{ $settings['chtdb_badge'] ?? 'প্রকল্প বাস্তবায়নকারী' }}">
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <label class="form-label">Description</label>
-                                                        <textarea name="chtdb_description" class="form-control" rows="3">{{ $settings['chtdb_description'] ?? 'পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড (CHTDB) বাংলাদেশ সরকারের পার্বত্য চট্টগ্রাম বিষয়ক মন্ত্রণালয়ের অধীনে একটি স্বায়ত্তশাসিত সংস্থা। রাঙামাটি, খাগড়াছড়ি ও বান্দরবান — এই তিন পার্বত্য জেলার সার্বিক আর্থ-সামাজিক উন্নয়নে গুরুত্বপূর্ণ ভূমিকা পালন করছে এই প্রতিষ্ঠান।' }}</textarea>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <label class="form-label">List Items (Simple List)</label>
-                                                        <textarea name="chtdb_list" class="form-control summernote-list" rows="4">{{ $settings['chtdb_list'] ?? '<ul><li>পার্বত্য এলাকায় টেকসই সামাজিক সেবা প্রদান প্রকল্প</li><li>আইসিটি ভিত্তিক দক্ষ জনবল সৃষ্টির মাধ্যমে আত্মকর্মসংস্থান সৃষ্টিকরণ</li><li>কৃষি, অবকাঠামো ও শিক্ষা খাতে উন্নয়ন প্রকল্প পরিচালনা</li><li>পার্বত্য চট্টগ্রামে তুলা চাষ বৃদ্ধি ও দারিদ্র্য বিমোচন</li><li>সোলার প্যানেল স্থাপনের মাধ্যমে বিদ্যুৎ সরবরাহ প্রকল্প</li></ul>' }}</textarea>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <label class="form-label">Website Button Label</label>
-                                                        <input type="text" name="chtdb_website_label"
-                                                            class="form-control"
-                                                            value="{{ $settings['chtdb_website_label'] ?? 'chtdb.gov.bd ভিজিট করুন' }}">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- PeopleNTech Details -->
-                                            <div class="col-md-12 p-3 bg-light-subtle rounded border border-white">
-                                                <h6 class="text-primary mb-3 fw-bold">PeopleNTech Details</h6>
-                                                <div class="row g-3">
-                                                    <div class="col-md-6">
-                                                        <label class="form-label">Name</label>
+                                                        <label class="form-label">Institute Name</label>
                                                         <input type="text" name="peoplentech_name"
                                                             class="form-control"
                                                             value="{{ $settings['peoplentech_name'] ?? 'PeopleNTech Institute of IT' }}">
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="form-label">Badge Text</label>
-                                                        <input type="text" name="peoplentech_badge"
+                                                        <label class="form-label">Logo Path (e.g.
+                                                            img/PNT_logo.webp)</label>
+                                                        <input type="text" name="peoplentech_logo"
                                                             class="form-control"
-                                                            value="{{ $settings['peoplentech_badge'] ?? 'ট্রেনিং প্রদানকারী প্রতিষ্ঠান' }}">
+                                                            value="{{ $settings['peoplentech_logo'] ?? 'img/PNT_logo.webp' }}">
                                                     </div>
                                                     <div class="col-12">
                                                         <label class="form-label">Description</label>
                                                         <textarea name="peoplentech_description" class="form-control" rows="3">{{ $settings['peoplentech_description'] ?? 'PeopleNTech গত ১৪+ বছর ধরে বাংলাদেশে আইটি প্রশিক্ষণ ও জব প্লেসমেন্ট সেবা প্রদান করে আসছে। বিশ্বমানের আইটি বিশেষজ্ঞ তৈরির লক্ষ্যে কাজ করছে এই প্রতিষ্ঠানটি। BASIS ও ISO 9001:2015 সার্টিফিকেটধারী এই প্রতিষ্ঠান দেশ-বিদেশে সুনাম অর্জন করেছে।' }}</textarea>
                                                     </div>
                                                     <div class="col-12">
-                                                        <label class="form-label">List Items (Simple List)</label>
+                                                        <label class="form-label">Features List (HTML Allowed)</label>
                                                         <textarea name="peoplentech_list" class="form-control summernote-list" rows="4">{{ $settings['peoplentech_list'] ?? '<ul><li>ইন্ডাস্ট্রি-ফোকাসড লাইভ কোর্স পরিচালনা</li><li>চাকরি ও ইন্টার্নশিপ প্লেসমেন্ট সার্ভিস</li><li>ফ্রিল্যান্স ক্যারিয়ার গাইডেন্স ও সাপোর্ট</li><li>লাইফটাইম স্টুডেন্ট সাপোর্ট সিস্টেম</li><li>WUST (USA) এর সাথে গ্লোবাল একাডেমিক সহযোগিতা</li></ul>' }}</textarea>
                                                     </div>
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-6">
                                                         <label class="form-label">Website Button Label</label>
                                                         <input type="text" name="peoplentech_website_label"
                                                             class="form-control"
                                                             value="{{ $settings['peoplentech_website_label'] ?? 'peoplentech.com.bd ভিজিট করুন' }}">
                                                     </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Website URL</label>
+                                                        <input type="url" name="peoplentech_website"
+                                                            class="form-control"
+                                                            value="{{ $settings['peoplentech_website'] ?? 'https://peoplentech.com.bd' }}">
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
 
-                                    <!-- Timeline Milestones -->
-                                    <div class="tab-pane fade" id="timeline" role="tabpanel">
-                                        <h5 class="mb-4 border-bottom pb-2">Timeline Milestones Settings</h5>
-
-                                        <!-- Milestone 1 -->
-                                        <div class="bg-light p-3 rounded mb-4 border">
-                                            <h6 class="fw-bold text-primary mb-3">Milestone 1</h6>
-                                            <div class="row g-3">
-                                                <div class="col-md-4">
-                                                    <label class="form-label">Date/Year</label>
-                                                    <input type="text" name="timeline_1_date" class="form-control"
-                                                        value="{{ $settings['timeline_1_date'] ?? '২০২৪ - শুরু' }}">
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <label class="form-label">Title</label>
-                                                    <input type="text" name="timeline_1_title" class="form-control"
-                                                        value="{{ $settings['timeline_1_title'] ?? 'প্রকল্প অনুমোদন ও পরিকল্পনা' }}">
-                                                </div>
-                                                <div class="col-12">
-                                                    <label class="form-label">Description</label>
-                                                    <textarea name="timeline_1_content" class="form-control" rows="2">{{ $settings['timeline_1_content'] ?? 'পার্বত্য চট্টগ্রাম উন্নয়ন বোর্ড কর্তৃক প্রকল্প অনুমোদন এবং PeopleNTech কে ট্রেনিং প্রদানকারী প্রতিষ্ঠান হিসেবে নির্বাচন করা হয়।' }}</textarea>
+                                            <!-- Why PeopleNTech Section -->
+                                            <div class="col-md-12 p-3 bg-white rounded border">
+                                                <h6 class="text-primary mb-3 fw-bold"><i
+                                                        class="bi bi-question-circle me-2"></i>Why Choose Us Section
+                                                </h6>
+                                                <div class="row g-3">
+                                                    <div class="col-12">
+                                                        <label class="form-label">Why Us Title</label>
+                                                        <input type="text" name="org_why_title" class="form-control"
+                                                            value="{{ $settings['org_why_title'] ?? 'কেন PeopleNTech সেরা?' }}">
+                                                    </div>
+                                                    @for ($i = 1; $i <= 4; $i++)
+                                                        <div class="col-md-6">
+                                                            <div class="p-2 border rounded bg-light">
+                                                                <label class="form-label fw-bold small">Feature
+                                                                    {{ $i }}</label>
+                                                                <input type="text"
+                                                                    name="org_feature_{{ $i }}_title"
+                                                                    class="form-control mb-2" placeholder="Title"
+                                                                    value="{{ $settings['org_feature_' . $i . '_title'] ?? '' }}">
+                                                                <input type="text"
+                                                                    name="org_feature_{{ $i }}_subtitle"
+                                                                    class="form-control mb-2" placeholder="Subtitle"
+                                                                    value="{{ $settings['org_feature_' . $i . '_subtitle'] ?? '' }}">
+                                                                <input type="text"
+                                                                    name="org_feature_{{ $i }}_icon"
+                                                                    class="form-control"
+                                                                    placeholder="Icon (Bootstrap Icon Class)"
+                                                                    value="{{ $settings['org_feature_' . $i . '_icon'] ?? 'bi-patch-check-fill' }}">
+                                                            </div>
+                                                        </div>
+                                                    @endfor
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <!-- Milestone 2 -->
-                                        <div class="bg-light p-3 rounded mb-4 border">
-                                            <h6 class="fw-bold text-primary mb-3">Milestone 2</h6>
-                                            <div class="row g-3">
-                                                <div class="col-md-4">
-                                                    <label class="form-label">Date/Year</label>
-                                                    <input type="text" name="timeline_2_date" class="form-control"
-                                                        value="{{ $settings['timeline_2_date'] ?? '২০২৫ - প্রথম ব্যাচ' }}">
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <label class="form-label">Title</label>
-                                                    <input type="text" name="timeline_2_title" class="form-control"
-                                                        value="{{ $settings['timeline_2_title'] ?? 'প্রথম ব্যাচ প্রশিক্ষণ শুরু' }}">
-                                                </div>
-                                                <div class="col-12">
-                                                    <label class="form-label">Description</label>
-                                                    <textarea name="timeline_2_content" class="form-control" rows="2">{{ $settings['timeline_2_content'] ?? 'রাঙামাটি, খাগড়াছড়ি ও বান্দরবানে একযোগে প্রশিক্ষণ কার্যক্রম আরম্ভ। প্রথম ব্যাচে ১০০+ শিক্ষার্থী অংশগ্রহণ।' }}</textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Milestone 3 -->
-                                        <div class="bg-light p-3 rounded mb-4 border">
-                                            <h6 class="fw-bold text-primary mb-3">Milestone 3</h6>
-                                            <div class="row g-3">
-                                                <div class="col-md-4">
-                                                    <label class="form-label">Date/Year</label>
-                                                    <input type="text" name="timeline_3_date" class="form-control"
-                                                        value="{{ $settings['timeline_3_date'] ?? '২০২৫ - মধ্যভাগ' }}">
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <label class="form-label">Title</label>
-                                                    <input type="text" name="timeline_3_title" class="form-control"
-                                                        value="{{ $settings['timeline_3_title'] ?? 'দ্বিতীয় ব্যাচ ও সম্প্রসারণ' }}">
-                                                </div>
-                                                <div class="col-12">
-                                                    <label class="form-label">Description</label>
-                                                    <textarea name="timeline_3_content" class="form-control" rows="2">{{ $settings['timeline_3_content'] ?? 'দ্বিতীয় ব্যাচে আরও ১১৫+ শিক্ষার্থী যোগদান। নতুন কোর্স সংযোজন এবং কারিকুলাম আপডেট করা হয়।' }}</textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Milestone 4 -->
-                                        <div class="bg-light p-3 rounded mb-4 border">
-                                            <h6 class="fw-bold text-primary mb-3">Milestone 4</h6>
-                                            <div class="row g-3">
-                                                <div class="col-md-4">
-                                                    <label class="form-label">Date/Year</label>
-                                                    <input type="text" name="timeline_4_date" class="form-control"
-                                                        value="{{ $settings['timeline_4_date'] ?? '২০২৬ - প্রথম ভাগ' }}">
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <label class="form-label">Title</label>
-                                                    <input type="text" name="timeline_4_title" class="form-control"
-                                                        value="{{ $settings['timeline_4_title'] ?? 'সফল সমাপ্তি ও কর্মসংস্থান' }}">
-                                                </div>
-                                                <div class="col-12">
-                                                    <label class="form-label">Description</label>
-                                                    <textarea name="timeline_4_content" class="form-control" rows="2">{{ $settings['timeline_4_content'] ?? '২০০+ শিক্ষার্থী সফলভাবে প্রশিক্ষণ সম্পন্ন। ৮৫% শিক্ষার্থী কর্মসংস্থানে যুক্ত হয়েছে।' }}</textarea>
+                                            <!-- Achievements / Stats -->
+                                            <div class="col-md-12 p-3 bg-light-subtle rounded border">
+                                                <h6 class="text-primary mb-3 fw-bold"><i
+                                                        class="bi bi-trophy me-2"></i>Achievements & Stats</h6>
+                                                <div class="row g-3">
+                                                    <div class="col-12">
+                                                        <label class="form-label">Achievement Title</label>
+                                                        <input type="text" name="org_achieve_title"
+                                                            class="form-control"
+                                                            value="{{ $settings['org_achieve_title'] ?? 'একনজরে অর্জন' }}">
+                                                    </div>
+                                                    @for ($i = 1; $i <= 4; $i++)
+                                                        <div class="col-md-3">
+                                                            <div class="p-2 border rounded bg-white">
+                                                                <label class="form-label fw-bold small">Stat
+                                                                    {{ $i }}</label>
+                                                                <input type="text"
+                                                                    name="org_stat_{{ $i }}_val"
+                                                                    class="form-control mb-2"
+                                                                    placeholder="Value (e.g. 14+)"
+                                                                    value="{{ $settings['org_stat_' . $i . '_val'] ?? '' }}">
+                                                                <input type="text"
+                                                                    name="org_stat_{{ $i }}_label"
+                                                                    class="form-control" placeholder="Label (e.g. Years)"
+                                                                    value="{{ $settings['org_stat_' . $i . '_label'] ?? '' }}">
+                                                            </div>
+                                                        </div>
+                                                    @endfor
                                                 </div>
                                             </div>
                                         </div>
@@ -600,7 +628,7 @@
                 tabsize: 2,
                 height: 150,
                 toolbar: [
-                    ['para', ['ul', 'ol']],
+                    ['para', ['ul']],
                     ['view', ['codeview']]
                 ]
             });
